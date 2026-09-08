@@ -1,13 +1,7 @@
 # Setup Github actions
 
-- setup exports "Windows", "Linux" and "Web" in godot editor
-- copy godot.ci.yml from here : https://github.com/gus3000/godot-build-demo/blob/main/.github/workflows/godot-ci.yml (or search `godot-ci.yml` in this repository) and put it in your project, in `.github/workflows/`. You should adapt the following constants at the top of the file :
-    - `GODOT_VERSION` ex: 4.7 or 4.3
-    - `EXPORT_NAME` You can set this to whatever you like, this will be used to name the generated files
-    - `PROJECT_PATH` the directory containing the `project.godot` file, you probably don't have to change this
-- enable Github Pages in github project and configure it the following way :
+The project will be automatically built every time someone pushes to `main`. It uses github pages to host the web export of your game on every build, so you need to enable Github Pages on your project.
 
-## How do I enable and configure Github Pages ?
 1. Go to your project on github.com
 2. Go to your github project settings
 3. In the left menu go to "Pages". You should now be at url like `https://github.com/MY_USERNAME/MY_PROJECT/settings/pages`.
