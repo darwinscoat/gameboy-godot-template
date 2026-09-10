@@ -1,6 +1,3 @@
-This project is released under the [Creative Commons CC0 1.0 Universal License](https://creativecommons.org/publicdomain/zero/1.0/).  
-You are free to use, modify, and distribute this template for any purpose without restriction.
-
 # What is this ?
 
 This Godot project template contains the following features to help you get started :
@@ -21,6 +18,9 @@ This Godot project template contains the following features to help you get star
 - enjoy !
 
 Note : to use the automatic build every time you push, follow the guide [here](GUIDE_GITHUB_ACTIONS.md).
+
+# Can I use this for a personal/professional project ?
+This project uses the [MIT licence](https://choosealicense.com/licenses/mit/), which means yes, you can !
 
 # Credits
 - crabbethefirst for the [original template](https://crabbethefirst.itch.io/template-for-gameboy-styled-games) which contains the shader and splash screen
