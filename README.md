@@ -21,3 +21,7 @@ This Godot project template contains the following features to help you get star
 - enjoy !
 
 Note : to use the automatic build every time you push, follow the guide [here](GUIDE_GITHUB_ACTIONS.md).
+
+# Credits
+- crabbethefirst for the [original template](https://crabbethefirst.itch.io/template-for-gameboy-styled-games) which contains the shader and splash screen
+- gus3000 for the Github actions setup
