@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://hcyixgcditfw" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://3bptrgjavx48" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bekl5cnjgwhyl" path="res://mob.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://snr34p2tj46r" path="res://Scenes/gameboy_shader.tscn" id="4_1bvp3"]
 
 [sub_resource type="Curve2D" id="Curve2D_ig7tw"]
 _data = {
@@ -13,8 +14,6 @@ point_count = 5
 [node name="Main" type="Node" unique_id=443435830]
 script = ExtResource("1_0xm2m")
 mob_scene = ExtResource("2_h2yge")
-
-[node name="Player" parent="." unique_id=1297017291 instance=ExtResource("1_ig7tw")]
 
 [node name="MobTimer" type="Timer" parent="." unique_id=547806537]
 wait_time = 0.5
@@ -33,3 +32,20 @@ curve = SubResource("Curve2D_ig7tw")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath" unique_id=2101486196]
 position = Vector2(6, 3)
+
+[node name="Player" parent="." unique_id=354665368 instance=ExtResource("1_ig7tw")]
+
+[node name="Canvas Layer" type="CanvasLayer" parent="." unique_id=1436669654]
+follow_viewport_enabled = true
+
+[node name="Gameboy Shader" parent="Canvas Layer" unique_id=145348038 instance=ExtResource("4_1bvp3")]
+offset_left = 79.2
+offset_top = 71.136
+offset_right = 80.0
+offset_bottom = 72.0
+metadata/_edit_use_anchors_ = true
+
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="hit" from="Player" to="." method="game_over"]

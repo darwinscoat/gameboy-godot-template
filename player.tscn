@@ -15,20 +15,18 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yqs4j"]
-radius = 4.0
-height = 16.0
+radius = 5.0
+height = 12.0
 
-[node name="Node2D" type="Node2D" unique_id=1297017291]
-
-[node name="Player" type="Area2D" parent="." unique_id=354665368]
+[node name="Player" type="Area2D" unique_id=354665368]
 script = ExtResource("1_onrkg")
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=462967740]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=462967740]
 sprite_frames = SubResource("SpriteFrames_yqs4j")
 animation = &"walk"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=54510400]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=54510400]
 shape = SubResource("CapsuleShape2D_yqs4j")
 
-[connection signal="body_entered" from="Player" to="Player" method="_on_body_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
