@@ -36,14 +36,16 @@ position = Vector2(6, 3)
 [node name="Player" parent="." unique_id=354665368 instance=ExtResource("1_ig7tw")]
 
 [node name="Canvas Layer" type="CanvasLayer" parent="." unique_id=1436669654]
-follow_viewport_enabled = true
+layer = 100
 
 [node name="Gameboy Shader" parent="Canvas Layer" unique_id=145348038 instance=ExtResource("4_1bvp3")]
-offset_left = 79.2
-offset_top = 71.136
-offset_right = 80.0
-offset_bottom = 72.0
-metadata/_edit_use_anchors_ = true
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
 
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
