@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://biqgogtp3r7jx"]
+
+[ext_resource type="FontFile" uid="uid://ck4q6gox4hyno" path="res://Fonts/PixelNarrator.ttf" id="1_37p78"]
+[ext_resource type="Script" uid="uid://1dhip58enjhw" path="res://hud.gd" id="1_64ctp"]
+
+[node name="HUD" type="CanvasLayer" unique_id=2016491038]
+script = ExtResource("1_64ctp")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1502372607]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_37p78")
+theme_override_font_sizes/font_size = 10
+text = "0"
+horizontal_alignment = 1
+
+[node name="Message" type="Label" parent="." unique_id=1620610735]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_37p78")
+text = "It's Rat Time!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="." unique_id=877466047]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -23.0
+offset_top = -42.0
+offset_right = 23.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_37p78")
+theme_override_font_sizes/font_size = 13
+text = "Start"
+autowrap_mode = 2
+autowrap_trim_flags = 192
+expand_icon = true
+
+[node name="MessageTimer" type="Timer" parent="." unique_id=1386985977]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

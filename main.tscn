@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://3bptrgjavx48" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bekl5cnjgwhyl" path="res://mob.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://snr34p2tj46r" path="res://Scenes/gameboy_shader.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://biqgogtp3r7jx" path="res://hud.tscn" id="4_lquwl"]
 
 [sub_resource type="Curve2D" id="Curve2D_ig7tw"]
 _data = {
@@ -35,11 +36,12 @@ position = Vector2(6, 3)
 
 [node name="Player" parent="." unique_id=354665368 instance=ExtResource("1_ig7tw")]
 
+[node name="HUD" parent="." unique_id=2016491038 instance=ExtResource("4_lquwl")]
+
 [node name="Canvas Layer" type="CanvasLayer" parent="." unique_id=1436669654]
 layer = 100
 
 [node name="Gameboy Shader" parent="Canvas Layer" unique_id=145348038 instance=ExtResource("4_1bvp3")]
-anchors_preset = 15
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -51,3 +53,4 @@ offset_top = 0.0
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]
