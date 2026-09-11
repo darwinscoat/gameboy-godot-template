@@ -10,14 +10,6 @@ animations = [{
 "texture": ExtResource("1_4flbx")
 }],
 "loop": 1,
-"name": &"up",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_4flbx")
-}],
-"loop": 1,
 "name": &"walk",
 "speed": 5.0
 }]
@@ -34,7 +26,9 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=462967740]
 sprite_frames = SubResource("SpriteFrames_yqs4j")
-animation = &"up"
+animation = &"walk"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/AnimatedSprite2D" unique_id=54510400]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=54510400]
 shape = SubResource("CapsuleShape2D_yqs4j")
+
+[connection signal="body_entered" from="Player" to="Player" method="_on_body_entered"]
