@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://drf8txnjmwn2t"]
+
+[ext_resource type="PackedScene" uid="uid://c712blpx0eaxx" path="res://Scenes/startup_animation.tscn" id="1_wu4hm"]
+[ext_resource type="PackedScene" uid="uid://snr34p2tj46r" path="res://Scenes/gameboy_shader.tscn" id="2_gpujo"]
+
+[node name="workspace 2d" type="Node2D" unique_id=1646515734]
+
+[node name="Canvas Layer" type="CanvasLayer" parent="." unique_id=2089103096]
+follow_viewport_enabled = true
+
+[node name="Startup Animation" parent="Canvas Layer" unique_id=2075990864 instance=ExtResource("1_wu4hm")]
+
+[node name="Gameboy Shader" parent="Canvas Layer" unique_id=1172609857 instance=ExtResource("2_gpujo")]

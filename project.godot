@@ -29,6 +29,13 @@ window/size/transparent=true
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 
+[input]
+
+move_right={
+"deadzone": 0.2,
+"events": []
+}
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
