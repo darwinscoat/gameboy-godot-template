@@ -16,7 +16,7 @@ func show_game_over():
 	$Message.text = "It's Rat Time!"
 	$Message.show()
 	# Make a one-shot timer and wait for it to finish.
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(2.0).timeout
 	$StartButton.show()
 	
 func update_score(score):
@@ -39,4 +39,4 @@ func _on_start_button_pressed():
 	
 
 func _on_message_timer_timeout() -> void:
-	pass # Replace with function body.
+	$Message.hide()
