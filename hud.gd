@@ -5,7 +5,7 @@ signal start_game
 
 func show_message(text):
 	$Message.text = text
-	$Message.show("Get Ready!")
+	$Message.show()
 	$MessageTimer.start()
 
 func show_game_over():

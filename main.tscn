@@ -40,6 +40,7 @@ position = Vector2(6, 3)
 
 [node name="Canvas Layer" type="CanvasLayer" parent="." unique_id=1436669654]
 layer = 100
+visible = false
 
 [node name="Gameboy Shader" parent="Canvas Layer" unique_id=145348038 instance=ExtResource("4_1bvp3")]
 anchor_left = 0.0
