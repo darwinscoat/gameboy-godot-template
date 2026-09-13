@@ -25,6 +25,9 @@ func show_game_over():
 func update_score(score):
 	$ScoreLabel.text = str(score)
 
+func update_coins(coins):
+	$Coins/Label.text = str(coins)
+
 func update_hp(hp, max_hp):
 	for heart in $Hearts.get_children():
 		heart.queue_free()

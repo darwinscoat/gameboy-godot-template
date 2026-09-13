@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c7k7k7c54lsyu" path="res://Assets/Sprites/rat1test.png" id="2_ubaqv"]
 [ext_resource type="Texture2D" uid="uid://nlqcx70spe7u" path="res://Assets/Sprites/Beedeath.png" id="3_b3mxk"]
 [ext_resource type="Script" uid="uid://dm0txljnr287m" path="res://hitbox.gd" id="3_hitbox"]
+[ext_resource type="PackedScene" uid="uid://vij5s85cypje" path="res://coin.tscn" id="4_coin"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1qmh0"]
 atlas = ExtResource("2_s5nov")
@@ -78,7 +79,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_yscv0")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"death",
 "speed": 3.0
 }, {
@@ -107,6 +108,7 @@ size = Vector2(14, 14)
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("1_nokgg")
+coin_scene = ExtResource("4_coin")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1081182147]

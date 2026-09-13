@@ -2,6 +2,7 @@ extends Area2D
 
 signal hit
 signal hp_changed(hp, max_hp)
+signal coins_changed(coins)
 
 @export var speed = 35
 @export var max_hp = 3
@@ -9,11 +10,14 @@ signal hp_changed(hp, max_hp)
 @export var knockback_speed = 80.0
 @export var knockback_time = 0.2
 @export var shake_time = 0.15
+@export var death_time = 1.0
 
 var hp = 3
 var invulnerable_left = 0.0
 var knockback = Vector2.ZERO
 var shake_left = 0.0
+var coins = 0
+var dead = false
 
 
 func _ready():
@@ -23,7 +27,7 @@ func _ready():
 func _process(delta):
 	shake_left = maxf(shake_left - delta, 0.0)
 	$Camera2D.offset = Vector2(randi_range(-2, 2), randi_range(-2, 2)) if shake_left > 0.0 else Vector2.ZERO
-	if not visible:
+	if dead or not visible:
 		return
 	var velocity = Vector2.ZERO
 	if Input.is_action_pressed("move_right"):
@@ -40,7 +44,10 @@ func _process(delta):
 		$AnimatedSprite2D.play("walk")
 		$AnimatedSprite2D.flip_h = velocity.x < 0
 	else:
+		$AnimatedSprite2D.animation = "walk"
 		$AnimatedSprite2D.stop()
+	if invulnerable_left > 0.0:
+		$AnimatedSprite2D.play("hit")
 
 	position += (velocity + knockback) * delta
 	knockback = knockback.move_toward(Vector2.ZERO, knockback_speed / knockback_time * delta)
@@ -51,7 +58,7 @@ func _process(delta):
 
 
 func _physics_process(_delta):
-	if not visible or invulnerable_left > 0.0:
+	if dead or not visible or invulnerable_left > 0.0:
 		return
 	for hitbox in get_overlapping_areas():
 		take_damage(hitbox.damage, hitbox.global_position)
@@ -65,14 +72,31 @@ func take_damage(amount, from):
 	knockback = (global_position - from).normalized() * knockback_speed
 	shake_left = shake_time
 	if hp <= 0:
-		hide()
-		hit.emit()
+		die()
+
+
+func die():
+	dead = true
+	invulnerable_left = 0.0
+	$AnimatedSprite2D.visible = true
+	$AnimatedSprite2D.play("death")
+	hit.emit()
+	await get_tree().create_timer(death_time).timeout
+	hide()
 
 
 func start(pos):
 	position = pos
+	dead = false
 	hp = max_hp
 	hp_changed.emit(hp, max_hp)
+	coins = 0
+	coins_changed.emit(coins)
 	invulnerable_left = 0.0
 	knockback = Vector2.ZERO
 	show()
+
+
+func add_coins(amount):
+	coins += amount
+	coins_changed.emit(coins)

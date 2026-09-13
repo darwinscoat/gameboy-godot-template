@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://snr34p2tj46r" path="res://Scenes/gameboy_shader.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://biqgogtp3r7jx" path="res://hud.tscn" id="4_lquwl"]
 [ext_resource type="Script" uid="uid://d03uokpkq22y0" path="res://ground.gd" id="5_ground"]
-[ext_resource type="Texture2D" uid="uid://dogudcb60iwd6" path="res://Assets/Sprites/ground.png" id="6_ground"]
+[ext_resource type="Texture2D" uid="uid://5d1bt7q1ktix" path="res://Assets/Sprites/bg1.png" id="6_ground"]
 
 [node name="Main" type="Node" unique_id=443435830]
 script = ExtResource("1_0xm2m")
@@ -28,7 +28,7 @@ texture_repeat = 2
 texture = ExtResource("6_ground")
 centered = false
 region_enabled = true
-region_rect = Rect2(0, 0, 224, 192)
+region_rect = Rect2(0, 0, 480, 432)
 script = ExtResource("5_ground")
 
 [node name="Player" parent="." unique_id=354665368 instance=ExtResource("1_ig7tw")]
@@ -51,4 +51,5 @@ offset_top = 0.0
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="hp_changed" from="Player" to="HUD" method="update_hp"]
+[connection signal="coins_changed" from="Player" to="HUD" method="update_coins"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]

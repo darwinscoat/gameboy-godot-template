@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://vij5s85cypje"]
 
 [ext_resource type="Texture2D" uid="uid://ci1wm3m2ru3ii" path="res://Assets/Sprites/coinspin.png" id="1_d5gmh"]
+[ext_resource type="Texture2D" uid="uid://dtmufk66auxtr" path="res://Assets/Sprites/coinL.png" id="2_large"]
+[ext_resource type="Script" uid="uid://138o8rg74wxm" path="res://coin.gd" id="3_coin"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d5gmh"]
 atlas = ExtResource("1_d5gmh")
@@ -14,8 +16,34 @@ region = Rect2(16, 0, 16, 16)
 atlas = ExtResource("1_d5gmh")
 region = Rect2(32, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_large0"]
+atlas = ExtResource("2_large")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_large1"]
+atlas = ExtResource("2_large")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_large2"]
+atlas = ExtResource("2_large")
+region = Rect2(32, 0, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_yqs4j"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_large0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_large1")
+}, {
+"duration": 1.6,
+"texture": SubResource("AtlasTexture_large2")
+}],
+"loop": 1,
+"name": &"large",
+"speed": 6.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_d5gmh")
@@ -31,11 +59,19 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="coin" type="Node2D" unique_id=1597393278]
+[sub_resource type="CircleShape2D" id="CircleShape2D_coin"]
+radius = 4.0
+
+[node name="Coin" type="Area2D" unique_id=1597393278 groups=["coins"]]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_coin")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1427340781]
 sprite_frames = SubResource("SpriteFrames_yqs4j")
 animation = &"spin"
-frame_progress = 0.71967113
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=28935506]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_coin")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

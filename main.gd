@@ -26,6 +26,7 @@ func new_game():
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
 	get_tree().call_group("mobs", "queue_free")
+	get_tree().call_group("coins", "queue_free")
 
 func _on_mob_timer_timeout():
 	var mob = mob_scene.instantiate()
