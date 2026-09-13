@@ -100,6 +100,9 @@ radius = 6.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hit"]
 size = Vector2(8, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
+size = Vector2(14, 14)
+
 [node name="Mob" type="RigidBody2D" unique_id=27830046 groups=["mobs"]]
 gravity_scale = 0.0
 lock_rotation = true
@@ -123,3 +126,10 @@ script = ExtResource("3_hitbox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=570894438]
 shape = SubResource("RectangleShape2D_hit")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_hurt")
