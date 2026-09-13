@@ -29,4 +29,6 @@ animation = &"walk"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=54510400]
 shape = SubResource("CapsuleShape2D_yqs4j")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

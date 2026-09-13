@@ -1,6 +1,7 @@
 extends Node
 
 @export var mob_scene: PackedScene
+@export var spawn_distance: float = 120.0
 var score
 
 # Called when the node enters the scene tree for the first time.
@@ -20,37 +21,17 @@ func game_over():
 
 func new_game():
 	score = 0
-	$Player.start($StartPosition.position)
+	$Player.start(Vector2.ZERO)
 	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
 	get_tree().call_group("mobs", "queue_free")
 
 func _on_mob_timer_timeout():
-	# Create a new instance of the Mob scene.
 	var mob = mob_scene.instantiate()
-
-	# Choose a random location on Path2D.
-	var mob_spawn_location = $MobPath/MobSpawnLocation
-	mob_spawn_location.progress_ratio = randf()
-
-	# Set the mob's position to the random location.
-	mob.position = mob_spawn_location.position
-
-	# Set the mob's direction perpendicular to the path direction.
-	var direction = mob_spawn_location.rotation + PI / 2
-
-	# Add some randomness to the direction.
-	direction += randf_range(-PI / 4, PI / 4)
-	
-
-	# Choose the velocity for the mob.
-	var velocity = Vector2(randf_range(40.0, 100.0), 0.0)
-	mob.linear_velocity = velocity.rotated(direction)
-
-	# Spawn the mob by adding it to the Main scene.
+	var direction = Vector2.from_angle(randf() * TAU)
+	mob.position = $Player.position + direction * spawn_distance
 	add_child(mob)
-
 
 func _on_score_timer_timeout():
 	score += 1

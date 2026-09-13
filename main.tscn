@@ -5,12 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bekl5cnjgwhyl" path="res://mob.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://snr34p2tj46r" path="res://Scenes/gameboy_shader.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://biqgogtp3r7jx" path="res://hud.tscn" id="4_lquwl"]
-
-[sub_resource type="Curve2D" id="Curve2D_ig7tw"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 6, 3, 0, 0, 0, 0, 152, 3, 0, 0, 0, 0, 156, 141, 0, 0, 0, 0, 10, 137, 0, 0, 0, 0, 6, 3)
-}
-point_count = 5
+[ext_resource type="Script" uid="uid://d03uokpkq22y0" path="res://ground.gd" id="5_ground"]
+[ext_resource type="Texture2D" uid="uid://dogudcb60iwd6" path="res://Assets/Sprites/ground.png" id="6_ground"]
 
 [node name="Main" type="Node" unique_id=443435830]
 script = ExtResource("1_0xm2m")
@@ -27,14 +23,13 @@ one_shot = true
 
 [node name="WaveTimer" type="Timer" parent="." unique_id=799047299]
 
-[node name="StartPosition" type="Marker2D" parent="." unique_id=523690202]
-position = Vector2(80, 72)
-
-[node name="MobPath" type="Path2D" parent="." unique_id=1149215952]
-curve = SubResource("Curve2D_ig7tw")
-
-[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath" unique_id=2101486196]
-position = Vector2(6, 3)
+[node name="Ground" type="Sprite2D" parent="." unique_id=1863119164]
+texture_repeat = 2
+texture = ExtResource("6_ground")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 224, 192)
+script = ExtResource("5_ground")
 
 [node name="Player" parent="." unique_id=354665368 instance=ExtResource("1_ig7tw")]
 
@@ -42,7 +37,6 @@ position = Vector2(6, 3)
 
 [node name="Canvas Layer" type="CanvasLayer" parent="." unique_id=1436669654]
 layer = 100
-visible = false
 
 [node name="Gameboy Shader" parent="Canvas Layer" unique_id=145348038 instance=ExtResource("4_1bvp3")]
 anchor_left = 0.0
