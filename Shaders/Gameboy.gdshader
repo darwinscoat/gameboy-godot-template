@@ -3,10 +3,10 @@ shader_type canvas_item;
 //colour variables that make the palette, these can be changed in the inspector or through code if you want a palette toggle mid-game
 //these are RAW values
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_nearest;
-uniform vec3 colour0 : source_color = vec3(0.608, 0.737, 0.059); // lightest
-uniform vec3 colour1 : source_color = vec3(0.545, 0.675, 0.059);
-uniform vec3 colour2 : source_color = vec3(0.188, 0.384, 0.188);
-uniform vec3 colour3 : source_color = vec3(0.059, 0.22, 0.059); // darkest
+uniform vec3 colour0 : source_color = vec3(0.961, 0.949, 0.620); // lightest
+uniform vec3 colour1 : source_color = vec3(0.675, 0.725, 0.396);
+uniform vec3 colour2 : source_color = vec3(0.722, 0.463, 0.322);
+uniform vec3 colour3 : source_color = vec3(0.467, 0.263, 0.275); // darkest
 
 //code for snapping the screen to four colour values
 void fragment() {

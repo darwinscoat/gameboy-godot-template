@@ -3,11 +3,39 @@
 [ext_resource type="Texture2D" uid="uid://dxx75dih33qim" path="res://Assets/Sprites/cat1test.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://b54kiy7154yws" path="res://player.gd" id="1_onrkg"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(32, 0, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_yqs4j"]
 animations = [{
+"frames": [],
+"loop": 1,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": 1,
+"name": &"hit",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_4flbx")
+"texture": SubResource("AtlasTexture_onrkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3pqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqtel")
 }],
 "loop": 1,
 "name": &"walk",
@@ -15,7 +43,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
-size = Vector2(6, 8)
+size = Vector2(12, 8)
 
 [node name="Player" type="Area2D" unique_id=354665368 groups=["player"]]
 collision_layer = 2
@@ -25,9 +53,10 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=462967740]
 sprite_frames = SubResource("SpriteFrames_yqs4j")
-animation = &"walk"
+animation = &"death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=54510400]
+position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_hurt")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=201217747]
