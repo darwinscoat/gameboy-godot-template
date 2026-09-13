@@ -23,12 +23,12 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0t63x")
 }, {
-"duration": 1.0,
+"duration": 1.6,
 "texture": SubResource("AtlasTexture_v7riw")
 }],
 "loop": 1,
 "name": &"spin",
-"speed": 5.0
+"speed": 6.0
 }]
 
 [node name="coin" type="Node2D" unique_id=1597393278]
@@ -36,6 +36,6 @@ animations = [{
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1427340781]
 sprite_frames = SubResource("SpriteFrames_yqs4j")
 animation = &"spin"
-frame_progress = 0.16456583
+frame_progress = 0.71967113
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=28935506]
