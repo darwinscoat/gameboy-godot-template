@@ -2,15 +2,29 @@
 
 [ext_resource type="Texture2D" uid="uid://ci1wm3m2ru3ii" path="res://Assets/Sprites/coinspin.png" id="1_d5gmh"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0t63x"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5gmh"]
 atlas = ExtResource("1_d5gmh")
 region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0t63x"]
+atlas = ExtResource("1_d5gmh")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7riw"]
+atlas = ExtResource("1_d5gmh")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yqs4j"]
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_d5gmh")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0t63x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7riw")
 }],
 "loop": 1,
 "name": &"spin",
@@ -22,6 +36,6 @@ animations = [{
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1427340781]
 sprite_frames = SubResource("SpriteFrames_yqs4j")
 animation = &"spin"
-frame_progress = 0.01181621
+frame_progress = 0.16456583
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=28935506]

@@ -2,8 +2,18 @@
 
 [ext_resource type="Texture2D" uid="uid://dxx75dih33qim" path="res://Assets/Sprites/cat1test.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://b54kiy7154yws" path="res://player.gd" id="1_onrkg"]
-[ext_resource type="Script" path="res://sword.gd" id="2_sword"]
+[ext_resource type="Texture2D" uid="uid://dqlqt0nwjjwrv" path="res://Assets/Sprites/Catdeath.png" id="2_2hs0m"]
+[ext_resource type="Script" uid="uid://bqtk1rx4a64yy" path="res://sword.gd" id="2_sword"]
+[ext_resource type="Texture2D" uid="uid://c13fyfj3pg404" path="res://Assets/Sprites/Cathit.png" id="3_1jxqw"]
 [ext_resource type="PackedScene" path="res://fish.tscn" id="3_fish"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw050"]
+atlas = ExtResource("2_2hs0m")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b26j0"]
+atlas = ExtResource("3_1jxqw")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
 atlas = ExtResource("1_4flbx")
@@ -19,12 +29,18 @@ region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yqs4j"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dw050")
+}],
 "loop": 1,
 "name": &"death",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b26j0")
+}],
 "loop": 1,
 "name": &"hit",
 "speed": 5.0
@@ -56,6 +72,7 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=462967740]
 sprite_frames = SubResource("SpriteFrames_yqs4j")
 animation = &"walk"
+frame_progress = 0.7686936
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=54510400]
 position = Vector2(0, 2)
@@ -63,6 +80,6 @@ shape = SubResource("RectangleShape2D_hurt")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=201217747]
 
-[node name="Sword" type="Node2D" parent="."]
+[node name="Sword" type="Node2D" parent="." unique_id=1815046502]
 script = ExtResource("2_sword")
 fish_scene = ExtResource("3_fish")
