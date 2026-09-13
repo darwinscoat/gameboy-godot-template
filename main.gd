@@ -42,7 +42,7 @@ func _on_mob_timer_timeout():
 
 	# Add some randomness to the direction.
 	direction += randf_range(-PI / 4, PI / 4)
-	mob.rotation = direction
+	
 
 	# Choose the velocity for the mob.
 	var velocity = Vector2(randf_range(40.0, 100.0), 0.0)
