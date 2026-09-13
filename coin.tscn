@@ -1,7 +1,27 @@
 [gd_scene format=3 uid="uid://vij5s85cypje"]
 
+[ext_resource type="Texture2D" uid="uid://ci1wm3m2ru3ii" path="res://Assets/Sprites/coinspin.png" id="1_d5gmh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0t63x"]
+atlas = ExtResource("1_d5gmh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yqs4j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0t63x")
+}],
+"loop": 1,
+"name": &"spin",
+"speed": 5.0
+}]
+
 [node name="coin" type="Node2D" unique_id=1597393278]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1427340781]
+sprite_frames = SubResource("SpriteFrames_yqs4j")
+animation = &"spin"
+frame_progress = 0.01181621
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=28935506]
