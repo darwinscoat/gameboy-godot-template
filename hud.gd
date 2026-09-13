@@ -3,6 +3,9 @@ extends CanvasLayer
 # Notifies `Main` node that the button has been pressed
 signal start_game
 
+@export var heart_full: Texture2D
+@export var heart_empty: Texture2D
+
 func show_message(text):
 	$Message.text = text
 	$Message.show()
@@ -21,6 +24,14 @@ func show_game_over():
 	
 func update_score(score):
 	$ScoreLabel.text = str(score)
+
+func update_hp(hp, max_hp):
+	for heart in $Hearts.get_children():
+		heart.queue_free()
+	for i in max_hp:
+		var heart = TextureRect.new()
+		heart.texture = heart_full if i < hp else heart_empty
+		$Hearts.add_child(heart)
 
 
 # Called when the node enters the scene tree for the first time.

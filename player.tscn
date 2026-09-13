@@ -14,11 +14,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yqs4j"]
-radius = 5.0
-height = 12.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
+size = Vector2(6, 8)
 
 [node name="Player" type="Area2D" unique_id=354665368 groups=["player"]]
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_onrkg")
 metadata/_edit_group_ = true
 
@@ -27,8 +28,6 @@ sprite_frames = SubResource("SpriteFrames_yqs4j")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=54510400]
-shape = SubResource("CapsuleShape2D_yqs4j")
+shape = SubResource("RectangleShape2D_hurt")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
