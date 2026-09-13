@@ -31,10 +31,6 @@ region = Rect2(48, 0, 16, 16)
 atlas = ExtResource("3_b3mxk")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jbnni"]
-atlas = ExtResource("3_b3mxk")
-region = Rect2(16, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_yscv0"]
 atlas = ExtResource("3_b3mxk")
 region = Rect2(0, 0, 16, 16)
@@ -74,14 +70,11 @@ animations = [{
 "texture": SubResource("AtlasTexture_pcqmr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jbnni")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_yscv0")
 }],
 "loop": 0,
 "name": &"death",
-"speed": 3.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -113,8 +106,9 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1081182147]
 sprite_frames = SubResource("SpriteFrames_8022j")
-animation = &"attack"
-frame_progress = 0.5466342
+animation = &"death"
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=279372077]
 visible = false
@@ -129,9 +123,10 @@ script = ExtResource("3_hitbox")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=570894438]
 shape = SubResource("RectangleShape2D_hit")
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1587075333]
+visible = false
 collision_layer = 8
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=380627948]
 shape = SubResource("RectangleShape2D_hurt")
