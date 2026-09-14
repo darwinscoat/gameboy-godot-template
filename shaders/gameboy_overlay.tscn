@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://snr34p2tj46r"]
+
+[ext_resource type="Shader" uid="uid://dxhv8m0bpn0hd" path="res://shaders/gameboy.gdshader" id="1_mbqig"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wa718"]
+shader = ExtResource("1_mbqig")
+shader_parameter/colour0 = Color(0.9607843, 0.9490196, 0.61960787, 1)
+shader_parameter/colour1 = Color(0.6745098, 0.7254902, 0.39607844, 1)
+shader_parameter/colour2 = Color(0.72156864, 0.4627451, 0.32156864, 1)
+shader_parameter/colour3 = Color(0.46666667, 0.2627451, 0.27450982, 1)
+
+[node name="GameboyOverlay" type="ColorRect" unique_id=1130097566]
+top_level = true
+z_index = 4096
+material = SubResource("ShaderMaterial_wa718")
+anchors_preset = -1
+anchor_left = -0.495
+anchor_top = -0.494
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.799995
+offset_top = -0.863998
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

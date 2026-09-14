@@ -1,11 +1,11 @@
-[gd_scene format=3 uid="uid://bekl5cnjgwhyl"]
+[gd_scene format=3 uid="uid://6eh7kxu6vh3s"]
 
-[ext_resource type="Script" uid="uid://b5vg14wbajxxq" path="res://mob.gd" id="1_nokgg"]
-[ext_resource type="Texture2D" uid="uid://dficnk1f1jokp" path="res://Assets/Sprites/Beeatk.png" id="2_s5nov"]
-[ext_resource type="Texture2D" uid="uid://c7k7k7c54lsyu" path="res://Assets/Sprites/rat1test.png" id="2_ubaqv"]
-[ext_resource type="Texture2D" uid="uid://nlqcx70spe7u" path="res://Assets/Sprites/Beedeath.png" id="3_b3mxk"]
-[ext_resource type="Script" uid="uid://dm0txljnr287m" path="res://hitbox.gd" id="3_hitbox"]
-[ext_resource type="PackedScene" uid="uid://vij5s85cypje" path="res://coin.tscn" id="4_coin"]
+[ext_resource type="Script" path="res://mob.gd" id="1_nokgg"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Beeatk.png" id="2_s5nov"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/rat1test.png" id="2_ubaqv"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Beedeath.png" id="3_b3mxk"]
+[ext_resource type="Script" path="res://hitbox.gd" id="3_hitbox"]
+[ext_resource type="PackedScene" uid="uid://cydofvkakfpst" path="res://coin.tscn" id="4_coin"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1qmh0"]
 atlas = ExtResource("2_s5nov")

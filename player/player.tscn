@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://3bptrgjavx48"]
+
+[ext_resource type="Script" uid="uid://b54kiy7154yws" path="res://player/player.gd" id="1_script"]
+[ext_resource type="SpriteFrames" path="res://player/cat.tres" id="2_frames"]
+[ext_resource type="Script" uid="uid://bqtk1rx4a64yy" path="res://player/sword.gd" id="3_sword"]
+[ext_resource type="PackedScene" uid="uid://dgo3oytlutq42" path="res://player/fish.tscn" id="4_fish"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
+size = Vector2(12, 8)
+
+[node name="Player" type="Area2D" unique_id=354665368 groups=["player"]]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_script")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=462967740]
+sprite_frames = ExtResource("2_frames")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=54510400]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_hurt")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=201217747]
+
+[node name="Sword" type="Node2D" parent="." unique_id=1815046502]
+script = ExtResource("3_sword")
+fish_scene = ExtResource("4_fish")

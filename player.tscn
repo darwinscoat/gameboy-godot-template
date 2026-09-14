@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://3bptrgjavx48"]
+[gd_scene format=3 uid="uid://bdiwo6lk1pgqy"]
 
-[ext_resource type="Texture2D" uid="uid://dxx75dih33qim" path="res://Assets/Sprites/cat1test.png" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://b54kiy7154yws" path="res://player.gd" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://dqlqt0nwjjwrv" path="res://Assets/Sprites/Catdeath.png" id="2_2hs0m"]
-[ext_resource type="Script" uid="uid://bqtk1rx4a64yy" path="res://sword.gd" id="2_sword"]
-[ext_resource type="Texture2D" uid="uid://c13fyfj3pg404" path="res://Assets/Sprites/Cathit.png" id="3_1jxqw"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/cat1test.png" id="1_4flbx"]
+[ext_resource type="Script" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Catdeath.png" id="2_2hs0m"]
+[ext_resource type="Script" path="res://sword.gd" id="2_sword"]
+[ext_resource type="Texture2D" path="res://Assets/Sprites/Cathit.png" id="3_1jxqw"]
 [ext_resource type="PackedScene" path="res://fish.tscn" id="3_fish"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dw050"]
