@@ -3,6 +3,13 @@ extends Node
 var score = 0
 
 
+func _process(_delta):
+	if $Director.running:
+		$HUD.update_wave($Director.time_left / $Director.wave.duration, $Director.time_left <= 0.0 and $Director.elite_alive())
+	else:
+		$HUD.hide_wave()
+
+
 func game_over():
 	$Director.stop()
 	$HUD.show_game_over()
@@ -10,11 +17,11 @@ func game_over():
 
 func new_game():
 	score = 0
+	get_tree().call_group("enemies", "queue_free")
+	get_tree().call_group("pickups", "queue_free")
 	$Player.start(Vector2.ZERO)
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
-	get_tree().call_group("enemies", "queue_free")
-	get_tree().call_group("pickups", "queue_free")
 	$Director.start_run()
 
 

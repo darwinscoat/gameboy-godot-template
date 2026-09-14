@@ -12,6 +12,7 @@ signal coins_changed(coins)
 @export var shake_time: float = 0.15
 @export var shake_pixels: int = 2
 @export var death_time: float = 1.0
+@export var spawn_grace: float = 1.0
 
 var hp = 3
 var invulnerable_left = 0.0
@@ -19,6 +20,7 @@ var knockback = Vector2.ZERO
 var shake_left = 0.0
 var coins = 0
 var dead = false
+var hurt = false
 
 
 func _ready():
@@ -43,18 +45,21 @@ func _process(delta):
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
 		$AnimatedSprite2D.play("walk")
-		$AnimatedSprite2D.flip_h = velocity.x < 0
+		if velocity.x != 0.0:
+			$AnimatedSprite2D.flip_h = velocity.x < 0
 	else:
 		$AnimatedSprite2D.animation = "walk"
 		$AnimatedSprite2D.stop()
-	if invulnerable_left > 0.0:
+	if invulnerable_left > 0.0 and hurt:
 		$AnimatedSprite2D.play("hit")
 
 	position += (velocity + knockback) * delta
 	knockback = knockback.move_toward(Vector2.ZERO, knockback_speed / knockback_time * delta)
 
 	invulnerable_left = maxf(invulnerable_left - delta, 0.0)
-	$AnimatedSprite2D.visible = invulnerable_left == 0.0 or int(invulnerable_left * 10) % 2 == 0
+	if invulnerable_left == 0.0:
+		hurt = false
+	$AnimatedSprite2D.visible = not hurt or int(invulnerable_left * 10) % 2 == 0
 
 
 func _physics_process(_delta):
@@ -72,6 +77,7 @@ func shake(time):
 func take_damage(amount, from):
 	hp -= amount
 	hp_changed.emit(hp, max_hp)
+	hurt = true
 	invulnerable_left = invulnerable_time
 	knockback = (global_position - from).normalized() * knockback_speed
 	shake(shake_time)
@@ -96,7 +102,8 @@ func start(pos):
 	hp_changed.emit(hp, max_hp)
 	coins = 0
 	coins_changed.emit(coins)
-	invulnerable_left = 0.0
+	invulnerable_left = spawn_grace
+	hurt = false
 	knockback = Vector2.ZERO
 	show()
 

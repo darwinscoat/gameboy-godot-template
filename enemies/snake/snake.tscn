@@ -7,7 +7,8 @@
 [node name="Snake" instance=ExtResource("1_base")]
 script = ExtResource("2_script")
 chase_speed = 40.0
-max_hp = 1
+max_hp = 4
+knockback_speed = 180.0
 coin_value = 5
 score_value = 50
 

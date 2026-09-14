@@ -55,7 +55,10 @@ func _physics_process(delta):
 		return
 	stun_left = maxf(stun_left - delta, 0.0)
 	$AnimatedSprite2D.modulate = Color(4, 4, 4) if stun_left > 0.0 else Color.WHITE
-	if stun_left > 0.0 or not target.visible:
+	if not target.visible:
+		set_anim("walk")
+		return
+	if stun_left > 0.0:
 		return
 	state_left = maxf(state_left - delta, 0.0)
 	steer(to_player, delta)
@@ -90,6 +93,8 @@ func flee():
 	if elite:
 		return
 	fleeing = true
+	stun_left = 0.0
+	$AnimatedSprite2D.modulate = Color.WHITE
 	$Hitbox/CollisionShape2D.set_deferred("disabled", true)
 	$Hurtbox/CollisionShape2D.set_deferred("disabled", true)
 

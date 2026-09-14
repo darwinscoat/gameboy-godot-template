@@ -31,7 +31,6 @@ var wave_index = -1
 var time_left = 0.0
 var pulse_left = 0.0
 var elite_done = false
-var regulars_fled = false
 var running = false
 var run_id = 0
 
@@ -44,18 +43,14 @@ func _process(delta):
 		player_dir = moved.normalized()
 	last_player_pos = player.position
 	time_left -= delta
-	if time_left <= 0.0:
-		if elite_alive():
-			if not regulars_fled:
-				regulars_fled = true
-				get_tree().call_group("enemies", "flee")
-			return
+	var boss = elite_alive()
+	if time_left <= 0.0 and not boss:
 		finish_wave()
 		return
 	if wave.elite != "" and not elite_done and wave.duration - time_left >= wave.elite_at:
 		elite_done = true
 		spawn_one(wave.elite, rng.randf() * TAU, true)
-	if time_left <= flee_lead:
+	if time_left <= flee_lead and not boss:
 		return
 	pulse_left -= delta
 	if pulse_left <= 0.0:
@@ -92,7 +87,6 @@ func next_wave():
 	time_left = wave.duration
 	pulse_left = wave.pulse_interval
 	elite_done = false
-	regulars_fled = false
 	running = true
 	wave_started.emit(wave_index + 1, wave.banner)
 	if wave.opener != "":
