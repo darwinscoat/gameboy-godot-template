@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" format=3]
+[gd_resource type="SpriteFrames" format=3 uid="uid://tk3txf6gv1u4"]
 
 [ext_resource type="Texture2D" uid="uid://c7k7k7c54lsyu" path="res://enemies/bee/bee_fly.png" id="1_fly"]
 [ext_resource type="Texture2D" uid="uid://dficnk1f1jokp" path="res://enemies/bee/bee_attack.png" id="2_attack"]

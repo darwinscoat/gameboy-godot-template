@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="WaveData" load_steps=2 format=3]
+
+[ext_resource type="Script" uid="uid://cym8sxexsxi5" path="res://world/wave_data.gd" id="1_wave"]
+
+[resource]
+script = ExtResource("1_wave")
+banner = ""
+duration = 45.0
+max_alive = 8
+pulse_interval = 2.0
+bee = 0.9
+fish = 0.4
+snake = 0.3
+drip = 0.6
+pair = 0.6
+wall = 0.4
+ring = 0.0
+ambush = 0.6
+escort = 0.3
+opener = ""
+elite = ""
+elite_at = 0.0

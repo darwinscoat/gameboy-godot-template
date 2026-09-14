@@ -2,6 +2,7 @@ extends CanvasLayer
 
 signal start_game
 
+@export var restart_delay: float = 2.0
 @export var heart_full: Texture2D
 @export var heart_empty: Texture2D
 
@@ -12,12 +13,12 @@ func show_message(text):
 	$MessageTimer.start()
 
 
-func show_game_over():
-	show_message("Game Over")
+func show_game_over(text := "Game Over"):
+	show_message(text)
 	await $MessageTimer.timeout
-	$Message.text = "It's Rat Time!"
+	$Message.text = "Churro"
 	$Message.show()
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(restart_delay).timeout
 	$StartButton.show()
 
 

@@ -6,7 +6,6 @@
 [node name="Boot" type="Node2D" unique_id=2008706374]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=10752842]
-scale = Vector2(4, 4)
 
 [node name="StartupLayer" type="CanvasLayer" parent="." unique_id=941534720]
 follow_viewport_enabled = true

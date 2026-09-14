@@ -10,6 +10,7 @@ signal coins_changed(coins)
 @export var knockback_speed: float = 80.0
 @export var knockback_time: float = 0.2
 @export var shake_time: float = 0.15
+@export var shake_pixels: int = 2
 @export var death_time: float = 1.0
 
 var hp = 3
@@ -26,7 +27,7 @@ func _ready():
 
 func _process(delta):
 	shake_left = maxf(shake_left - delta, 0.0)
-	$Camera2D.offset = Vector2(randi_range(-2, 2), randi_range(-2, 2)) if shake_left > 0.0 else Vector2.ZERO
+	$Camera2D.offset = Vector2(randi_range(-shake_pixels, shake_pixels), randi_range(-shake_pixels, shake_pixels)) if shake_left > 0.0 else Vector2.ZERO
 	if dead or not visible:
 		return
 	var velocity = Vector2.ZERO
@@ -56,7 +57,6 @@ func _process(delta):
 	$AnimatedSprite2D.visible = invulnerable_left == 0.0 or int(invulnerable_left * 10) % 2 == 0
 
 
-
 func _physics_process(_delta):
 	if dead or not visible or invulnerable_left > 0.0:
 		return
@@ -65,12 +65,16 @@ func _physics_process(_delta):
 		return
 
 
+func shake(time):
+	shake_left = time
+
+
 func take_damage(amount, from):
 	hp -= amount
 	hp_changed.emit(hp, max_hp)
 	invulnerable_left = invulnerable_time
 	knockback = (global_position - from).normalized() * knockback_speed
-	shake_left = shake_time
+	shake(shake_time)
 	if hp <= 0:
 		die()
 
@@ -100,3 +104,11 @@ func start(pos):
 func add_coins(amount):
 	coins += amount
 	coins_changed.emit(coins)
+
+
+func heal(amount) -> bool:
+	if hp >= max_hp:
+		return false
+	hp = mini(hp + amount, max_hp)
+	hp_changed.emit(hp, max_hp)
+	return true

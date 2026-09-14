@@ -30,7 +30,6 @@ func _process(delta):
 		var a = angle + TAU * i / fishes.size()
 		var step = roundi(fmod(a, TAU) / (TAU / 16)) % 16
 		fish.position = Vector2.from_angle(a) * radius * size
-		fish.scale = Vector2(size, size)
 		fish.rotation = (step / 4) * TAU / 4
 		fish.get_node("Sprite2D").frame = step % 4
 

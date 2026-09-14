@@ -13,11 +13,10 @@ func steer(to_player, delta):
 	match state:
 		"charge":
 			linear_velocity = Vector2.ZERO
-			$AnimatedSprite2D.flip_h = to_player.x < 0
+			face(dash_direction.x < 0)
 			$AnimatedSprite2D.offset.x = 1 if int(state_left * 20) % 2 == 0 else -1
 			if state_left == 0.0:
 				$AnimatedSprite2D.offset.x = 0
-				dash_direction = to_player.normalized()
 				enter("dash", dash_time)
 		"dash":
 			linear_velocity = dash_direction * dash_speed
@@ -30,4 +29,5 @@ func steer(to_player, delta):
 		_:
 			chase(to_player, delta)
 			if to_player.length() < charge_range:
+				dash_direction = to_player.normalized()
 				enter("charge", charge_time)

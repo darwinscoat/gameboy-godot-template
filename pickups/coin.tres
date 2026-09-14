@@ -1,19 +1,7 @@
-[gd_resource type="SpriteFrames" format=3]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bj0b6u70yur2w"]
 
 [ext_resource type="Texture2D" uid="uid://ci1wm3m2ru3ii" path="res://pickups/coin_small.png" id="1_small"]
 [ext_resource type="Texture2D" uid="uid://dtmufk66auxtr" path="res://pickups/coin_large.png" id="2_large"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d5gmh"]
-atlas = ExtResource("1_small")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0t63x"]
-atlas = ExtResource("1_small")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v7riw"]
-atlas = ExtResource("1_small")
-region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_large0"]
 atlas = ExtResource("2_large")
@@ -25,6 +13,18 @@ region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_large2"]
 atlas = ExtResource("2_large")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5gmh"]
+atlas = ExtResource("1_small")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0t63x"]
+atlas = ExtResource("1_small")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7riw"]
+atlas = ExtResource("1_small")
 region = Rect2(32, 0, 16, 16)
 
 [resource]

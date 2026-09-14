@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b5vg14wbajxxq" path="res://enemies/enemy.gd" id="1_script"]
 [ext_resource type="Script" uid="uid://dm0txljnr287m" path="res://enemies/hitbox.gd" id="2_hitbox"]
+[ext_resource type="PackedScene" path="res://pickups/heart.tscn" id="5_heart"]
+[ext_resource type="PackedScene" path="res://world/shadow.tscn" id="9_shadow"]
+[ext_resource type="Texture2D" uid="uid://bxl2rx7o60drd" path="res://enemies/crown.png" id="4_crown"]
 [ext_resource type="PackedScene" uid="uid://vij5s85cypje" path="res://pickups/coin.tscn" id="3_coin"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_body"]
@@ -18,6 +21,7 @@ gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("1_script")
 coin_scene = ExtResource("3_coin")
+heart_scene = ExtResource("5_heart")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1081182147]
@@ -42,3 +46,11 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=380627948]
 shape = SubResource("RectangleShape2D_hurt")
+
+[node name="Crown" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -11)
+texture = ExtResource("4_crown")
+
+[node name="Shadow" parent="." instance=ExtResource("9_shadow")]
+position = Vector2(0, 6)

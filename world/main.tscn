@@ -9,23 +9,31 @@
 [ext_resource type="Script" uid="uid://d03uokpkq22y0" path="res://world/ground.gd" id="5_ground"]
 [ext_resource type="Texture2D" uid="uid://5d1bt7q1ktix" path="res://world/ground.png" id="6_ground"]
 [ext_resource type="PackedScene" uid="uid://snr34p2tj46r" path="res://shaders/gameboy_overlay.tscn" id="7_overlay"]
+[ext_resource type="Script" uid="uid://d4gnaj2s5v38" path="res://world/director.gd" id="8_director"]
+[ext_resource type="Script" uid="uid://cym8sxexsxi5" path="res://world/wave_data.gd" id="9_wave_data"]
+[ext_resource type="Resource" path="res://world/waves/wave_01.tres" id="w01"]
+[ext_resource type="Resource" path="res://world/waves/wave_02.tres" id="w02"]
+[ext_resource type="Resource" path="res://world/waves/wave_03.tres" id="w03"]
+[ext_resource type="Resource" path="res://world/waves/wave_04.tres" id="w04"]
+[ext_resource type="Resource" path="res://world/waves/wave_05.tres" id="w05"]
+[ext_resource type="Resource" path="res://world/waves/wave_06.tres" id="w06"]
+[ext_resource type="Resource" path="res://world/waves/wave_07.tres" id="w07"]
+[ext_resource type="Resource" path="res://world/waves/wave_08.tres" id="w08"]
+[ext_resource type="Resource" path="res://world/waves/wave_09.tres" id="w09"]
+[ext_resource type="Resource" path="res://world/waves/wave_10.tres" id="w10"]
 
 [node name="Main" type="Node" unique_id=443435830]
 script = ExtResource("1_script")
-enemy_scenes = Array[PackedScene]([ExtResource("3_bee"), ExtResource("3_fish"), ExtResource("3_snake")])
 
-[node name="SpawnTimer" type="Timer" parent="." unique_id=547806537]
-wait_time = 0.5
-
-[node name="ScoreTimer" type="Timer" parent="." unique_id=986560047]
-
-[node name="StartTimer" type="Timer" parent="." unique_id=180727706]
-wait_time = 2.0
-one_shot = true
-
-[node name="WaveTimer" type="Timer" parent="." unique_id=799047299]
+[node name="Director" type="Node" parent="."]
+script = ExtResource("8_director")
+waves = Array[ExtResource("9_wave_data")]([ExtResource("w01"), ExtResource("w02"), ExtResource("w03"), ExtResource("w04"), ExtResource("w05"), ExtResource("w06"), ExtResource("w07"), ExtResource("w08"), ExtResource("w09"), ExtResource("w10")])
+bee_scene = ExtResource("3_bee")
+fish_scene = ExtResource("3_fish")
+snake_scene = ExtResource("3_snake")
 
 [node name="Ground" type="Sprite2D" parent="." unique_id=1863119164]
+z_index = -2
 texture_repeat = 2
 texture = ExtResource("6_ground")
 centered = false
@@ -48,9 +56,11 @@ anchor_bottom = 1.0
 offset_left = 0.0
 offset_top = 0.0
 
-[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
-[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
-[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="elite_spawned" from="Director" to="." method="_on_director_elite_spawned"]
+[connection signal="run_won" from="Director" to="." method="_on_director_run_won"]
+[connection signal="scored" from="Director" to="." method="add_score"]
+[connection signal="wave_finished" from="Director" to="." method="_on_director_wave_finished"]
+[connection signal="wave_started" from="Director" to="." method="_on_director_wave_started"]
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="hp_changed" from="Player" to="HUD" method="update_hp"]
 [connection signal="coins_changed" from="Player" to="HUD" method="update_coins"]
