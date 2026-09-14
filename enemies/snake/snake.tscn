@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" uid="uid://bekl5cnjgwhyl" path="res://enemies/enemy.tscn" id="1_base"]
+[ext_resource type="Script" path="res://enemies/snake/snake.gd" id="2_script"]
+[ext_resource type="SpriteFrames" path="res://enemies/snake/snake.tres" id="3_frames"]
+
+[node name="Snake" instance=ExtResource("1_base")]
+script = ExtResource("2_script")
+chase_speed = 40.0
+max_hp = 1
+coin_value = 5
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = ExtResource("3_frames")
+animation = &"walk"

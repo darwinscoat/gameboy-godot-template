@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://hcyixgcditfw" path="res://world/main.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://3bptrgjavx48" path="res://player/player.tscn" id="2_player"]
-[ext_resource type="PackedScene" uid="uid://bekl5cnjgwhyl" path="res://enemies/mob.tscn" id="3_mob"]
+[ext_resource type="PackedScene" path="res://enemies/bee/bee.tscn" id="3_bee"]
+[ext_resource type="PackedScene" path="res://enemies/fish/fish.tscn" id="3_fish"]
+[ext_resource type="PackedScene" path="res://enemies/snake/snake.tscn" id="3_snake"]
 [ext_resource type="PackedScene" uid="uid://biqgogtp3r7jx" path="res://ui/hud.tscn" id="4_hud"]
 [ext_resource type="Script" uid="uid://d03uokpkq22y0" path="res://world/ground.gd" id="5_ground"]
 [ext_resource type="Texture2D" uid="uid://5d1bt7q1ktix" path="res://world/ground.png" id="6_ground"]
@@ -10,9 +12,9 @@
 
 [node name="Main" type="Node" unique_id=443435830]
 script = ExtResource("1_script")
-mob_scene = ExtResource("3_mob")
+enemy_scenes = Array[PackedScene]([ExtResource("3_bee"), ExtResource("3_fish"), ExtResource("3_snake")])
 
-[node name="MobTimer" type="Timer" parent="." unique_id=547806537]
+[node name="SpawnTimer" type="Timer" parent="." unique_id=547806537]
 wait_time = 0.5
 
 [node name="ScoreTimer" type="Timer" parent="." unique_id=986560047]
@@ -46,7 +48,7 @@ anchor_bottom = 1.0
 offset_left = 0.0
 offset_top = 0.0
 
-[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="hit" from="Player" to="." method="game_over"]

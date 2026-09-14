@@ -1,3 +1,4 @@
+class_name Enemy
 extends RigidBody2D
 
 @export var chase_speed: float = 20.0
@@ -13,11 +14,13 @@ var target: Node2D
 var hp = 2
 var stun_left = 0.0
 var dying = false
+var state = ""
+var state_left = 0.0
 
 
 func _ready():
 	hp = max_hp
-	$AnimatedSprite2D.play("walk")
+	set_anim("walk")
 	target = get_tree().get_first_node_in_group("player")
 
 
@@ -32,13 +35,28 @@ func _physics_process(delta):
 	if to_player.length() > despawn_distance:
 		queue_free()
 		return
+	state_left = maxf(state_left - delta, 0.0)
 	steer(to_player, delta)
 
 
 func steer(to_player, delta):
+	chase(to_player, delta)
+
+
+func chase(to_player, delta):
 	var wanted_velocity = to_player.normalized() * chase_speed
 	linear_velocity = linear_velocity.lerp(wanted_velocity, minf(turn_speed * delta, 1.0))
 	$AnimatedSprite2D.flip_h = linear_velocity.x < 0
+
+
+func enter(next, time):
+	state = next
+	state_left = time
+
+
+func set_anim(name):
+	if $AnimatedSprite2D.animation != name:
+		$AnimatedSprite2D.play(name)
 
 
 func take_damage(amount, from):
@@ -58,7 +76,7 @@ func die():
 	$Hitbox/CollisionShape2D.set_deferred("disabled", true)
 	$Hurtbox/CollisionShape2D.set_deferred("disabled", true)
 	$AnimatedSprite2D.modulate = Color.WHITE
-	$AnimatedSprite2D.play("death")
+	set_anim("death")
 	var coin = coin_scene.instantiate()
 	coin.position = position
 	coin.value = coin_value

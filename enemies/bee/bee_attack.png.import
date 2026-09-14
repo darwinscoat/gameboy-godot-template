@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nlqcx70spe7u"
-path="res://.godot/imported/bee_death.png-0325984dc5c1faebcbccce8ef13a29f7.ctex"
+uid="uid://dficnk1f1jokp"
+path="res://.godot/imported/bee_attack.png-a11111ce80b52ad584d53de6f64e2a7e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/bee_death.png"
-dest_files=["res://.godot/imported/bee_death.png-0325984dc5c1faebcbccce8ef13a29f7.ctex"]
+source_file="res://enemies/bee/bee_attack.png"
+dest_files=["res://.godot/imported/bee_attack.png-a11111ce80b52ad584d53de6f64e2a7e.ctex"]
 
 [params]
 

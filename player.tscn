@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bdiwo6lk1pgqy"]
+[gd_scene format=3 uid="uid://byp7uvnjagomb"]
 
 [ext_resource type="Texture2D" path="res://Assets/Sprites/cat1test.png" id="1_4flbx"]
 [ext_resource type="Script" path="res://player.gd" id="1_onrkg"]

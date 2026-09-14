@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0pse632jc73y"
-path="res://.godot/imported/fish.png-139408a0bce6df2797e928c42cab354c.ctex"
+uid="uid://c7k7k7c54lsyu"
+path="res://.godot/imported/bee_fly.png-210da63864a0e569daa4e1ffb81c7df2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/fish.png"
-dest_files=["res://.godot/imported/fish.png-139408a0bce6df2797e928c42cab354c.ctex"]
+source_file="res://enemies/bee/bee_fly.png"
+dest_files=["res://.godot/imported/bee_fly.png-210da63864a0e569daa4e1ffb81c7df2.ctex"]
 
 [params]
 

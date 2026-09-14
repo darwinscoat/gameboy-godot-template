@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dficnk1f1jokp"
-path="res://.godot/imported/bee_attack.png-c0e8f2d2e92d2b26a43cbd1cc172cbcb.ctex"
+uid="uid://p0bnyw0atom8"
+path="res://.godot/imported/snake.png-1942e1fcdb1934b762c9718c7c91b325.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/bee_attack.png"
-dest_files=["res://.godot/imported/bee_attack.png-c0e8f2d2e92d2b26a43cbd1cc172cbcb.ctex"]
+source_file="res://enemies/snake/snake.png"
+dest_files=["res://.godot/imported/snake.png-1942e1fcdb1934b762c9718c7c91b325.ctex"]
 
 [params]
 

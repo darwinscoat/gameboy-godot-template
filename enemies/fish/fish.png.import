@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p0bnyw0atom8"
-path="res://.godot/imported/snake.png-3ac4df5a1a60e23e07aeb6a9160a8d75.ctex"
+uid="uid://b0pse632jc73y"
+path="res://.godot/imported/fish.png-b080403dc00eacc328f0cbe25994cde3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/snake.png"
-dest_files=["res://.godot/imported/snake.png-3ac4df5a1a60e23e07aeb6a9160a8d75.ctex"]
+source_file="res://enemies/fish/fish.png"
+dest_files=["res://.godot/imported/fish.png-b080403dc00eacc328f0cbe25994cde3.ctex"]
 
 [params]
 

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cd4sj3nyou46g"]
+[gd_scene format=3 uid="uid://bp47e7fcv3ttf"]
 
 [ext_resource type="FontFile" path="res://Fonts/PixelNarrator.ttf" id="1_37p78"]
 [ext_resource type="Script" path="res://hud.gd" id="1_64ctp"]
