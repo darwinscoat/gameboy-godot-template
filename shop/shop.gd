@@ -6,11 +6,13 @@ const ATTACK = ["damage", "count", "spin"]
 @export var normal_style: StyleBox
 @export var selected_style: StyleBox
 @export var dim: Color = Color(0.341, 0.341, 0.341)
+@export var curtain: NodePath
 
 var player: Node
 var offered = []
 var sold = []
 var selected = 0
+var closing = false
 
 
 func _ready():
@@ -18,7 +20,7 @@ func _ready():
 
 
 func _process(_delta):
-	if not visible:
+	if not visible or closing:
 		return
 	if Input.is_action_just_pressed("move_left"):
 		select(selected - 1)
@@ -39,14 +41,20 @@ func open(rng):
 	sold.resize(offered.size())
 	sold.fill(false)
 	selected = 0
+	closing = false
 	refresh()
-	show()
 	get_tree().paused = true
+	await get_node(curtain).cover()
+	show()
+	get_node(curtain).reveal()
 
 
 func close():
+	closing = true
+	await get_node(curtain).cover()
 	hide()
 	get_tree().paused = false
+	get_node(curtain).reveal()
 
 
 func pick(rng) -> Array:

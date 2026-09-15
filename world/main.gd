@@ -17,6 +17,7 @@ func game_over():
 
 
 func new_game():
+	await $Transition.cover()
 	score = 0
 	get_tree().call_group("enemies", "queue_free")
 	get_tree().call_group("pickups", "queue_free")
@@ -25,6 +26,7 @@ func new_game():
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
 	$Director.start_run()
+	$Transition.reveal()
 
 
 func add_score(points):
