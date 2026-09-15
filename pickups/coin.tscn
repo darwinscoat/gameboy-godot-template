@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://vij5s85cypje"]
 
 [ext_resource type="Script" uid="uid://138o8rg74wxm" path="res://pickups/coin.gd" id="1_script"]
-[ext_resource type="SpriteFrames" path="res://pickups/coin.tres" id="2_frames"]
+[ext_resource type="SpriteFrames" uid="uid://bdawuvpl8snh7" path="res://pickups/coin.tres" id="2_frames"]
 [ext_resource type="PackedScene" path="res://world/shadow.tscn" id="9_shadow"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_coin"]
@@ -14,10 +14,11 @@ script = ExtResource("1_script")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1427340781]
 sprite_frames = ExtResource("2_frames")
-animation = &"spin"
+animation = &"large"
+frame_progress = 0.6942479
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=503291393]
 shape = SubResource("CircleShape2D_coin")
 
-[node name="Shadow" parent="." instance=ExtResource("9_shadow")]
+[node name="Shadow" parent="." unique_id=206369213 instance=ExtResource("9_shadow")]
 position = Vector2(0, 5)

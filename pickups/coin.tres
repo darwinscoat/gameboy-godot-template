@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" format=3 uid="uid://bj0b6u70yur2w"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bdawuvpl8snh7"]
 
 [ext_resource type="Texture2D" uid="uid://ci1wm3m2ru3ii" path="res://pickups/coin_small.png" id="1_small"]
 [ext_resource type="Texture2D" uid="uid://dtmufk66auxtr" path="res://pickups/coin_large.png" id="2_large"]
@@ -38,6 +38,9 @@ animations = [{
 }, {
 "duration": 1.6,
 "texture": SubResource("AtlasTexture_large2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_large1")
 }],
 "loop": 1,
 "name": &"large",
@@ -52,6 +55,9 @@ animations = [{
 }, {
 "duration": 1.6,
 "texture": SubResource("AtlasTexture_v7riw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0t63x")
 }],
 "loop": 1,
 "name": &"spin",

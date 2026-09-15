@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" format=3]
+[gd_resource type="SpriteFrames" format=3 uid="uid://cxivd8dshmryt"]
 
 [ext_resource type="Texture2D" uid="uid://dxx75dih33qim" path="res://player/cat_walk.png" id="1_walk"]
 [ext_resource type="Texture2D" uid="uid://c13fyfj3pg404" path="res://player/cat_hit.png" id="2_hit"]

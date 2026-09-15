@@ -1,9 +1,60 @@
-[gd_resource type="SpriteFrames" format=3]
+[gd_resource type="SpriteFrames" format=3 uid="uid://dsue52egomgua"]
 
+[ext_resource type="Texture2D" uid="uid://dbxp4slpu2mle" path="res://enemies/fish/Fish_attack.png" id="1_eggr7"]
 [ext_resource type="Texture2D" uid="uid://b0pse632jc73y" path="res://enemies/fish/fish.png" id="1_fish"]
+[ext_resource type="Texture2D" uid="uid://du0xacfayerb1" path="res://enemies/fish/Fish_walk.png" id="3_s6r76"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14mhu"]
+atlas = ExtResource("1_eggr7")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3t0nn"]
+atlas = ExtResource("1_eggr7")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqf7x"]
+atlas = ExtResource("1_eggr7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eoplc"]
+atlas = ExtResource("1_eggr7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crnav"]
+atlas = ExtResource("3_s6r76")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqjp3"]
+atlas = ExtResource("3_s6r76")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8i1b"]
+atlas = ExtResource("3_s6r76")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kw5i0"]
+atlas = ExtResource("3_s6r76")
+region = Rect2(32, 0, 16, 16)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14mhu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t0nn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqf7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eoplc")
+}],
+"loop": 1,
+"name": &"attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_fish")
@@ -14,7 +65,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_fish")
+"texture": SubResource("AtlasTexture_crnav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqjp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8i1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kw5i0")
 }],
 "loop": 1,
 "name": &"walk",

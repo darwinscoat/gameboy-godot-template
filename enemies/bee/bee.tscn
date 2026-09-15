@@ -11,6 +11,7 @@ attack_range = 12.0
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=1081182147]
 sprite_frames = ExtResource("3_frames")
 animation = &"walk"
+frame_progress = 0.31289375
 
 [node name="Shadow" parent="." index="5"]
 position = Vector2(0, 11)
