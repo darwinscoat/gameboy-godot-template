@@ -1,0 +1,123 @@
+extends CanvasLayer
+
+const ATTACK = ["damage", "count", "spin"]
+
+@export var upgrades: Array[UpgradeData]
+@export var normal_style: StyleBox
+@export var selected_style: StyleBox
+@export var dim: Color = Color(0.341, 0.341, 0.341)
+
+var player: Node
+var offered = []
+var sold = []
+var selected = 0
+
+
+func _ready():
+	hide()
+
+
+func _process(_delta):
+	if not visible:
+		return
+	if Input.is_action_just_pressed("move_left"):
+		select(selected - 1)
+	elif Input.is_action_just_pressed("move_right"):
+		select(selected + 1)
+	elif Input.is_action_just_pressed("a"):
+		buy()
+	elif Input.is_action_just_pressed("b"):
+		close()
+
+
+func open(rng):
+	player = get_tree().get_first_node_in_group("player")
+	offered = pick(rng)
+	if offered.is_empty():
+		return
+	sold = []
+	sold.resize(offered.size())
+	sold.fill(false)
+	selected = 0
+	refresh()
+	show()
+	get_tree().paused = true
+
+
+func close():
+	hide()
+	get_tree().paused = false
+
+
+func pick(rng) -> Array:
+	var pool = upgrades.filter(func(upgrade): return player.level(upgrade) < upgrade.costs.size())
+	var picked = []
+	draw(picked, pool.filter(func(upgrade): return upgrade.stat in ATTACK), rng)
+	if picked.is_empty() or cost_of(picked[0]) > player.coins:
+		draw(picked, pool.filter(func(upgrade): return cost_of(upgrade) <= player.coins), rng)
+	while picked.size() < mini($Cards.get_child_count(), pool.size()):
+		draw(picked, pool, rng)
+	for i in range(picked.size() - 1, 0, -1):
+		var j = rng.randi() % (i + 1)
+		var swap = picked[i]
+		picked[i] = picked[j]
+		picked[j] = swap
+	return picked
+
+
+func draw(picked, options, rng):
+	options = options.filter(func(upgrade): return not picked.has(upgrade))
+	if not options.is_empty():
+		picked.append(options[rng.randi() % options.size()])
+
+
+func cost_of(upgrade) -> int:
+	return upgrade.costs[mini(player.level(upgrade), upgrade.costs.size() - 1)]
+
+
+func select(index):
+	selected = wrapi(index, 0, offered.size())
+	refresh()
+
+
+func buy():
+	if sold[selected]:
+		return
+	var upgrade = offered[selected]
+	var cost = cost_of(upgrade)
+	if player.coins < cost:
+		return
+	player.add_coins(-cost)
+	player.apply(upgrade)
+	sold[selected] = true
+	refresh()
+
+
+func refresh():
+	var cards = $Cards.get_children()
+	for i in cards.size():
+		var card = cards[i]
+		card.visible = i < offered.size()
+		if not card.visible:
+			continue
+		var upgrade = offered[i]
+		var level = player.level(upgrade)
+		var cost = cost_of(upgrade)
+		card.add_theme_stylebox_override("panel", selected_style if i == selected else normal_style)
+		card.get_node("Icon").texture = upgrade.icon
+		card.get_node("Icon").modulate = dim if sold[i] else Color.WHITE
+		card.get_node("PriceBox/Coin").visible = not sold[i]
+		card.get_node("PriceBox/Price").text = "Sold" if sold[i] else str(cost)
+		card.get_node("PriceBox/Price").modulate = Color.WHITE if sold[i] or player.coins >= cost else dim
+		var pips = card.get_node("Pips")
+		for pip in pips.get_children():
+			pips.remove_child(pip)
+			pip.queue_free()
+		for j in upgrade.costs.size():
+			var pip = ColorRect.new()
+			pip.custom_minimum_size = Vector2(4, 3)
+			pip.color = Color.WHITE if j < level else dim
+			pips.add_child(pip)
+		pips.position.x = (card.size.x - upgrade.costs.size() * 6 + 2) / 2
+	var current = offered[selected]
+	$Info.text = "%s: %s" % [current.title, current.blurb]

@@ -5,7 +5,7 @@ extends Node2D
 @export var speed: float = 180.0
 @export var radius: float = 20.0
 @export var size: int = 1
-@export var damage: int = 1
+@export var damage: int = 2
 
 var angle = 0.0
 
@@ -40,3 +40,12 @@ func _physics_process(_delta):
 	for fish in get_children():
 		for hurtbox in fish.get_overlapping_areas():
 			hurtbox.get_parent().take_damage(damage, fish.global_position)
+
+
+func time_until(at) -> float:
+	var soonest = INF
+	var fishes = get_children()
+	for i in fishes.size():
+		var a = angle + TAU * i / fishes.size()
+		soonest = minf(soonest, wrapf(at - a, 0.0, TAU) / deg_to_rad(speed))
+	return soonest

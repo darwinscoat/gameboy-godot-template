@@ -6,7 +6,7 @@ signal died(points)
 @export var chase_speed: float = 20.0
 @export var turn_speed: float = 10.0
 @export var despawn_distance: float = 200.0
-@export var max_hp: int = 2
+@export var max_hp: int = 4
 @export var hit_cooldown: float = 0.25
 @export var knockback_speed: float = 100.0
 @export var coin_value: int = 1
@@ -86,6 +86,7 @@ func make_elite():
 	coin_value *= elite_coin_multiplier
 	score_value *= elite_score_multiplier
 	chase_speed *= elite_speed_multiplier
+	$Hitbox.damage += 1
 	$Crown.show()
 
 
@@ -136,7 +137,7 @@ func die():
 			coin.slide_speed = rain_slide_speed
 			coin.slide_spread = PI
 		get_parent().add_child(coin)
-	var hearts_needed = target.max_hp - target.hp - get_tree().get_nodes_in_group("hearts").size() if target else 0
+	var hearts_needed = (target.max_hp - target.hp + 1) / 2 - get_tree().get_nodes_in_group("hearts").size() if target else 0
 	if heart_scene and hearts_needed > 0 and randf() < heart_chance:
 		var heart = heart_scene.instantiate()
 		heart.position = position

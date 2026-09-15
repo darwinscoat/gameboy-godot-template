@@ -12,7 +12,6 @@ extends Area2D
 @export var slide_time: float = 1.0
 @export var slide_spread: float = 0.6
 @export_group("Magnet")
-@export var magnet_radius: float = 24.0
 @export var magnet_speed: float = 90.0
 @export_group("Shadow")
 @export var shadow_full_height: float = 20.0
@@ -40,7 +39,7 @@ func _process(delta):
 	$Shadow.frame = roundi(lerpf($Shadow.hframes - 1, 0.0, clampf(-height / shadow_full_height, 0.0, 1.0)))
 	position += slide * delta
 	slide = slide.move_toward(Vector2.ZERO, slide_speed / slide_time * delta)
-	if slide == Vector2.ZERO and target and target.visible and position.distance_to(target.position) < magnet_radius:
+	if slide == Vector2.ZERO and target and target.visible and position.distance_to(target.position) < target.magnet_radius:
 		position = position.move_toward(target.position, magnet_speed * delta)
 	for area in get_overlapping_areas():
 		if collect(area):

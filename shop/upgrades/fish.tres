@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UpgradeData" format=3]
+
+[ext_resource type="Script" uid="uid://cvfnx75q1sm7e" path="res://shop/upgrade_data.gd" id="1_upgrade"]
+[ext_resource type="Texture2D" uid="uid://lq87p5e4eriw" path="res://player/fish_sword.png" id="2_icon"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icon"]
+atlas = ExtResource("2_icon")
+region = Rect2(0, 0, 16, 16)
+
+[resource]
+script = ExtResource("1_upgrade")
+title = "Fish"
+blurb = "+1 fish"
+icon = SubResource("AtlasTexture_icon")
+stat = "count"
+amount = 1
+costs = Array[int]([80, 150])

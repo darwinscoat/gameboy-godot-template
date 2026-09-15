@@ -4,8 +4,11 @@ signal hit
 signal hp_changed(hp, max_hp)
 signal coins_changed(coins)
 
+const STATS = {"hp": "max_hp", "move": "speed", "magnet": "magnet_radius", "damage": "damage", "count": "count", "spin": "speed"}
+
 @export var speed: float = 35.0
-@export var max_hp: int = 3
+@export var max_hp: int = 6
+@export var magnet_radius: float = 24.0
 @export var invulnerable_time: float = 0.8
 @export var knockback_speed: float = 80.0
 @export var knockback_time: float = 0.2
@@ -14,17 +17,21 @@ signal coins_changed(coins)
 @export var death_time: float = 1.0
 @export var spawn_grace: float = 1.0
 
-var hp = 3
+var hp = 6
 var invulnerable_left = 0.0
 var knockback = Vector2.ZERO
 var shake_left = 0.0
 var coins = 0
 var dead = false
 var hurt = false
+var levels = {}
+var base = {}
 
 
 func _ready():
 	hide()
+	for stat in STATS:
+		base[stat] = holder(stat).get(STATS[stat])
 
 
 func _process(delta):
@@ -98,6 +105,10 @@ func die():
 func start(pos):
 	position = pos
 	dead = false
+	levels = {}
+	for stat in STATS:
+		holder(stat).set(STATS[stat], base[stat])
+	$Sword.rebuild()
 	hp = max_hp
 	hp_changed.emit(hp, max_hp)
 	coins = 0
@@ -119,3 +130,20 @@ func heal(amount) -> bool:
 	hp = mini(hp + amount, max_hp)
 	hp_changed.emit(hp, max_hp)
 	return true
+
+
+func holder(stat) -> Node:
+	return $Sword if stat in ["damage", "count", "spin"] else self
+
+
+func level(upgrade) -> int:
+	return levels.get(upgrade, 0)
+
+
+func apply(upgrade):
+	levels[upgrade] = level(upgrade) + 1
+	holder(upgrade.stat).set(STATS[upgrade.stat], holder(upgrade.stat).get(STATS[upgrade.stat]) + upgrade.amount)
+	if upgrade.stat == "hp":
+		heal(upgrade.amount)
+	elif upgrade.stat == "count":
+		$Sword.rebuild()

@@ -1,0 +1,182 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://cow6gnmxgwkrr" path="res://shop/shop.gd" id="1_script"]
+[ext_resource type="FontFile" uid="uid://ck4q6gox4hyno" path="res://ui/pixel_narrator.ttf" id="2_font"]
+[ext_resource type="Texture2D" uid="uid://ci1wm3m2ru3ii" path="res://pickups/coin_small.png" id="3_coin"]
+[ext_resource type="Script" uid="uid://cvfnx75q1sm7e" path="res://shop/upgrade_data.gd" id="4_upgrade"]
+[ext_resource type="Resource" path="res://shop/upgrades/heart.tres" id="5_heart"]
+[ext_resource type="Resource" path="res://shop/upgrades/boots.tres" id="6_boots"]
+[ext_resource type="Resource" path="res://shop/upgrades/magnet.tres" id="7_magnet"]
+[ext_resource type="Resource" path="res://shop/upgrades/spin.tres" id="8_spin"]
+[ext_resource type="Resource" path="res://shop/upgrades/fang.tres" id="9_fang"]
+[ext_resource type="Resource" path="res://shop/upgrades/fish.tres" id="10_fish"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_coin"]
+atlas = ExtResource("3_coin")
+region = Rect2(36, 4, 8, 8)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_normal"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.341, 0.341, 0.341, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_selected"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[node name="Shop" type="CanvasLayer"]
+process_mode = 3
+visible = false
+script = ExtResource("1_script")
+upgrades = Array[ExtResource("4_upgrade")]([ExtResource("5_heart"), ExtResource("6_boots"), ExtResource("7_magnet"), ExtResource("8_spin"), ExtResource("9_fang"), ExtResource("10_fish")])
+normal_style = SubResource("StyleBoxFlat_normal")
+selected_style = SubResource("StyleBoxFlat_selected")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Cards" type="Control" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Card1" type="Panel" parent="Cards"]
+offset_left = 8.0
+offset_top = 22.0
+offset_right = 52.0
+offset_bottom = 74.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_normal")
+
+[node name="Icon" type="TextureRect" parent="Cards/Card1"]
+offset_left = 14.0
+offset_top = 6.0
+offset_right = 30.0
+offset_bottom = 22.0
+
+[node name="Pips" type="HBoxContainer" parent="Cards/Card1"]
+offset_top = 27.0
+offset_bottom = 30.0
+theme_override_constants/separation = 2
+
+[node name="PriceBox" type="HBoxContainer" parent="Cards/Card1"]
+offset_top = 34.0
+offset_right = 44.0
+offset_bottom = 46.0
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Coin" type="TextureRect" parent="Cards/Card1/PriceBox"]
+custom_minimum_size = Vector2(8, 8)
+size_flags_vertical = 8
+texture = SubResource("AtlasTexture_coin")
+
+[node name="Price" type="Label" parent="Cards/Card1/PriceBox"]
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+text = "0"
+
+[node name="Card2" type="Panel" parent="Cards"]
+offset_left = 58.0
+offset_top = 22.0
+offset_right = 102.0
+offset_bottom = 74.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_normal")
+
+[node name="Icon" type="TextureRect" parent="Cards/Card2"]
+offset_left = 14.0
+offset_top = 6.0
+offset_right = 30.0
+offset_bottom = 22.0
+
+[node name="Pips" type="HBoxContainer" parent="Cards/Card2"]
+offset_top = 27.0
+offset_bottom = 30.0
+theme_override_constants/separation = 2
+
+[node name="PriceBox" type="HBoxContainer" parent="Cards/Card2"]
+offset_top = 34.0
+offset_right = 44.0
+offset_bottom = 46.0
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Coin" type="TextureRect" parent="Cards/Card2/PriceBox"]
+custom_minimum_size = Vector2(8, 8)
+size_flags_vertical = 8
+texture = SubResource("AtlasTexture_coin")
+
+[node name="Price" type="Label" parent="Cards/Card2/PriceBox"]
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+text = "0"
+
+[node name="Card3" type="Panel" parent="Cards"]
+offset_left = 108.0
+offset_top = 22.0
+offset_right = 152.0
+offset_bottom = 74.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_normal")
+
+[node name="Icon" type="TextureRect" parent="Cards/Card3"]
+offset_left = 14.0
+offset_top = 6.0
+offset_right = 30.0
+offset_bottom = 22.0
+
+[node name="Pips" type="HBoxContainer" parent="Cards/Card3"]
+offset_top = 27.0
+offset_bottom = 30.0
+theme_override_constants/separation = 2
+
+[node name="PriceBox" type="HBoxContainer" parent="Cards/Card3"]
+offset_top = 34.0
+offset_right = 44.0
+offset_bottom = 46.0
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="Coin" type="TextureRect" parent="Cards/Card3/PriceBox"]
+custom_minimum_size = Vector2(8, 8)
+size_flags_vertical = 8
+texture = SubResource("AtlasTexture_coin")
+
+[node name="Price" type="Label" parent="Cards/Card3/PriceBox"]
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+text = "0"
+
+[node name="Info" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 86.0
+offset_bottom = 98.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+
+[node name="Hint" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 118.0
+offset_bottom = 130.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.631, 0.631, 0.631, 1)
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 16
+text = "A buy   B next"
+horizontal_alignment = 1

@@ -2,6 +2,7 @@ extends Node
 
 signal wave_started(number, banner)
 signal wave_finished(number)
+signal wave_cleared(number)
 signal run_won
 signal scored(points)
 signal elite_spawned(kind)
@@ -17,6 +18,7 @@ const AMBUSH_JITTER = 0.4
 @export var snake_scene: PackedScene
 @export var spawn_distance: float = 120.0
 @export var start_delay: float = 2.0
+@export var collect_time: float = 4.0
 @export var wave_gap: float = 3.0
 @export var flee_lead: float = 5.0
 @export var run_seed: int = 0
@@ -50,7 +52,7 @@ func _process(delta):
 	if wave.elite != "" and not elite_done and wave.duration - time_left >= wave.elite_at:
 		elite_done = true
 		spawn_one(wave.elite, rng.randf() * TAU, true)
-	if time_left <= flee_lead and not boss:
+	if time_left <= (0.0 if boss else flee_lead):
 		return
 	pulse_left -= delta
 	if pulse_left <= 0.0:
@@ -64,7 +66,7 @@ func start_run():
 	player = get_tree().get_first_node_in_group("player")
 	wave_index = start_wave - 2
 	var id = run_id
-	await get_tree().create_timer(start_delay).timeout
+	await get_tree().create_timer(start_delay, false).timeout
 	if id == run_id:
 		next_wave()
 
@@ -98,7 +100,11 @@ func finish_wave():
 	get_tree().call_group("enemies", "flee")
 	wave_finished.emit(wave_index + 1)
 	var id = run_id
-	await get_tree().create_timer(wave_gap).timeout
+	await get_tree().create_timer(collect_time, false).timeout
+	if id != run_id:
+		return
+	wave_cleared.emit(wave_index + 1)
+	await get_tree().create_timer(wave_gap, false).timeout
 	if id == run_id:
 		next_wave()
 

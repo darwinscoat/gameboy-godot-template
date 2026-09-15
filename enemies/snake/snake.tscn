@@ -7,7 +7,7 @@
 [node name="Snake" instance=ExtResource("1_base")]
 script = ExtResource("2_script")
 chase_speed = 40.0
-max_hp = 4
+max_hp = 8
 knockback_speed = 180.0
 coin_value = 5
 score_value = 50
@@ -15,6 +15,9 @@ score_value = 50
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = ExtResource("3_frames")
 animation = &"walk"
+
+[node name="Hitbox" parent="." index="2"]
+damage = 2
 
 [node name="Crown" parent="." index="4"]
 position = Vector2(-3, -9)

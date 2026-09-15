@@ -1,18 +1,27 @@
 extends Enemy
 
 @export var bite_range: float = 14.0
-@export var coil_time: float = 0.35
+@export var charge_time: float = 0.5
 @export var bite_speed: float = 160.0
-@export var bite_time: float = 0.15
+@export var bite_time: float = 0.2
 @export var recoil_time: float = 0.5
+@export var wait_range: float = 36.0
+@export var strike_gap: float = 0.6
+@export var patience: float = 1.0
 
 var bite_direction = Vector2.ZERO
+var waited = 0.0
+
+
+func make_elite():
+	super()
+	patience = 0.0
 
 
 func steer(to_player, delta):
 	match state:
-		"coil":
-			linear_velocity = Vector2.ZERO
+		"charge":
+			linear_velocity = bite_direction * chase_speed if to_player.length() > bite_range else Vector2.ZERO
 			face(bite_direction.x < 0)
 			$AnimatedSprite2D.offset.y = -1 if int(state_left * 20) % 2 == 0 else 0
 			if state_left == 0.0:
@@ -27,8 +36,13 @@ func steer(to_player, delta):
 			if state_left == 0.0:
 				enter("", 0.0)
 		_:
-			chase(to_player, delta)
-			if to_player.length() < bite_range:
+			if to_player.length() >= wait_range:
+				chase(to_player, delta)
+			elif target.get_node("Sword").time_until((-to_player).angle()) >= strike_gap or waited >= patience:
+				waited = 0.0
 				bite_direction = to_player.normalized()
-				linear_velocity = Vector2.ZERO
-				enter("coil", coil_time)
+				enter("charge", charge_time)
+			else:
+				waited += delta
+				linear_velocity = linear_velocity.lerp(Vector2.ZERO, minf(turn_speed * delta, 1.0))
+				face(to_player.x < 0)

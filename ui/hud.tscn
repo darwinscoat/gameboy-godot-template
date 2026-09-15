@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://1dhip58enjhw" path="res://ui/hud.gd" id="1_64ctp"]
 [ext_resource type="Texture2D" uid="uid://gdjyrstv4fpr" path="res://ui/heart_full.png" id="2_heart"]
 [ext_resource type="Texture2D" uid="uid://cyyje4wxxf1ic" path="res://ui/heart_empty.png" id="3_heart"]
+[ext_resource type="Texture2D" uid="uid://dsp6jbrnsb0hg" path="res://ui/heart_half.png" id="5_heart"]
 [ext_resource type="Texture2D" uid="uid://ci1wm3m2ru3ii" path="res://pickups/coin_small.png" id="4_coin"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_coin"]
@@ -13,6 +14,7 @@ region = Rect2(36, 4, 8, 8)
 [node name="HUD" type="CanvasLayer" unique_id=2016491038]
 script = ExtResource("1_64ctp")
 heart_full = ExtResource("2_heart")
+heart_half = ExtResource("5_heart")
 heart_empty = ExtResource("3_heart")
 
 [node name="ScoreLabel" type="Label" parent="." unique_id=1502372607]
@@ -42,25 +44,22 @@ text = "Churro"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StartButton" type="Button" parent="." unique_id=877466047]
+[node name="StartLabel" type="Label" parent="."]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -23.0
-offset_top = -42.0
-offset_right = 23.0
-offset_bottom = -19.0
+offset_left = -30.0
+offset_top = -38.0
+offset_right = 30.0
+offset_bottom = -26.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_37p78")
 theme_override_font_sizes/font_size = 16
-action_mode = 0
-text = "Start"
-autowrap_mode = 2
-autowrap_trim_flags = 192
-expand_icon = true
+text = "Press Start"
+horizontal_alignment = 1
 
 [node name="MessageTimer" type="Timer" parent="." unique_id=1386985977]
 wait_time = 2.0
@@ -116,5 +115,4 @@ color = Color(0.341, 0.341, 0.341, 1)
 offset_right = 156.0
 offset_bottom = 2.0
 
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

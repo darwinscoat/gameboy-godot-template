@@ -2,6 +2,7 @@ extends Pickup
 
 @export var lifetime: float = 20.0
 @export var warn_time: float = 5.0
+@export var heal_amount: int = 2
 
 var age = 0.0
 
@@ -15,4 +16,4 @@ func _process(delta):
 
 
 func collect(player) -> bool:
-	return player.heal(1)
+	return player.heal(heal_amount)

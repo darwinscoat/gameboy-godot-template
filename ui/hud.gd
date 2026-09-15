@@ -4,8 +4,19 @@ signal start_game
 
 @export var restart_delay: float = 2.0
 @export var elite_blink: float = 0.125
+@export var start_blink: float = 0.5
 @export var heart_full: Texture2D
+@export var heart_half: Texture2D
 @export var heart_empty: Texture2D
+
+
+func _process(_delta):
+	if not $StartLabel.visible:
+		return
+	$StartLabel.modulate.a = 1.0 if int(Time.get_ticks_msec() / (start_blink * 1000)) % 2 == 0 else 0.0
+	if Input.is_action_just_pressed("start"):
+		$StartLabel.hide()
+		start_game.emit()
 
 
 func show_message(text):
@@ -20,7 +31,7 @@ func show_game_over(text := "Game Over"):
 	$Message.text = "Churro"
 	$Message.show()
 	await get_tree().create_timer(restart_delay).timeout
-	$StartButton.show()
+	$StartLabel.show()
 
 
 func update_score(score):
@@ -34,9 +45,9 @@ func update_coins(coins):
 func update_hp(hp, max_hp):
 	for heart in $Hearts.get_children():
 		heart.queue_free()
-	for i in max_hp:
+	for i in max_hp / 2:
 		var heart = TextureRect.new()
-		heart.texture = crop(heart_full if i < hp else heart_empty)
+		heart.texture = crop(heart_full if hp >= 2 * i + 2 else heart_half if hp == 2 * i + 1 else heart_empty)
 		$Hearts.add_child(heart)
 
 
@@ -55,11 +66,6 @@ func crop(texture: Texture2D) -> AtlasTexture:
 	atlas.atlas = texture
 	atlas.region = texture.get_image().get_used_rect()
 	return atlas
-
-
-func _on_start_button_pressed():
-	$StartButton.hide()
-	start_game.emit()
 
 
 func _on_message_timer_timeout():

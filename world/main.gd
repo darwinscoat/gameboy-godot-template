@@ -12,6 +12,7 @@ func _process(_delta):
 
 func game_over():
 	$Director.stop()
+	$Pause.enabled = false
 	$HUD.show_game_over()
 
 
@@ -20,6 +21,7 @@ func new_game():
 	get_tree().call_group("enemies", "queue_free")
 	get_tree().call_group("pickups", "queue_free")
 	$Player.start(Vector2.ZERO)
+	$Pause.enabled = true
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
 	$Director.start_run()
@@ -35,7 +37,13 @@ func _on_director_wave_started(number, banner):
 
 
 func _on_director_wave_finished(_number):
+	$HUD.hide_wave()
 	$HUD.show_message("Wave complete")
+
+
+func _on_director_wave_cleared(number):
+	if number < $Director.waves.size():
+		$Shop.open($Director.rng)
 
 
 func _on_director_elite_spawned(kind):
@@ -45,4 +53,6 @@ func _on_director_elite_spawned(kind):
 
 func _on_director_run_won():
 	$Director.stop()
+	$Pause.enabled = false
+	add_score($Player.coins)
 	$HUD.show_game_over("You win")
