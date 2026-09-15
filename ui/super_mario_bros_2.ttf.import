@@ -2,18 +2,18 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://ck4q6gox4hyno"
-path="res://.godot/imported/pixel_narrator.ttf-677d62e4cd04ec620fc4eb64b8ba9578.fontdata"
+uid="uid://weo3om3oh0j5"
+path="res://.godot/imported/super_mario_bros_2.ttf-d18dc4b8607b490ca8ac223c958165a3.fontdata"
 
 [deps]
 
-source_file="res://ui/pixel_narrator.ttf"
-dest_files=["res://.godot/imported/pixel_narrator.ttf-677d62e4cd04ec620fc4eb64b8ba9578.fontdata"]
+source_file="res://ui/super_mario_bros_2.ttf"
+dest_files=["res://.godot/imported/super_mario_bros_2.ttf-d18dc4b8607b490ca8ac223c958165a3.fontdata"]
 
 [params]
 
 Rendering=null
-antialiasing=1
+antialiasing=0
 generate_mipmaps=false
 disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
@@ -22,8 +22,8 @@ msdf_size=48
 allow_system_fallback=true
 force_autohinter=false
 modulate_color_glyphs=false
-hinting=3
-subpixel_positioning=4
+hinting=0
+subpixel_positioning=0
 keep_rounding_remainders=true
 oversampling=0.0
 Fallbacks=null

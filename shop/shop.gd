@@ -120,4 +120,4 @@ func refresh():
 			pips.add_child(pip)
 		pips.position.x = (card.size.x - upgrade.costs.size() * 6 + 2) / 2
 	var current = offered[selected]
-	$Info.text = "%s: %s" % [current.title, current.blurb]
+	$Info.text = "%s\n%s" % [current.title, current.blurb]

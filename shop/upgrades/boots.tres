@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UpgradeData" format=3]
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://cqmvyvrelm3g8"]
 
 [ext_resource type="Script" uid="uid://cvfnx75q1sm7e" path="res://shop/upgrade_data.gd" id="1_upgrade"]
 [ext_resource type="Texture2D" uid="uid://c6idy4ayy12pk" path="res://shop/icons/boots.png" id="2_icon"]
@@ -10,4 +10,4 @@ blurb = "+5 speed"
 icon = ExtResource("2_icon")
 stat = "move"
 amount = 5
-costs = Array[int]([6, 14])
+costs = Array[int]([6, 14, 22])

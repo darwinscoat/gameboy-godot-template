@@ -47,7 +47,7 @@ func _on_director_wave_cleared(number):
 
 
 func _on_director_elite_spawned(kind):
-	$HUD.show_message("Elite %s!" % kind.capitalize())
+	$HUD.show_message("Elite %s!" % kind.capitalize(), true)
 	$Player.shake(0.3)
 
 
