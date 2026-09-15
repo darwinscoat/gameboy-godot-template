@@ -46,11 +46,13 @@ func open(rng):
 	get_tree().paused = true
 	await get_node(curtain).cover()
 	show()
+	Sfx.play("shop_open")
 	get_node(curtain).reveal()
 
 
 func close():
 	closing = true
+	Sfx.play("shop_close")
 	await get_node(curtain).cover()
 	hide()
 	get_tree().paused = false
@@ -85,17 +87,17 @@ func cost_of(upgrade) -> int:
 
 func select(index):
 	selected = wrapi(index, 0, offered.size())
+	Sfx.play("shop_move")
 	refresh()
 
 
 func buy():
-	if sold[selected]:
-		return
 	var upgrade = offered[selected]
-	var cost = cost_of(upgrade)
-	if player.coins < cost:
+	if sold[selected] or player.coins < cost_of(upgrade):
+		Sfx.play("shop_deny")
 		return
-	player.add_coins(-cost)
+	Sfx.play("shop_buy")
+	player.add_coins(-cost_of(upgrade))
 	player.apply(upgrade)
 	sold[selected] = true
 	refresh()

@@ -14,3 +14,4 @@ func _process(_delta):
 		return
 	visible = not visible
 	get_tree().paused = visible
+	Sfx.play("pause" if visible else "unpause")

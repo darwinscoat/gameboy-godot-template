@@ -17,4 +17,5 @@ func _process(delta):
 
 func collect(player) -> bool:
 	player.add_coins(value)
+	Sfx.play("coin_collect")
 	return true

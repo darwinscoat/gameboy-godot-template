@@ -62,6 +62,7 @@ func cover():
 	phase = "cover"
 	t = 0.0
 	length = cover_time + jitter
+	Sfx.play("curtain_cover")
 	await covered
 
 
@@ -69,6 +70,7 @@ func reveal():
 	phase = "reveal"
 	t = -hold_time
 	length = reveal_time + jitter
+	Sfx.play("curtain_reveal")
 	await revealed
 
 

@@ -11,6 +11,7 @@ func _process(_delta):
 
 
 func game_over():
+	Sfx.play("game_over")
 	$Director.stop()
 	$Pause.enabled = false
 	$HUD.show_game_over()
@@ -35,10 +36,12 @@ func add_score(points):
 
 
 func _on_director_wave_started(number, banner):
+	Sfx.play("wave_start")
 	$HUD.show_message(banner if banner != "" else "Wave %d" % number)
 
 
 func _on_director_wave_finished(_number):
+	Sfx.play("wave_end")
 	$HUD.hide_wave()
 	$HUD.show_message("Wave complete")
 
@@ -49,11 +52,13 @@ func _on_director_wave_cleared(number):
 
 
 func _on_director_elite_spawned(kind):
+	Sfx.play("elite_spawn")
 	$HUD.show_message("Elite %s!" % kind.capitalize(), true)
 	$Player.shake(0.3)
 
 
 func _on_director_run_won():
+	Sfx.play("run_won")
 	$Director.stop()
 	$Pause.enabled = false
 	add_score($Player.coins)

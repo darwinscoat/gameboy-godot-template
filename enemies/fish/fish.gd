@@ -17,6 +17,7 @@ func steer(to_player, delta):
 			$AnimatedSprite2D.offset.x = 1 if int(state_left * 20) % 2 == 0 else -1
 			if state_left == 0.0:
 				$AnimatedSprite2D.offset.x = 0
+				Sfx.play("fish_dash")
 				enter("dash", dash_time)
 		"dash":
 			linear_velocity = dash_direction * dash_speed
@@ -30,4 +31,5 @@ func steer(to_player, delta):
 			chase(to_player, delta)
 			if to_player.length() < charge_range:
 				dash_direction = to_player.normalized()
+				Sfx.play("fish_charge")
 				enter("charge", charge_time)

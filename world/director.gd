@@ -21,6 +21,7 @@ const AMBUSH_JITTER = 0.4
 @export var collect_time: float = 4.0
 @export var wave_gap: float = 3.0
 @export var flee_lead: float = 5.0
+@export var tick_seconds: int = 3
 @export var run_seed: int = 0
 @export var start_wave: int = 1
 
@@ -33,6 +34,8 @@ var wave_index = -1
 var time_left = 0.0
 var pulse_left = 0.0
 var elite_done = false
+var held = false
+var last_second = 0
 var running = false
 var run_id = 0
 
@@ -49,6 +52,13 @@ func _process(delta):
 	if time_left <= 0.0 and not boss:
 		finish_wave()
 		return
+	var second = ceili(time_left)
+	if second != last_second and second > 0 and second <= tick_seconds:
+		Sfx.play("timer_tick")
+	last_second = second
+	if time_left <= 0.0 and not held:
+		held = true
+		Sfx.play("boss_hold")
 	if wave.elite != "" and not elite_done and wave.duration - time_left >= wave.elite_at:
 		elite_done = true
 		spawn_one(wave.elite, rng.randf() * TAU, true)
@@ -89,6 +99,8 @@ func next_wave():
 	time_left = wave.duration
 	pulse_left = wave.pulse_interval
 	elite_done = false
+	held = false
+	last_second = 0
 	running = true
 	wave_started.emit(wave_index + 1, wave.banner)
 	if wave.opener != "":

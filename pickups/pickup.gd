@@ -15,6 +15,8 @@ extends Area2D
 @export var magnet_speed: float = 90.0
 @export_group("Shadow")
 @export var shadow_full_height: float = 20.0
+@export_group("Sound")
+@export var bounce_sound: String = "coin_bounce"
 
 var height = 0.0
 var rise = 0.0
@@ -34,7 +36,11 @@ func _process(delta):
 	height += rise * delta
 	if height > 0.0:
 		height = 0.0
-		rise = -rise * bounce if rise > settle_rise else 0.0
+		if rise > settle_rise:
+			rise = -rise * bounce
+			Sfx.play(bounce_sound)
+		else:
+			rise = 0.0
 	$Sprite.position.y = height
 	$Shadow.frame = roundi(lerpf($Shadow.hframes - 1, 0.0, clampf(-height / shadow_full_height, 0.0, 1.0)))
 	position += slide * delta

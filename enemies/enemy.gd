@@ -52,6 +52,7 @@ func _physics_process(delta):
 	if fleeing:
 		linear_velocity = -to_player.normalized() * chase_speed * flee_multiplier
 		face(linear_velocity.x < 0)
+		set_anim("walk")
 		return
 	stun_left = maxf(stun_left - delta, 0.0)
 	$AnimatedSprite2D.modulate = Color(4, 4, 4) if stun_left > 0.0 else Color.WHITE
@@ -115,6 +116,7 @@ func take_damage(amount, from):
 		return
 	hp -= amount
 	stun_left = hit_cooldown
+	Sfx.play("elite_hit" if elite else "enemy_hit")
 	linear_velocity = (global_position - from).normalized() * knockback_speed
 	if hp <= 0:
 		die()
@@ -123,6 +125,7 @@ func take_damage(amount, from):
 func die():
 	dying = true
 	died.emit(score_value)
+	Sfx.play("elite_death" if elite else "enemy_death")
 	linear_velocity = Vector2.ZERO
 	$CollisionShape2D.set_deferred("disabled", true)
 	$Hitbox/CollisionShape2D.set_deferred("disabled", true)

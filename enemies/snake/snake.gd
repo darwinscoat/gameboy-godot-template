@@ -27,6 +27,7 @@ func steer(to_player, delta):
 			if state_left == 0.0:
 				$AnimatedSprite2D.offset.y = 0
 				linear_velocity = bite_direction * bite_speed
+				Sfx.play("snake_bite")
 				enter("bite", bite_time)
 		"bite":
 			if state_left == 0.0:
@@ -41,6 +42,7 @@ func steer(to_player, delta):
 			elif target.get_node("Sword").time_until((-to_player).angle()) >= strike_gap or waited >= patience:
 				waited = 0.0
 				bite_direction = to_player.normalized()
+				Sfx.play("snake_charge")
 				enter("charge", charge_time)
 			else:
 				waited += delta

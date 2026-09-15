@@ -46,13 +46,17 @@ func _process(delta):
 				message_hidden.emit()
 		else:
 			shown = minf(shown + reveal_rate * delta, total)
-		$Message.visible_characters = ceili(shown)
+		var count = ceili(shown)
+		if count > $Message.visible_characters and not erasing:
+			Sfx.play("text_tick")
+		$Message.visible_characters = count
 		flicker_left = maxf(flicker_left - delta, 0.0)
 		$Message.modulate.a = 0.0 if flicker_left > 0.0 and int(flicker_left * 20) % 2 == 0 else 1.0
 	if not $StartLabel.visible:
 		return
 	$StartLabel.modulate.a = 1.0 if int(Time.get_ticks_msec() / (start_blink * 1000)) % 2 == 0 else 0.0
 	if Input.is_action_just_pressed("start"):
+		Sfx.play("start")
 		$StartLabel.hide()
 		start_game.emit()
 

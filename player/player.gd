@@ -16,6 +16,7 @@ const STATS = {"hp": "max_hp", "move": "speed", "magnet": "magnet_radius", "dama
 @export var shake_pixels: int = 2
 @export var death_time: float = 1.0
 @export var spawn_grace: float = 1.0
+@export var low_hp: int = 2
 
 var hp = 6
 var invulnerable_left = 0.0
@@ -85,6 +86,9 @@ func take_damage(amount, from):
 	hp -= amount
 	hp_changed.emit(hp, max_hp)
 	hurt = true
+	Sfx.play("player_hit")
+	if hp > 0 and hp <= low_hp and hp + amount > low_hp:
+		Sfx.play("low_hp")
 	invulnerable_left = invulnerable_time
 	knockback = (global_position - from).normalized() * knockback_speed
 	shake(shake_time)
@@ -94,6 +98,7 @@ func take_damage(amount, from):
 
 func die():
 	dead = true
+	Sfx.play("player_death")
 	invulnerable_left = 0.0
 	$AnimatedSprite2D.visible = true
 	$AnimatedSprite2D.play("death")
