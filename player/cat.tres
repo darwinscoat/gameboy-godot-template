@@ -1,16 +1,14 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://cxivd8dshmryt"]
 
 [ext_resource type="Texture2D" uid="uid://dxx75dih33qim" path="res://player/cat_walk.png" id="1_walk"]
-[ext_resource type="Texture2D" uid="uid://c13fyfj3pg404" path="res://player/cat_hit.png" id="2_hit"]
-[ext_resource type="Texture2D" uid="uid://dqlqt0nwjjwrv" path="res://player/cat_death.png" id="3_death"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dw050"]
-atlas = ExtResource("3_death")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dtee"]
+atlas = ExtResource("1_walk")
+region = Rect2(64, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b26j0"]
-atlas = ExtResource("2_hit")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlqxd"]
+atlas = ExtResource("1_walk")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
 atlas = ExtResource("1_walk")
@@ -28,7 +26,7 @@ region = Rect2(32, 0, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dw050")
+"texture": SubResource("AtlasTexture_8dtee")
 }],
 "loop": 1,
 "name": &"death",
@@ -36,7 +34,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b26j0")
+"texture": SubResource("AtlasTexture_rlqxd")
 }],
 "loop": 1,
 "name": &"hit",

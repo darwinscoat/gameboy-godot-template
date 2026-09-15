@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://3bptrgjavx48"]
 
 [ext_resource type="Script" uid="uid://b54kiy7154yws" path="res://player/player.gd" id="1_script"]
-[ext_resource type="SpriteFrames" path="res://player/cat.tres" id="2_frames"]
+[ext_resource type="SpriteFrames" uid="uid://cxivd8dshmryt" path="res://player/cat.tres" id="2_frames"]
 [ext_resource type="Script" uid="uid://bqtk1rx4a64yy" path="res://player/sword.gd" id="3_sword"]
 [ext_resource type="PackedScene" uid="uid://dgo3oytlutq42" path="res://player/fish.tscn" id="4_fish"]
 
@@ -16,7 +16,8 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=462967740]
 sprite_frames = ExtResource("2_frames")
-animation = &"walk"
+animation = &"death"
+frame_progress = 0.042436387
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=54510400]
 position = Vector2(0, 2)
