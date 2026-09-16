@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bekl5cnjgwhyl" path="res://enemies/enemy.tscn" id="1_base"]
 [ext_resource type="Script" uid="uid://ypda7csn7evd" path="res://enemies/snake/snake.gd" id="2_script"]
-[ext_resource type="SpriteFrames" path="res://enemies/snake/snake.tres" id="3_frames"]
+[ext_resource type="SpriteFrames" uid="uid://b8yf30ympjysq" path="res://enemies/snake/snake.tres" id="3_frames"]
 
 [node name="Snake" unique_id=1636218619 instance=ExtResource("1_base")]
 script = ExtResource("2_script")
@@ -23,6 +23,7 @@ score_value = 50
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=1081182147]
 sprite_frames = ExtResource("3_frames")
 animation = &"walk"
+frame_progress = 0.27775764
 
 [node name="Hitbox" parent="." index="2" unique_id=137726086]
 damage = 2
