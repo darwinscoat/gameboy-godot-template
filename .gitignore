@@ -3,6 +3,8 @@
 /android/
 /build/linux/*
 /build/web/*
+/build/web_threads/*
+/build/*.zip
 /build/windows/*
 
 *.tmp
