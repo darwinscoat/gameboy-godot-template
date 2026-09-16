@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://cqmvyvrelm3g8" path="res://shop/upgrades/boots.tres" id="6_boots"]
 [ext_resource type="Resource" uid="uid://hofvgq64e1hd" path="res://shop/upgrades/magnet.tres" id="7_magnet"]
 [ext_resource type="Resource" uid="uid://c5ob7gs80j5lc" path="res://shop/upgrades/spin.tres" id="8_spin"]
+[ext_resource type="Texture2D" uid="uid://bw2wvkxlhx6dr" path="res://shop/ShopBG.png" id="9_bv5vx"]
 [ext_resource type="Resource" uid="uid://b3i4bvqbn3fy6" path="res://shop/upgrades/fang.tres" id="9_fang"]
 [ext_resource type="Resource" uid="uid://bvfk5eespf7r0" path="res://shop/upgrades/fish.tres" id="10_fish"]
 
@@ -38,13 +39,15 @@ upgrades = Array[ExtResource("4_upgrade")]([ExtResource("5_heart"), ExtResource(
 normal_style = SubResource("StyleBoxFlat_normal")
 selected_style = SubResource("StyleBoxFlat_selected")
 
-[node name="Background" type="ColorRect" parent="." unique_id=1315829497]
+[node name="Background" type="TextureRect" parent="." unique_id=1221589253]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+texture = ExtResource("9_bv5vx")
+
+[node name="Node2D" type="Node2D" parent="Background" unique_id=672433492]
 
 [node name="Cards" type="Control" parent="." unique_id=727533421]
 layout_mode = 3

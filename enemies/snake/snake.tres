@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" path="res://enemies/snake/snake.png" id="1_snake"]
 [ext_resource type="Texture2D" uid="uid://cv7ei7mtxmb4t" path="res://enemies/snake/Snake3.png" id="2_sjw1k"]
+[ext_resource type="Texture2D" uid="uid://xq36bp2gcon6" path="res://enemies/snake/Snakedeath.png" id="3_myx6f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sjw1k"]
 atlas = ExtResource("2_sjw1k")
@@ -17,6 +18,14 @@ region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ewej"]
 atlas = ExtResource("2_sjw1k")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xmy0"]
+atlas = ExtResource("3_myx6f")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkqel"]
+atlas = ExtResource("3_myx6f")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_35a8l"]
@@ -61,6 +70,12 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_snake")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xmy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkqel")
 }],
 "loop": 0,
 "name": &"death",
