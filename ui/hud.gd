@@ -32,6 +32,7 @@ var flicker_left = 0.0
 func _ready():
 	coins_y = $Coins.position.y
 	show_title()
+	Music.play("title")
 
 
 func _process(delta):
@@ -95,6 +96,7 @@ func show_game_over(text := "Game Over"):
 	show_title()
 	await get_tree().create_timer(restart_delay).timeout
 	$StartLabel.show()
+	Music.play("title")
 
 
 func update_score(score):

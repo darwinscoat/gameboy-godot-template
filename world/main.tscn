@@ -66,6 +66,7 @@ anchor_bottom = 1.0
 offset_left = 0.0
 offset_top = 0.0
 
+[connection signal="elite_died" from="Director" to="." method="_on_director_elite_died"]
 [connection signal="elite_spawned" from="Director" to="." method="_on_director_elite_spawned"]
 [connection signal="run_won" from="Director" to="." method="_on_director_run_won"]
 [connection signal="scored" from="Director" to="." method="add_score"]

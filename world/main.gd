@@ -12,6 +12,7 @@ func _process(_delta):
 
 func game_over():
 	Sfx.play("game_over")
+	Music.play("game_over")
 	$Director.stop()
 	$Pause.enabled = false
 	$HUD.show_game_over()
@@ -27,6 +28,7 @@ func new_game():
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
 	$Director.start_run()
+	Music.play("play")
 	$Transition.reveal()
 
 
@@ -53,13 +55,19 @@ func _on_director_wave_cleared(number):
 
 func _on_director_elite_spawned(kind):
 	Sfx.play("elite_spawn")
+	Music.play("boss")
 	$HUD.show_message("Elite %s!" % kind.capitalize(), true)
 	$Player.shake(0.3)
 
 
 func _on_director_run_won():
 	Sfx.play("run_won")
+	Music.play("win")
 	$Director.stop()
 	$Pause.enabled = false
 	add_score($Player.coins)
 	$HUD.show_game_over("You win")
+
+
+func _on_director_elite_died(_kind):
+	Music.resume("play")

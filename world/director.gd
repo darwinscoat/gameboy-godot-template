@@ -6,6 +6,7 @@ signal wave_cleared(number)
 signal run_won
 signal scored(points)
 signal elite_spawned(kind)
+signal elite_died(kind)
 
 const GROUP_SIZE = {"drip": 1, "pair": 2, "wall": 4, "ring": 6, "ambush": 1, "escort": 3}
 const WALL_SPACING = 0.35
@@ -193,5 +194,6 @@ func spawn_one(kind: String, angle: float, elite := false):
 	if elite:
 		enemy.make_elite()
 		elite_spawned.emit(kind)
+		enemy.died.connect(func(_points): elite_died.emit(kind))
 	enemy.died.connect(func(points): scored.emit(points))
 	add_sibling(enemy)

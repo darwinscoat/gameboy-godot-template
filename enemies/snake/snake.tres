@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" format=3]
+[gd_resource type="SpriteFrames" format=3 uid="uid://b8yf30ympjysq"]
 
 [ext_resource type="Texture2D" uid="uid://p0bnyw0atom8" path="res://enemies/snake/snake.png" id="1_snake"]
 

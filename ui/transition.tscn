@@ -1,6 +1,6 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bmniqwlngtck1"]
 
-[ext_resource type="Script" path="res://ui/transition.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://bv68kfyctolut" path="res://ui/transition.gd" id="1_script"]
 
 [node name="Transition" type="CanvasLayer"]
 process_mode = 3

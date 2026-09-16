@@ -23,6 +23,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Sfx="*res://audio/sfx.tscn"
+Music="*res://audio/music.tscn"
 
 [display]
 

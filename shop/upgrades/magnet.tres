@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UpgradeData" format=3]
+[gd_resource type="Resource" script_class="UpgradeData" format=3 uid="uid://hofvgq64e1hd"]
 
 [ext_resource type="Script" uid="uid://cvfnx75q1sm7e" path="res://shop/upgrade_data.gd" id="1_upgrade"]
 [ext_resource type="Texture2D" uid="uid://cqr5io37jven5" path="res://shop/icons/magnet.png" id="2_icon"]

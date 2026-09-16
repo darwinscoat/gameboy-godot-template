@@ -47,6 +47,7 @@ func open(rng):
 	await get_node(curtain).cover()
 	show()
 	Sfx.play("shop_open")
+	Music.play("shop")
 	get_node(curtain).reveal()
 
 
@@ -56,6 +57,7 @@ func close():
 	await get_node(curtain).cover()
 	hide()
 	get_tree().paused = false
+	Music.resume("play")
 	get_node(curtain).reveal()
 
 

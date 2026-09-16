@@ -1,6 +1,6 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://bgit0g83ybc7a"]
 
-[ext_resource type="Script" path="res://pickups/heart.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://dko7ejgtqfbhe" path="res://pickups/heart.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://gdjyrstv4fpr" path="res://ui/heart_full.png" id="2_heart"]
 [ext_resource type="PackedScene" path="res://world/shadow.tscn" id="9_shadow"]
 

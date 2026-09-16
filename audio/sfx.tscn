@@ -1,42 +1,42 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://drml564k4idp8"]
 
 [ext_resource type="Script" uid="uid://vjvlqusexurh" path="res://audio/sfx.gd" id="1_script"]
-[ext_resource type="AudioStreamWAV" uid="uid://cwtli0q67no4e" path="res://audio/player_hit.wav" id="2_player_hit"]
-[ext_resource type="AudioStreamWAV" uid="uid://dnyh5mt1u4gho" path="res://audio/player_death.wav" id="3_player_death"]
-[ext_resource type="AudioStreamWAV" uid="uid://byeiylg0t8ycr" path="res://audio/coin_collect.wav" id="4_coin_collect"]
-[ext_resource type="AudioStreamWAV" uid="uid://chgm5m1te8tu6" path="res://audio/heart_collect.wav" id="5_heart_collect"]
-[ext_resource type="AudioStreamWAV" uid="uid://dvvlxb7qyvff2" path="res://audio/coin_bounce.wav" id="6_coin_bounce"]
-[ext_resource type="AudioStreamWAV" uid="uid://de4uqq8o3p27f" path="res://audio/heart_bounce.wav" id="7_heart_bounce"]
-[ext_resource type="AudioStreamWAV" uid="uid://bhvpm33t8djvc" path="res://audio/heart_warn.wav" id="8_heart_warn"]
-[ext_resource type="AudioStreamWAV" uid="uid://bf5r36na2brma" path="res://audio/enemy_hit.wav" id="9_enemy_hit"]
-[ext_resource type="AudioStreamWAV" uid="uid://5ia5rh767sg2" path="res://audio/enemy_death.wav" id="10_enemy_death"]
-[ext_resource type="AudioStreamWAV" uid="uid://cy8lnaxql4ovk" path="res://audio/elite_spawn.wav" id="11_elite_spawn"]
-[ext_resource type="AudioStreamWAV" uid="uid://dl1845kifdeid" path="res://audio/elite_death.wav" id="12_elite_death"]
-[ext_resource type="AudioStreamWAV" uid="uid://db6r3mhxhbktk" path="res://audio/fish_charge.wav" id="13_fish_charge"]
-[ext_resource type="AudioStreamWAV" uid="uid://c3rnommbxaika" path="res://audio/fish_dash.wav" id="14_fish_dash"]
-[ext_resource type="AudioStreamWAV" uid="uid://d1d0t5rc88eln" path="res://audio/snake_charge.wav" id="15_snake_charge"]
-[ext_resource type="AudioStreamWAV" uid="uid://cmhwutymnttg6" path="res://audio/snake_bite.wav" id="16_snake_bite"]
-[ext_resource type="AudioStreamWAV" uid="uid://ci6hl75hmlh7x" path="res://audio/wave_start.wav" id="17_wave_start"]
-[ext_resource type="AudioStreamWAV" uid="uid://c6h0qsttoaat3" path="res://audio/wave_end.wav" id="18_wave_end"]
-[ext_resource type="AudioStreamWAV" uid="uid://cspxw01odu8ea" path="res://audio/run_won.wav" id="19_run_won"]
-[ext_resource type="AudioStreamWAV" uid="uid://bt0h7kusdmmwp" path="res://audio/game_over.wav" id="20_game_over"]
-[ext_resource type="AudioStreamWAV" uid="uid://d1wmmtx2ss0te" path="res://audio/text_tick.wav" id="21_text_tick"]
-[ext_resource type="AudioStreamWAV" uid="uid://cji3503hpk50q" path="res://audio/start.wav" id="22_start"]
-[ext_resource type="AudioStreamWAV" uid="uid://drfhfg6efd2vf" path="res://audio/pause.wav" id="23_pause"]
-[ext_resource type="AudioStreamWAV" uid="uid://dfqp0iaa1snw5" path="res://audio/unpause.wav" id="24_unpause"]
-[ext_resource type="AudioStreamWAV" uid="uid://dubr7r0tbm6dx" path="res://audio/shop_open.wav" id="25_shop_open"]
-[ext_resource type="AudioStreamWAV" uid="uid://bqkdvuwychd4n" path="res://audio/shop_close.wav" id="26_shop_close"]
-[ext_resource type="AudioStreamWAV" uid="uid://c63nxxgyiew8i" path="res://audio/shop_move.wav" id="27_shop_move"]
-[ext_resource type="AudioStreamWAV" uid="uid://ct70j0hfy0cgi" path="res://audio/shop_buy.wav" id="28_shop_buy"]
-[ext_resource type="AudioStreamWAV" uid="uid://dl8cfpivfbnaq" path="res://audio/shop_deny.wav" id="29_shop_deny"]
-[ext_resource type="AudioStreamWAV" uid="uid://b0h3iul1xedcp" path="res://audio/curtain_cover.wav" id="30_curtain_cover"]
-[ext_resource type="AudioStreamWAV" uid="uid://cekws2pmsaykx" path="res://audio/curtain_reveal.wav" id="31_curtain_reveal"]
-[ext_resource type="AudioStreamWAV" uid="uid://2msmnq1vu7gh" path="res://audio/heart_drop.wav" id="32_heart_drop"]
-[ext_resource type="AudioStreamWAV" uid="uid://y27qnm0pp7oy" path="res://audio/heart_expire.wav" id="33_heart_expire"]
-[ext_resource type="AudioStreamWAV" uid="uid://m6ylp5q4hlhl" path="res://audio/timer_tick.wav" id="34_timer_tick"]
-[ext_resource type="AudioStreamWAV" uid="uid://xlvo3r36g14d" path="res://audio/boss_hold.wav" id="35_boss_hold"]
-[ext_resource type="AudioStreamWAV" uid="uid://cva7xe7r1q04i" path="res://audio/low_hp.wav" id="36_low_hp"]
-[ext_resource type="AudioStreamWAV" uid="uid://dxcq24dr30adx" path="res://audio/elite_hit.wav" id="37_elite_hit"]
+[ext_resource type="AudioStreamWAV" uid="uid://cwtli0q67no4e" path="res://audio/sfx/player_hit.wav" id="2_player_hit"]
+[ext_resource type="AudioStreamWAV" uid="uid://dnyh5mt1u4gho" path="res://audio/sfx/player_death.wav" id="3_player_death"]
+[ext_resource type="AudioStreamWAV" uid="uid://byeiylg0t8ycr" path="res://audio/sfx/coin_collect.wav" id="4_coin_collect"]
+[ext_resource type="AudioStreamWAV" uid="uid://chgm5m1te8tu6" path="res://audio/sfx/heart_collect.wav" id="5_heart_collect"]
+[ext_resource type="AudioStreamWAV" uid="uid://dvvlxb7qyvff2" path="res://audio/sfx/coin_bounce.wav" id="6_coin_bounce"]
+[ext_resource type="AudioStreamWAV" uid="uid://de4uqq8o3p27f" path="res://audio/sfx/heart_bounce.wav" id="7_heart_bounce"]
+[ext_resource type="AudioStreamWAV" uid="uid://bhvpm33t8djvc" path="res://audio/sfx/heart_warn.wav" id="8_heart_warn"]
+[ext_resource type="AudioStreamWAV" uid="uid://bf5r36na2brma" path="res://audio/sfx/enemy_hit.wav" id="9_enemy_hit"]
+[ext_resource type="AudioStreamWAV" uid="uid://5ia5rh767sg2" path="res://audio/sfx/enemy_death.wav" id="10_enemy_death"]
+[ext_resource type="AudioStreamWAV" uid="uid://cy8lnaxql4ovk" path="res://audio/sfx/elite_spawn.wav" id="11_elite_spawn"]
+[ext_resource type="AudioStreamWAV" uid="uid://dl1845kifdeid" path="res://audio/sfx/elite_death.wav" id="12_elite_death"]
+[ext_resource type="AudioStreamWAV" uid="uid://db6r3mhxhbktk" path="res://audio/sfx/fish_charge.wav" id="13_fish_charge"]
+[ext_resource type="AudioStreamWAV" uid="uid://c3rnommbxaika" path="res://audio/sfx/fish_dash.wav" id="14_fish_dash"]
+[ext_resource type="AudioStreamWAV" uid="uid://d1d0t5rc88eln" path="res://audio/sfx/snake_charge.wav" id="15_snake_charge"]
+[ext_resource type="AudioStreamWAV" uid="uid://cmhwutymnttg6" path="res://audio/sfx/snake_bite.wav" id="16_snake_bite"]
+[ext_resource type="AudioStreamWAV" uid="uid://ci6hl75hmlh7x" path="res://audio/sfx/wave_start.wav" id="17_wave_start"]
+[ext_resource type="AudioStreamWAV" uid="uid://c6h0qsttoaat3" path="res://audio/sfx/wave_end.wav" id="18_wave_end"]
+[ext_resource type="AudioStreamWAV" uid="uid://cspxw01odu8ea" path="res://audio/sfx/run_won.wav" id="19_run_won"]
+[ext_resource type="AudioStreamWAV" uid="uid://bt0h7kusdmmwp" path="res://audio/sfx/game_over.wav" id="20_game_over"]
+[ext_resource type="AudioStreamWAV" uid="uid://d1wmmtx2ss0te" path="res://audio/sfx/text_tick.wav" id="21_text_tick"]
+[ext_resource type="AudioStreamWAV" uid="uid://cji3503hpk50q" path="res://audio/sfx/start.wav" id="22_start"]
+[ext_resource type="AudioStreamWAV" uid="uid://drfhfg6efd2vf" path="res://audio/sfx/pause.wav" id="23_pause"]
+[ext_resource type="AudioStreamWAV" uid="uid://dfqp0iaa1snw5" path="res://audio/sfx/unpause.wav" id="24_unpause"]
+[ext_resource type="AudioStreamWAV" uid="uid://dubr7r0tbm6dx" path="res://audio/sfx/shop_open.wav" id="25_shop_open"]
+[ext_resource type="AudioStreamWAV" uid="uid://bqkdvuwychd4n" path="res://audio/sfx/shop_close.wav" id="26_shop_close"]
+[ext_resource type="AudioStreamWAV" uid="uid://c63nxxgyiew8i" path="res://audio/sfx/shop_move.wav" id="27_shop_move"]
+[ext_resource type="AudioStreamWAV" uid="uid://ct70j0hfy0cgi" path="res://audio/sfx/shop_buy.wav" id="28_shop_buy"]
+[ext_resource type="AudioStreamWAV" uid="uid://dl8cfpivfbnaq" path="res://audio/sfx/shop_deny.wav" id="29_shop_deny"]
+[ext_resource type="AudioStreamWAV" uid="uid://b0h3iul1xedcp" path="res://audio/sfx/curtain_cover.wav" id="30_curtain_cover"]
+[ext_resource type="AudioStreamWAV" uid="uid://cekws2pmsaykx" path="res://audio/sfx/curtain_reveal.wav" id="31_curtain_reveal"]
+[ext_resource type="AudioStreamWAV" uid="uid://2msmnq1vu7gh" path="res://audio/sfx/heart_drop.wav" id="32_heart_drop"]
+[ext_resource type="AudioStreamWAV" uid="uid://y27qnm0pp7oy" path="res://audio/sfx/heart_expire.wav" id="33_heart_expire"]
+[ext_resource type="AudioStreamWAV" uid="uid://m6ylp5q4hlhl" path="res://audio/sfx/timer_tick.wav" id="34_timer_tick"]
+[ext_resource type="AudioStreamWAV" uid="uid://xlvo3r36g14d" path="res://audio/sfx/boss_hold.wav" id="35_boss_hold"]
+[ext_resource type="AudioStreamWAV" uid="uid://cva7xe7r1q04i" path="res://audio/sfx/low_hp.wav" id="36_low_hp"]
+[ext_resource type="AudioStreamWAV" uid="uid://dxcq24dr30adx" path="res://audio/sfx/elite_hit.wav" id="37_elite_hit"]
 
 [node name="Sfx" type="Node"]
 process_mode = 3
@@ -44,108 +44,144 @@ script = ExtResource("1_script")
 
 [node name="PlayerHit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_player_hit")
+bus = &"Sfx"
 
 [node name="PlayerDeath" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_player_death")
+bus = &"Sfx"
 
 [node name="CoinCollect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_coin_collect")
+bus = &"Sfx"
 
 [node name="HeartCollect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_heart_collect")
+bus = &"Sfx"
 
 [node name="CoinBounce" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_coin_bounce")
+bus = &"Sfx"
 
 [node name="HeartBounce" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_heart_bounce")
+bus = &"Sfx"
 
 [node name="HeartWarn" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_heart_warn")
+bus = &"Sfx"
 
 [node name="EnemyHit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_enemy_hit")
+bus = &"Sfx"
 
 [node name="EnemyDeath" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_enemy_death")
+bus = &"Sfx"
 
 [node name="EliteSpawn" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_elite_spawn")
+bus = &"Sfx"
 
 [node name="EliteDeath" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_elite_death")
+bus = &"Sfx"
 
 [node name="FishCharge" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_fish_charge")
+bus = &"Sfx"
 
 [node name="FishDash" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_fish_dash")
+bus = &"Sfx"
 
 [node name="SnakeCharge" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_snake_charge")
+bus = &"Sfx"
 
 [node name="SnakeBite" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_snake_bite")
+bus = &"Sfx"
 
 [node name="WaveStart" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_wave_start")
+bus = &"Sfx"
 
 [node name="WaveEnd" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_wave_end")
+bus = &"Sfx"
 
 [node name="RunWon" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_run_won")
+bus = &"Sfx"
 
 [node name="GameOver" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_game_over")
+bus = &"Sfx"
 
 [node name="TextTick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_text_tick")
+bus = &"Sfx"
 
 [node name="Start" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_start")
+bus = &"Sfx"
 
 [node name="Pause" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_pause")
+bus = &"Sfx"
 
 [node name="Unpause" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("24_unpause")
+bus = &"Sfx"
 
 [node name="ShopOpen" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("25_shop_open")
+bus = &"Sfx"
 
 [node name="ShopClose" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("26_shop_close")
+bus = &"Sfx"
 
 [node name="ShopMove" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("27_shop_move")
+bus = &"Sfx"
 
 [node name="ShopBuy" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("28_shop_buy")
+bus = &"Sfx"
 
 [node name="ShopDeny" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("29_shop_deny")
+bus = &"Sfx"
 
 [node name="CurtainCover" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("30_curtain_cover")
+bus = &"Sfx"
 
 [node name="CurtainReveal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("31_curtain_reveal")
+bus = &"Sfx"
 
 [node name="HeartDrop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("32_heart_drop")
+bus = &"Sfx"
 
 [node name="HeartExpire" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("33_heart_expire")
+bus = &"Sfx"
 
 [node name="TimerTick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("34_timer_tick")
+bus = &"Sfx"
 
 [node name="BossHold" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("35_boss_hold")
+bus = &"Sfx"
 
 [node name="LowHp" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("36_low_hp")
+bus = &"Sfx"
 
 [node name="EliteHit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("37_elite_hit")
+bus = &"Sfx"
