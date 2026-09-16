@@ -1,30 +1,63 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://b8yf30ympjysq"]
 
-[ext_resource type="Texture2D" uid="uid://p0bnyw0atom8" path="res://enemies/snake/snake.png" id="1_snake"]
+[ext_resource type="Texture2D" path="res://enemies/snake/snake.png" id="1_snake"]
 [ext_resource type="Texture2D" uid="uid://cv7ei7mtxmb4t" path="res://enemies/snake/Snake3.png" id="2_sjw1k"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_myx6f"]
-atlas = ExtResource("2_sjw1k")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_es0hs"]
-atlas = ExtResource("2_sjw1k")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4ewej"]
-atlas = ExtResource("2_sjw1k")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_35a8l"]
-atlas = ExtResource("2_sjw1k")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ucahe"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjw1k"]
 atlas = ExtResource("2_sjw1k")
 region = Rect2(48, 0, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_myx6f"]
+atlas = ExtResource("2_sjw1k")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_es0hs"]
+atlas = ExtResource("2_sjw1k")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ewej"]
+atlas = ExtResource("2_sjw1k")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35a8l"]
+atlas = ExtResource("2_sjw1k")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucahe"]
+atlas = ExtResource("2_sjw1k")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8xw6"]
+atlas = ExtResource("2_sjw1k")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ayxv0"]
+atlas = ExtResource("2_sjw1k")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdm1n"]
+atlas = ExtResource("2_sjw1k")
+region = Rect2(112, 0, 16, 16)
+
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjw1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myx6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_es0hs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ewej")
+}],
+"loop": 1,
+"name": &"attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_snake")
@@ -35,19 +68,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_myx6f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_es0hs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4ewej")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_35a8l")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ucahe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8xw6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ayxv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdm1n")
 }],
 "loop": 1,
 "name": &"walk",

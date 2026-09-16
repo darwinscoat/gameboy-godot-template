@@ -1,18 +1,14 @@
-[gd_scene format=3 uid="uid://ksahe5qxwg3g"]
+[gd_scene format=3 uid="uid://cmv4f84so83rv"]
 
 [ext_resource type="Script" uid="uid://cow6gnmxgwkrr" path="res://shop/shop.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://ci1wm3m2ru3ii" path="res://pickups/coin_small.png" id="3_coin"]
 [ext_resource type="Script" uid="uid://cvfnx75q1sm7e" path="res://shop/upgrade_data.gd" id="4_upgrade"]
-[ext_resource type="Resource" path="res://shop/upgrades/heart.tres" id="5_heart"]
-[ext_resource type="Resource" path="res://shop/upgrades/boots.tres" id="6_boots"]
-[ext_resource type="Resource" path="res://shop/upgrades/magnet.tres" id="7_magnet"]
-[ext_resource type="Resource" path="res://shop/upgrades/spin.tres" id="8_spin"]
-[ext_resource type="Resource" path="res://shop/upgrades/fang.tres" id="9_fang"]
-[ext_resource type="Resource" path="res://shop/upgrades/fish.tres" id="10_fish"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_coin"]
-atlas = ExtResource("3_coin")
-region = Rect2(36, 4, 8, 8)
+[ext_resource type="Resource" uid="uid://di14k5p7gyxao" path="res://shop/upgrades/heart.tres" id="5_heart"]
+[ext_resource type="Resource" uid="uid://cqmvyvrelm3g8" path="res://shop/upgrades/boots.tres" id="6_boots"]
+[ext_resource type="Resource" uid="uid://hofvgq64e1hd" path="res://shop/upgrades/magnet.tres" id="7_magnet"]
+[ext_resource type="Resource" uid="uid://c5ob7gs80j5lc" path="res://shop/upgrades/spin.tres" id="8_spin"]
+[ext_resource type="Resource" uid="uid://b3i4bvqbn3fy6" path="res://shop/upgrades/fang.tres" id="9_fang"]
+[ext_resource type="Resource" uid="uid://bvfk5eespf7r0" path="res://shop/upgrades/fish.tres" id="10_fish"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_normal"]
 bg_color = Color(0, 0, 0, 1)
@@ -30,7 +26,11 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(1, 1, 1, 1)
 
-[node name="Shop" type="CanvasLayer"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_coin"]
+atlas = ExtResource("3_coin")
+region = Rect2(36, 4, 8, 8)
+
+[node name="Shop" type="CanvasLayer" unique_id=1337804245]
 process_mode = 3
 visible = false
 script = ExtResource("1_script")
@@ -38,7 +38,7 @@ upgrades = Array[ExtResource("4_upgrade")]([ExtResource("5_heart"), ExtResource(
 normal_style = SubResource("StyleBoxFlat_normal")
 selected_style = SubResource("StyleBoxFlat_selected")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1315829497]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -46,113 +46,132 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Cards" type="Control" parent="."]
+[node name="Cards" type="Control" parent="." unique_id=727533421]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Card1" type="Panel" parent="Cards"]
+[node name="Card1" type="Panel" parent="Cards" unique_id=1251794353]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 22.0
 offset_right = 52.0
 offset_bottom = 74.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_normal")
 
-[node name="Icon" type="TextureRect" parent="Cards/Card1"]
+[node name="Icon" type="TextureRect" parent="Cards/Card1" unique_id=1545287338]
+layout_mode = 0
 offset_left = 14.0
 offset_top = 6.0
 offset_right = 30.0
 offset_bottom = 22.0
 
-[node name="Pips" type="HBoxContainer" parent="Cards/Card1"]
+[node name="Pips" type="HBoxContainer" parent="Cards/Card1" unique_id=1095757766]
+layout_mode = 0
 offset_top = 27.0
 offset_bottom = 30.0
 theme_override_constants/separation = 2
 
-[node name="PriceBox" type="HBoxContainer" parent="Cards/Card1"]
+[node name="PriceBox" type="HBoxContainer" parent="Cards/Card1" unique_id=1137891223]
+layout_mode = 0
 offset_top = 35.0
 offset_right = 44.0
 offset_bottom = 44.0
 theme_override_constants/separation = 2
 alignment = 1
 
-[node name="Coin" type="TextureRect" parent="Cards/Card1/PriceBox"]
+[node name="Coin" type="TextureRect" parent="Cards/Card1/PriceBox" unique_id=1243582955]
 custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
 size_flags_vertical = 8
 texture = SubResource("AtlasTexture_coin")
 
-[node name="Price" type="Label" parent="Cards/Card1/PriceBox"]
+[node name="Price" type="Label" parent="Cards/Card1/PriceBox" unique_id=1064298685]
+layout_mode = 2
 text = "0"
 
-[node name="Card2" type="Panel" parent="Cards"]
+[node name="Card2" type="Panel" parent="Cards" unique_id=650519823]
+layout_mode = 0
 offset_left = 58.0
 offset_top = 22.0
 offset_right = 102.0
 offset_bottom = 74.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_normal")
 
-[node name="Icon" type="TextureRect" parent="Cards/Card2"]
+[node name="Icon" type="TextureRect" parent="Cards/Card2" unique_id=1621221854]
+layout_mode = 0
 offset_left = 14.0
 offset_top = 6.0
 offset_right = 30.0
 offset_bottom = 22.0
 
-[node name="Pips" type="HBoxContainer" parent="Cards/Card2"]
+[node name="Pips" type="HBoxContainer" parent="Cards/Card2" unique_id=2126847885]
+layout_mode = 0
 offset_top = 27.0
 offset_bottom = 30.0
 theme_override_constants/separation = 2
 
-[node name="PriceBox" type="HBoxContainer" parent="Cards/Card2"]
+[node name="PriceBox" type="HBoxContainer" parent="Cards/Card2" unique_id=1474522121]
+layout_mode = 0
 offset_top = 35.0
 offset_right = 44.0
 offset_bottom = 44.0
 theme_override_constants/separation = 2
 alignment = 1
 
-[node name="Coin" type="TextureRect" parent="Cards/Card2/PriceBox"]
+[node name="Coin" type="TextureRect" parent="Cards/Card2/PriceBox" unique_id=1591488674]
 custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
 size_flags_vertical = 8
 texture = SubResource("AtlasTexture_coin")
 
-[node name="Price" type="Label" parent="Cards/Card2/PriceBox"]
+[node name="Price" type="Label" parent="Cards/Card2/PriceBox" unique_id=1348470530]
+layout_mode = 2
 text = "0"
 
-[node name="Card3" type="Panel" parent="Cards"]
+[node name="Card3" type="Panel" parent="Cards" unique_id=1110540023]
+layout_mode = 0
 offset_left = 108.0
 offset_top = 22.0
 offset_right = 152.0
 offset_bottom = 74.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_normal")
 
-[node name="Icon" type="TextureRect" parent="Cards/Card3"]
+[node name="Icon" type="TextureRect" parent="Cards/Card3" unique_id=279536248]
+layout_mode = 0
 offset_left = 14.0
 offset_top = 6.0
 offset_right = 30.0
 offset_bottom = 22.0
 
-[node name="Pips" type="HBoxContainer" parent="Cards/Card3"]
+[node name="Pips" type="HBoxContainer" parent="Cards/Card3" unique_id=1346026979]
+layout_mode = 0
 offset_top = 27.0
 offset_bottom = 30.0
 theme_override_constants/separation = 2
 
-[node name="PriceBox" type="HBoxContainer" parent="Cards/Card3"]
+[node name="PriceBox" type="HBoxContainer" parent="Cards/Card3" unique_id=1804704745]
+layout_mode = 0
 offset_top = 35.0
 offset_right = 44.0
 offset_bottom = 44.0
 theme_override_constants/separation = 2
 alignment = 1
 
-[node name="Coin" type="TextureRect" parent="Cards/Card3/PriceBox"]
+[node name="Coin" type="TextureRect" parent="Cards/Card3/PriceBox" unique_id=1172382615]
 custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
 size_flags_vertical = 8
 texture = SubResource("AtlasTexture_coin")
 
-[node name="Price" type="Label" parent="Cards/Card3/PriceBox"]
+[node name="Price" type="Label" parent="Cards/Card3/PriceBox" unique_id=5919273]
+layout_mode = 2
 text = "0"
 
-[node name="Info" type="Label" parent="."]
+[node name="Info" type="Label" parent="." unique_id=2021659346]
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 86.0
@@ -160,7 +179,7 @@ offset_bottom = 104.0
 grow_horizontal = 2
 horizontal_alignment = 1
 
-[node name="Hint" type="Label" parent="."]
+[node name="Hint" type="Label" parent="." unique_id=988197692]
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 120.0

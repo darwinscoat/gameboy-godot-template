@@ -22,8 +22,8 @@ score_value = 50
 
 [node name="AnimatedSprite2D" parent="." index="0" unique_id=1081182147]
 sprite_frames = ExtResource("3_frames")
-animation = &"walk"
-frame_progress = 0.27775764
+animation = &"attack"
+frame_progress = 0.087652
 
 [node name="Hitbox" parent="." index="2" unique_id=137726086]
 damage = 2
