@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bv68kfyctolut" path="res://ui/transition.gd" id="1_script"]
 
-[node name="Transition" type="CanvasLayer"]
+[node name="Transition" type="CanvasLayer" unique_id=1801878107]
 process_mode = 3
 layer = 50
 script = ExtResource("1_script")
 
-[node name="Tiles" type="Control" parent="."]
+[node name="Tiles" type="Control" parent="." unique_id=1818847492]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://btysksmsoh63d" path="res://world/shadow.png" id="1_shadow"]
 
-[node name="Shadow" type="Sprite2D"]
+[node name="Shadow" type="Sprite2D" unique_id=902909846]
 z_index = -1
 texture = ExtResource("1_shadow")
 hframes = 4

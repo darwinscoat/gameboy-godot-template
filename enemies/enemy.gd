@@ -23,6 +23,9 @@ signal died(points)
 @export var elite_speed_multiplier: float = 0.8
 @export var elite_offscreen_multiplier: float = 2.0
 @export var rain_slide_speed: float = 80.0
+@export var rain_spread: float = 0.5
+@export var rain_stagger: float = 0.04
+@export var rain_shudder: int = 2
 
 var target: Node2D
 var hp = 2
@@ -131,19 +134,29 @@ func die():
 	$Hitbox/CollisionShape2D.set_deferred("disabled", true)
 	$Hurtbox/CollisionShape2D.set_deferred("disabled", true)
 	$AnimatedSprite2D.modulate = Color.WHITE
-	set_anim("death")
+	if elite:
+		$AnimatedSprite2D.pause()
+	else:
+		set_anim("death")
 	for i in (coin_value if elite else 1):
 		var coin = coin_scene.instantiate()
 		coin.position = position
 		coin.value = 1 if elite else coin_value
 		if elite:
-			coin.slide_speed = rain_slide_speed
+			coin.slide_speed = rain_slide_speed * randf_range(1.0 - rain_spread, 1.0)
 			coin.slide_spread = PI
 		get_parent().add_child(coin)
+		if elite:
+			$AnimatedSprite2D.offset.x = rain_shudder if i % 2 == 0 else -rain_shudder
+			await get_tree().create_timer(randf() * rain_stagger, false).timeout
+	$AnimatedSprite2D.offset = Vector2.ZERO
 	var hearts_needed = (target.max_hp - target.hp + 1) / 2 - get_tree().get_nodes_in_group("hearts").size() if target else 0
 	if heart_scene and hearts_needed > 0 and randf() < heart_chance:
 		var heart = heart_scene.instantiate()
 		heart.position = position
 		get_parent().add_child(heart)
-	await $AnimatedSprite2D.animation_finished
+	if elite:
+		set_anim("death")
+	if $AnimatedSprite2D.is_playing():
+		await $AnimatedSprite2D.animation_finished
 	queue_free()

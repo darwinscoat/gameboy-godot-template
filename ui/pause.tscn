@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://ba8170rbpshhc" path="res://ui/pause.gd" id="1_script"]
 
-[node name="Pause" type="CanvasLayer"]
+[node name="Pause" type="CanvasLayer" unique_id=1050240776]
 process_mode = 3
 visible = false
 script = ExtResource("1_script")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=2099032742]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0

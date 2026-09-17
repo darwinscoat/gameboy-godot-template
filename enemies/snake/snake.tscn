@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bekl5cnjgwhyl" path="res://enemies/enemy.tscn" id="1_base"]
 [ext_resource type="Script" uid="uid://ypda7csn7evd" path="res://enemies/snake/snake.gd" id="2_script"]
 [ext_resource type="SpriteFrames" uid="uid://b8yf30ympjysq" path="res://enemies/snake/snake.tres" id="3_frames"]
+[ext_resource type="PackedScene" uid="uid://m6y8nrcnku22" path="res://enemies/snake/shade.tscn" id="4_shade"]
 
 [node name="Snake" unique_id=1636218619 instance=ExtResource("1_base")]
 script = ExtResource("2_script")
@@ -17,6 +18,16 @@ patience = 1.0
 coil_frame = 0
 roll_frame = 1
 bite_anim_speed = 3.0
+roll_speed = 100.0
+roll_time = 0.5
+roll_anim_speed = 3.0
+dizzy_time = 1.0
+elite_knockback = 60.0
+shade_scene = ExtResource("4_shade")
+shade_count = 2
+shade_spread = 1.05
+shade_every = 3
+shudder = 2
 chase_speed = 40.0
 max_hp = 8
 knockback_speed = 180.0

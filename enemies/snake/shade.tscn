@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://m6y8nrcnku22"]
+
+[ext_resource type="Script" uid="uid://bdj4l572wfrid" path="res://enemies/snake/shade.gd" id="1_script"]
+[ext_resource type="SpriteFrames" uid="uid://b8yf30ympjysq" path="res://enemies/snake/snake.tres" id="2_frames"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_shade"]
+size = Vector2(8, 8)
+
+[node name="Shade" type="Area2D" unique_id=1785846215 groups=["shots"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_script")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2042801841]
+sprite_frames = ExtResource("2_frames")
+animation = &"attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=82144712]
+shape = SubResource("RectangleShape2D_shade")

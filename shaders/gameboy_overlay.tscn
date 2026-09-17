@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://snr34p2tj46r"]
 
-[ext_resource type="Shader" uid="uid://dxhv8m0bpn0hd" path="res://shaders/gameboy.gdshader" id="1_mbqig"]
+[ext_resource type="Shader" uid="uid://r6ghapo3c0bh" path="res://shaders/gameboy.gdshader" id="1_mbqig"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wa718"]
 shader = ExtResource("1_mbqig")

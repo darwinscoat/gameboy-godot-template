@@ -2,33 +2,33 @@
 
 [ext_resource type="Script" uid="uid://hcyixgcditfw" path="res://world/main.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://3bptrgjavx48" path="res://player/player.tscn" id="2_player"]
-[ext_resource type="PackedScene" path="res://enemies/bee/bee.tscn" id="3_bee"]
-[ext_resource type="PackedScene" path="res://enemies/fish/fish.tscn" id="3_fish"]
-[ext_resource type="PackedScene" path="res://enemies/snake/snake.tscn" id="3_snake"]
+[ext_resource type="PackedScene" uid="uid://bytd5rdjcca8l" path="res://enemies/bee/bee.tscn" id="3_bee"]
+[ext_resource type="PackedScene" uid="uid://bbmctyoewko7w" path="res://enemies/fish/fish.tscn" id="3_fish"]
+[ext_resource type="PackedScene" uid="uid://428vits5tr6c" path="res://enemies/snake/snake.tscn" id="3_snake"]
 [ext_resource type="PackedScene" uid="uid://biqgogtp3r7jx" path="res://ui/hud.tscn" id="4_hud"]
 [ext_resource type="Script" uid="uid://d03uokpkq22y0" path="res://world/ground.gd" id="5_ground"]
 [ext_resource type="Texture2D" uid="uid://5d1bt7q1ktix" path="res://world/ground.png" id="6_ground"]
 [ext_resource type="PackedScene" uid="uid://snr34p2tj46r" path="res://shaders/gameboy_overlay.tscn" id="7_overlay"]
 [ext_resource type="Script" uid="uid://d4gnaj2s5v38" path="res://world/director.gd" id="8_director"]
-[ext_resource type="PackedScene" path="res://shop/shop.tscn" id="10_shop"]
-[ext_resource type="PackedScene" path="res://ui/pause.tscn" id="11_pause"]
-[ext_resource type="PackedScene" path="res://ui/transition.tscn" id="12_transition"]
 [ext_resource type="Script" uid="uid://cym8sxexsxi5" path="res://world/wave_data.gd" id="9_wave_data"]
-[ext_resource type="Resource" path="res://world/waves/wave_01.tres" id="w01"]
-[ext_resource type="Resource" path="res://world/waves/wave_02.tres" id="w02"]
-[ext_resource type="Resource" path="res://world/waves/wave_03.tres" id="w03"]
-[ext_resource type="Resource" path="res://world/waves/wave_04.tres" id="w04"]
-[ext_resource type="Resource" path="res://world/waves/wave_05.tres" id="w05"]
-[ext_resource type="Resource" path="res://world/waves/wave_06.tres" id="w06"]
-[ext_resource type="Resource" path="res://world/waves/wave_07.tres" id="w07"]
-[ext_resource type="Resource" path="res://world/waves/wave_08.tres" id="w08"]
-[ext_resource type="Resource" path="res://world/waves/wave_09.tres" id="w09"]
-[ext_resource type="Resource" path="res://world/waves/wave_10.tres" id="w10"]
+[ext_resource type="PackedScene" uid="uid://ksahe5qxwg3g" path="res://shop/shop.tscn" id="10_shop"]
+[ext_resource type="PackedScene" uid="uid://dikal776io3rs" path="res://ui/pause.tscn" id="11_pause"]
+[ext_resource type="PackedScene" uid="uid://bmniqwlngtck1" path="res://ui/transition.tscn" id="12_transition"]
+[ext_resource type="Resource" uid="uid://dylwahbmvgcht" path="res://world/waves/wave_01.tres" id="w01"]
+[ext_resource type="Resource" uid="uid://cxoj3ckxeinku" path="res://world/waves/wave_02.tres" id="w02"]
+[ext_resource type="Resource" uid="uid://cr23b8brbnf76" path="res://world/waves/wave_03.tres" id="w03"]
+[ext_resource type="Resource" uid="uid://bfeyn8vpqi5s5" path="res://world/waves/wave_04.tres" id="w04"]
+[ext_resource type="Resource" uid="uid://dunjp565i7w3h" path="res://world/waves/wave_05.tres" id="w05"]
+[ext_resource type="Resource" uid="uid://cciaoxxx1ushj" path="res://world/waves/wave_06.tres" id="w06"]
+[ext_resource type="Resource" uid="uid://4igka06b7y4" path="res://world/waves/wave_07.tres" id="w07"]
+[ext_resource type="Resource" uid="uid://dcwqi6knsdfw1" path="res://world/waves/wave_08.tres" id="w08"]
+[ext_resource type="Resource" uid="uid://bgg50doodxm3a" path="res://world/waves/wave_09.tres" id="w09"]
+[ext_resource type="Resource" uid="uid://cmx7lj45rqr5a" path="res://world/waves/wave_10.tres" id="w10"]
 
 [node name="Main" type="Node" unique_id=443435830]
 script = ExtResource("1_script")
 
-[node name="Director" type="Node" parent="."]
+[node name="Director" type="Node" parent="." unique_id=1026954929]
 script = ExtResource("8_director")
 waves = Array[ExtResource("9_wave_data")]([ExtResource("w01"), ExtResource("w02"), ExtResource("w03"), ExtResource("w04"), ExtResource("w05"), ExtResource("w06"), ExtResource("w07"), ExtResource("w08"), ExtResource("w09"), ExtResource("w10")])
 bee_scene = ExtResource("3_bee")
@@ -46,12 +46,12 @@ script = ExtResource("5_ground")
 
 [node name="Player" parent="." unique_id=354665368 instance=ExtResource("2_player")]
 
-[node name="Shop" parent="." instance=ExtResource("10_shop")]
+[node name="Shop" parent="." unique_id=439405721 instance=ExtResource("10_shop")]
 curtain = NodePath("../Transition")
 
-[node name="Pause" parent="." instance=ExtResource("11_pause")]
+[node name="Pause" parent="." unique_id=1598799102 instance=ExtResource("11_pause")]
 
-[node name="Transition" parent="." instance=ExtResource("12_transition")]
+[node name="Transition" parent="." unique_id=1862669739 instance=ExtResource("12_transition")]
 
 [node name="HUD" parent="." unique_id=2016491038 instance=ExtResource("4_hud")]
 
@@ -73,7 +73,7 @@ offset_top = 0.0
 [connection signal="wave_cleared" from="Director" to="." method="_on_director_wave_cleared"]
 [connection signal="wave_finished" from="Director" to="." method="_on_director_wave_finished"]
 [connection signal="wave_started" from="Director" to="." method="_on_director_wave_started"]
+[connection signal="coins_changed" from="Player" to="HUD" method="update_coins"]
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="hp_changed" from="Player" to="HUD" method="update_hp"]
-[connection signal="coins_changed" from="Player" to="HUD" method="update_coins"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]

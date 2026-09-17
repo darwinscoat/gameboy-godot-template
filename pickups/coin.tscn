@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://138o8rg74wxm" path="res://pickups/coin.gd" id="1_script"]
 [ext_resource type="SpriteFrames" uid="uid://bdawuvpl8snh7" path="res://pickups/coin.tres" id="2_frames"]
-[ext_resource type="PackedScene" path="res://world/shadow.tscn" id="9_shadow"]
+[ext_resource type="PackedScene" uid="uid://dawuaidq2gps0" path="res://world/shadow.tscn" id="9_shadow"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_coin"]
 radius = 4.0
