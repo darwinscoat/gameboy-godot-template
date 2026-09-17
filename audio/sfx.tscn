@@ -37,6 +37,8 @@
 [ext_resource type="AudioStreamWAV" uid="uid://xlvo3r36g14d" path="res://audio/sfx/boss_hold.wav" id="35_boss_hold"]
 [ext_resource type="AudioStreamWAV" uid="uid://cva7xe7r1q04i" path="res://audio/sfx/low_hp.wav" id="36_low_hp"]
 [ext_resource type="AudioStreamWAV" uid="uid://dxcq24dr30adx" path="res://audio/sfx/elite_hit.wav" id="37_elite_hit"]
+[ext_resource type="AudioStreamWAV" uid="uid://tkn5i0dygkpj" path="res://audio/sfx/bee_sting.wav" id="38_bee_sting"]
+[ext_resource type="AudioStreamWAV" uid="uid://c54gqs2l0lfvm" path="res://audio/sfx/bee_shoot.wav" id="39_bee_shoot"]
 
 [node name="Sfx" type="Node"]
 process_mode = 3
@@ -184,4 +186,12 @@ bus = &"Sfx"
 
 [node name="EliteHit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("37_elite_hit")
+bus = &"Sfx"
+
+[node name="BeeSting" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("38_bee_sting")
+bus = &"Sfx"
+
+[node name="BeeShoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("39_bee_shoot")
 bus = &"Sfx"

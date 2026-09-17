@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://djhrnldp4agkf"]
+
+[ext_resource type="Script" uid="uid://x5gww181yhfd" path="res://enemies/bee/sting.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://ckam5vl8aw0p4" path="res://enemies/bee/sting.png" id="2_sting"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sting"]
+radius = 2.0
+
+[node name="Sting" type="Area2D" groups=["shots"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_sting")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sting")

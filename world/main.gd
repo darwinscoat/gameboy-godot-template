@@ -23,6 +23,7 @@ func new_game():
 	score = 0
 	get_tree().call_group("enemies", "queue_free")
 	get_tree().call_group("pickups", "queue_free")
+	get_tree().call_group("shots", "queue_free")
 	$Player.start(Vector2.ZERO)
 	$Pause.enabled = true
 	$HUD.update_score(score)
