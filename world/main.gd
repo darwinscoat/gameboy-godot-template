@@ -5,7 +5,7 @@ var score = 0
 
 func _process(_delta):
 	if $Director.running:
-		$HUD.update_wave($Director.time_left / $Director.wave.duration, $Director.time_left <= 0.0 and $Director.elite_alive())
+		$HUD.update_wave($Director.time_left / $Director.wave.duration, $Director.time_left <= 0.0 and $Director.boss_alive())
 	else:
 		$HUD.hide_wave()
 
@@ -54,10 +54,10 @@ func _on_director_wave_cleared(number):
 		$Shop.open($Director.rng)
 
 
-func _on_director_elite_spawned(kind):
+func _on_director_boss_spawned(kind):
 	Sfx.play("elite_spawn")
 	Music.play("boss")
-	$HUD.show_message("Elite %s!" % kind.capitalize(), true)
+	$HUD.show_message(("The %s!" if kind == "queen" else "Elite %s!") % kind.capitalize(), true)
 	$Player.shake(0.3)
 
 
@@ -70,5 +70,5 @@ func _on_director_run_won():
 	$HUD.show_game_over("You win")
 
 
-func _on_director_elite_died(_kind):
+func _on_director_boss_died(_kind):
 	Music.resume("play")

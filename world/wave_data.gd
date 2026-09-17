@@ -18,5 +18,5 @@ extends Resource
 @export var escort: float = 0.0
 @export_group("Set pieces")
 @export var opener: String = ""
-@export var elite: String = ""
-@export var elite_at: float = 0.0
+@export var boss: String = ""
+@export var boss_at: float = 0.0

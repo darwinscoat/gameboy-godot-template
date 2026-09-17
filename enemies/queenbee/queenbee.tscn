@@ -1,70 +1,80 @@
-[gd_scene format=3 uid="uid://hvwkirk6bqow"]
+[gd_scene format=3 uid="uid://dk23ttcu15gbv"]
 
-[ext_resource type="Texture2D" uid="uid://h77w3luasin3" path="res://enemies/queenbee/queenbee.png" id="1_udcc5"]
+[ext_resource type="PackedScene" uid="uid://bekl5cnjgwhyl" path="res://enemies/enemy.tscn" id="1_base"]
+[ext_resource type="Script" uid="uid://cv1dm4ull18w0" path="res://enemies/queenbee/queenbee.gd" id="2_script"]
+[ext_resource type="SpriteFrames" uid="uid://dwvs4t5wfh5ru" path="res://enemies/queenbee/queenbee.tres" id="3_frames"]
+[ext_resource type="PackedScene" uid="uid://djhrnldp4agkf" path="res://enemies/bee/sting.tscn" id="4_sting"]
+[ext_resource type="PackedScene" uid="uid://bytd5rdjcca8l" path="res://enemies/bee/bee.tscn" id="5_bee"]
+[ext_resource type="Texture2D" uid="uid://frt7ntmmvdf0" path="res://enemies/queenbee/queenbee_shadow.png" id="6_shadow"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ucgl2"]
-atlas = ExtResource("1_udcc5")
-region = Rect2(32, 0, 32, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hit"]
+size = Vector2(24, 10)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5p6o1"]
-atlas = ExtResource("1_udcc5")
-region = Rect2(64, 0, 32, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
+size = Vector2(28, 14)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gmmql"]
-atlas = ExtResource("1_udcc5")
-region = Rect2(0, 0, 32, 16)
+[node name="Queenbee" unique_id=36382095 instance=ExtResource("1_base")]
+script = ExtResource("2_script")
+hover_height = 6.0
+hover_range = 40.0
+hover_speed = 40.0
+orbit_speed = 0.5
+climb_speed = 60.0
+rest_time = 1.5
+shadow_full_height = 8.0
+shot_scene = ExtResource("4_sting")
+bee_scene = ExtResource("5_bee")
+volley_tell = 0.4
+volley_gap = 0.5
+volley_count = 2
+volley_shots = 3
+volley_spread = 0.35
+summon_time = 1.5
+summon_height = 14.0
+summon_radius = 8.0
+summon_spin = 6.283185307179586
+swarm_size = 4
+swarm_radius = 10.0
+swarm_step = 5.0
+swarm_turn = 1.6
+swarm_gap = 0.15
+swarm_flicker = 1.0
+swarm_cap = 6
+swoop_tell = 0.6
+swoop_height = 24.0
+swoop_speed = 140.0
+vanish_time = 0.4
+vanish_shudder = 2.0
+blink_time = 0.6
+appear_time = 0.3
+rage_hp = 0.5
+rage_shots = 5
+rage_rest = 0.6
+frenzy_hp = 0.25
+crown_y = -10.0
+crown_drop = 20.0
+crown_time = 1.2
+chase_speed = 25.0
+max_hp = 90
+hit_cooldown = 0.6
+knockback_speed = 30.0
+coin_value = 200
+score_value = 400
+elite_hp_multiplier = 1
+elite_coin_multiplier = 1
+elite_score_multiplier = 1
+rain_values = Array[int]([1, 3, 5])
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uxef4"]
-atlas = ExtResource("1_udcc5")
-region = Rect2(32, 0, 32, 16)
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=1081182147]
+sprite_frames = ExtResource("3_frames")
+animation = &"walk"
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_wird1"]
-animations = [{
-"frames": [{
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_ucgl2")
-}],
-"loop": 1,
-"name": &"attack",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_ucgl2")
-}],
-"loop": 1,
-"name": &"death",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5p6o1")
-}, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_ucgl2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gmmql")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uxef4")
-}],
-"loop": 1,
-"name": &"fly",
-"speed": 7.0
-}]
+[node name="CollisionShape2D" parent="Hitbox" parent_id_path=PackedInt32Array(137726086) index="0" unique_id=570894438]
+shape = SubResource("RectangleShape2D_hit")
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yqs4j"]
-radius = 3.0
-height = 10.0
+[node name="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(1587075333) index="0" unique_id=380627948]
+shape = SubResource("RectangleShape2D_hurt")
 
-[node name="Queenbee" type="Node2D" unique_id=1364709459]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=329575951]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StaticBody2D" unique_id=1809233664]
-sprite_frames = SubResource("SpriteFrames_wird1")
-animation = &"attack"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1298609117]
-shape = SubResource("CapsuleShape2D_yqs4j")
+[node name="Shadow" parent="." index="5" unique_id=962565747]
+position = Vector2(0, 8)
+texture = ExtResource("6_shadow")

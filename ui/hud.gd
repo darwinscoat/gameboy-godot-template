@@ -4,18 +4,18 @@ signal start_game
 signal message_hidden
 
 @export var restart_delay: float = 2.0
-@export var elite_blink: float = 0.125
+@export var boss_blink: float = 0.125
 @export var start_blink: float = 0.5
 @export var wave_height: float = 2.0
 @export var wave_speed: float = 1.0
 @export var title_wave: float = 1.5
 @export var title: String = "[font_size=16]Churro[/font_size]\nwill survive!"
-@export var elite_wave: float = 2.0
+@export var boss_wave: float = 2.0
 @export var coin_hop_time: float = 0.1
 @export var reveal_speed: float = 30.0
 @export var erase_speed: float = 45.0
 @export var slow_reveal: float = 0.4
-@export var elite_flicker: float = 0.3
+@export var boss_flicker: float = 0.3
 @export var heart_full: Texture2D
 @export var heart_half: Texture2D
 @export var heart_empty: Texture2D
@@ -67,11 +67,11 @@ func wave(text, strength := 1.0) -> String:
 
 
 func show_message(text, strong := false, slow := false):
-	reveal(wave(text, elite_wave if strong else 1.0), reveal_speed * (slow_reveal if slow else 1.0))
+	reveal(wave(text, boss_wave if strong else 1.0), reveal_speed * (slow_reveal if slow else 1.0))
 	if strong:
 		shown = $Message.get_total_character_count()
 		$Message.visible_characters = -1
-		flicker_left = elite_flicker
+		flicker_left = boss_flicker
 	$MessageTimer.start()
 
 
@@ -119,10 +119,10 @@ func update_hp(hp, max_hp):
 		$Hearts.add_child(heart)
 
 
-func update_wave(fraction, elite):
+func update_wave(fraction, boss):
 	$WaveBar.show()
-	$WaveBar/Fill.size.x = roundf($WaveBar.size.x * (1.0 if elite else clampf(fraction, 0.0, 1.0)))
-	$WaveBar/Fill.visible = not elite or int(Time.get_ticks_msec() / (elite_blink * 1000)) % 2 == 0
+	$WaveBar/Fill.size.x = roundf($WaveBar.size.x * (1.0 if boss else clampf(fraction, 0.0, 1.0)))
+	$WaveBar/Fill.visible = not boss or int(Time.get_ticks_msec() / (boss_blink * 1000)) % 2 == 0
 
 
 func hide_wave():

@@ -40,6 +40,8 @@
 [ext_resource type="AudioStream" uid="uid://tkn5i0dygkpj" path="res://audio/sfx/bee_sting.wav" id="38_bee_sting"]
 [ext_resource type="AudioStream" uid="uid://c54gqs2l0lfvm" path="res://audio/sfx/bee_shoot.wav" id="39_bee_shoot"]
 
+[ext_resource type="AudioStreamWAV" uid="uid://mynrym6oys3" path="res://audio/sfx/queen_swoop.wav" id="40_queen_swoop"]
+[ext_resource type="AudioStreamWAV" uid="uid://d0dqjjj6548q1" path="res://audio/sfx/queen_summon.wav" id="41_queen_summon"]
 [node name="Sfx" type="Node" unique_id=1195290387]
 process_mode = 3
 script = ExtResource("1_script")
@@ -194,4 +196,12 @@ bus = &"Sfx"
 
 [node name="BeeShoot" type="AudioStreamPlayer" parent="." unique_id=1515398283]
 stream = ExtResource("39_bee_shoot")
+bus = &"Sfx"
+
+[node name="QueenSwoop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("40_queen_swoop")
+bus = &"Sfx"
+
+[node name="QueenSummon" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("41_queen_summon")
 bus = &"Sfx"

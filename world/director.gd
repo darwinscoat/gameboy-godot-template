@@ -5,8 +5,8 @@ signal wave_finished(number)
 signal wave_cleared(number)
 signal run_won
 signal scored(points)
-signal elite_spawned(kind)
-signal elite_died(kind)
+signal boss_spawned(kind)
+signal boss_died(kind)
 
 const GROUP_SIZE = {"drip": 1, "pair": 2, "wall": 4, "ring": 6, "ambush": 1, "escort": 3}
 const WALL_SPACING = 0.35
@@ -17,6 +17,7 @@ const AMBUSH_JITTER = 0.4
 @export var bee_scene: PackedScene
 @export var fish_scene: PackedScene
 @export var snake_scene: PackedScene
+@export var queen_scene: PackedScene
 @export var spawn_distance: float = 120.0
 @export var start_delay: float = 2.0
 @export var collect_time: float = 4.0
@@ -34,7 +35,7 @@ var wave: WaveData
 var wave_index = -1
 var time_left = 0.0
 var pulse_left = 0.0
-var elite_done = false
+var boss_done = false
 var held = false
 var last_second = 0
 var running = false
@@ -49,20 +50,20 @@ func _process(delta):
 		player_dir = moved.normalized()
 	last_player_pos = player.position
 	time_left -= delta
-	var boss = elite_alive()
+	var boss = boss_alive()
 	if time_left <= 0.0 and not boss:
 		finish_wave()
 		return
 	var second = ceili(time_left)
-	if second != last_second and second > 0 and second <= tick_seconds:
+	if second != last_second and second > 0 and second <= tick_seconds and wave.duration > tick_seconds:
 		Sfx.play("timer_tick")
 	last_second = second
 	if time_left <= 0.0 and not held:
 		held = true
 		Sfx.play("boss_hold")
-	if wave.elite != "" and not elite_done and wave.duration - time_left >= wave.elite_at:
-		elite_done = true
-		spawn_one(wave.elite, rng.randf() * TAU, true)
+	if wave.boss != "" and not boss_done and wave.duration - time_left >= wave.boss_at:
+		boss_done = true
+		spawn_one(wave.boss, rng.randf() * TAU, true)
 	if time_left <= (0.0 if boss else flee_lead):
 		return
 	pulse_left -= delta
@@ -99,7 +100,7 @@ func next_wave():
 		rng.randomize()
 	time_left = wave.duration
 	pulse_left = wave.pulse_interval
-	elite_done = false
+	boss_done = false
 	held = false
 	last_second = 0
 	running = true
@@ -130,9 +131,9 @@ func alive() -> int:
 	return count
 
 
-func elite_alive() -> bool:
+func boss_alive() -> bool:
 	for enemy in get_tree().get_nodes_in_group("enemies"):
-		if enemy.elite and not enemy.dying:
+		if enemy.boss and not enemy.dying:
 			return true
 	return false
 
@@ -187,13 +188,14 @@ func spawn_group(name: String):
 			spawn_one("bee", angle + ESCORT_SPREAD)
 
 
-func spawn_one(kind: String, angle: float, elite := false):
-	var scene = {"bee": bee_scene, "fish": fish_scene, "snake": snake_scene}[kind]
+func spawn_one(kind: String, angle: float, boss := false):
+	var scene = {"bee": bee_scene, "fish": fish_scene, "snake": snake_scene, "queen": queen_scene}[kind]
 	var enemy = scene.instantiate()
 	enemy.position = player.position + Vector2.from_angle(angle) * spawn_distance
-	if elite:
+	if boss:
 		enemy.make_elite()
-		elite_spawned.emit(kind)
-		enemy.died.connect(func(_points): elite_died.emit(kind))
+		enemy.make_boss()
+		boss_spawned.emit(kind)
+		enemy.died.connect(func(_points): boss_died.emit(kind))
 	enemy.died.connect(func(points): scored.emit(points))
 	add_sibling(enemy)

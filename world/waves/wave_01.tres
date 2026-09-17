@@ -5,3 +5,4 @@
 [resource]
 script = ExtResource("1_wave")
 pair = 0.3
+boss = "queen"

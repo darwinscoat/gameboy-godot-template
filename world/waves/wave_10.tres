@@ -16,5 +16,5 @@ ring = 0.5
 ambush = 0.7
 escort = 0.7
 opener = "ring"
-elite = "snake"
-elite_at = 40.0
+boss = "snake"
+boss_at = 40.0

@@ -1,0 +1,62 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://dwvs4t5wfh5ru"]
+
+[ext_resource type="Texture2D" uid="uid://h77w3luasin3" path="res://enemies/queenbee/queenbee.png" id="1_sheet"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_up"]
+atlas = ExtResource("1_sheet")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spread"]
+atlas = ExtResource("1_sheet")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flap"]
+atlas = ExtResource("1_sheet")
+region = Rect2(32, 0, 32, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_up")
+}],
+"loop": 1,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_up")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spread")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spread")
+}],
+"loop": 1,
+"name": &"glide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_up")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_flap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spread")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flap")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 7.0
+}]

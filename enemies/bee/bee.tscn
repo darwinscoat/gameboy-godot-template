@@ -23,5 +23,8 @@ sprite_frames = ExtResource("3_frames")
 animation = &"walk"
 frame_progress = 0.31289375
 
-[node name="Shadow" parent="." index="5"]
+[node name="CollisionShape2D" parent="Hitbox" parent_id_path=PackedInt32Array(137726086) index="0" unique_id=570894438]
+disabled = true
+
+[node name="Shadow" parent="." index="5" unique_id=962565747]
 position = Vector2(0, 11)

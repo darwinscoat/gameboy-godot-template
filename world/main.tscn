@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://3bptrgjavx48" path="res://player/player.tscn" id="2_player"]
 [ext_resource type="PackedScene" uid="uid://bytd5rdjcca8l" path="res://enemies/bee/bee.tscn" id="3_bee"]
 [ext_resource type="PackedScene" uid="uid://bbmctyoewko7w" path="res://enemies/fish/fish.tscn" id="3_fish"]
+[ext_resource type="PackedScene" uid="uid://dk23ttcu15gbv" path="res://enemies/queenbee/queenbee.tscn" id="3_queen"]
 [ext_resource type="PackedScene" uid="uid://428vits5tr6c" path="res://enemies/snake/snake.tscn" id="3_snake"]
 [ext_resource type="PackedScene" uid="uid://biqgogtp3r7jx" path="res://ui/hud.tscn" id="4_hud"]
 [ext_resource type="Script" uid="uid://d03uokpkq22y0" path="res://world/ground.gd" id="5_ground"]
@@ -24,16 +25,18 @@
 [ext_resource type="Resource" uid="uid://dcwqi6knsdfw1" path="res://world/waves/wave_08.tres" id="w08"]
 [ext_resource type="Resource" uid="uid://bgg50doodxm3a" path="res://world/waves/wave_09.tres" id="w09"]
 [ext_resource type="Resource" uid="uid://cmx7lj45rqr5a" path="res://world/waves/wave_10.tres" id="w10"]
+[ext_resource type="Resource" uid="uid://cek4k6bfeamox" path="res://world/waves/wave_11.tres" id="w11"]
 
 [node name="Main" type="Node" unique_id=443435830]
 script = ExtResource("1_script")
 
 [node name="Director" type="Node" parent="." unique_id=1026954929]
 script = ExtResource("8_director")
-waves = Array[ExtResource("9_wave_data")]([ExtResource("w01"), ExtResource("w02"), ExtResource("w03"), ExtResource("w04"), ExtResource("w05"), ExtResource("w06"), ExtResource("w07"), ExtResource("w08"), ExtResource("w09"), ExtResource("w10")])
+waves = Array[ExtResource("9_wave_data")]([ExtResource("w01"), ExtResource("w02"), ExtResource("w03"), ExtResource("w04"), ExtResource("w05"), ExtResource("w06"), ExtResource("w07"), ExtResource("w08"), ExtResource("w09"), ExtResource("w10"), ExtResource("w11")])
 bee_scene = ExtResource("3_bee")
 fish_scene = ExtResource("3_fish")
 snake_scene = ExtResource("3_snake")
+queen_scene = ExtResource("3_queen")
 
 [node name="Ground" type="Sprite2D" parent="." unique_id=1863119164]
 z_index = -2
@@ -66,8 +69,8 @@ anchor_bottom = 1.0
 offset_left = 0.0
 offset_top = 0.0
 
-[connection signal="elite_died" from="Director" to="." method="_on_director_elite_died"]
-[connection signal="elite_spawned" from="Director" to="." method="_on_director_elite_spawned"]
+[connection signal="boss_died" from="Director" to="." method="_on_director_boss_died"]
+[connection signal="boss_spawned" from="Director" to="." method="_on_director_boss_spawned"]
 [connection signal="run_won" from="Director" to="." method="_on_director_run_won"]
 [connection signal="scored" from="Director" to="." method="add_score"]
 [connection signal="wave_cleared" from="Director" to="." method="_on_director_wave_cleared"]
