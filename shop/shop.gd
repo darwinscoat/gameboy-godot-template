@@ -6,6 +6,7 @@ const ATTACK = ["damage", "count", "spin"]
 @export var normal_style: StyleBox
 @export var selected_style: StyleBox
 @export var dim: Color = Color(0.341, 0.341, 0.341)
+@export var affordable_offers: int = 2
 @export var curtain: NodePath
 @export var director: NodePath
 
@@ -66,8 +67,12 @@ func pick(rng) -> Array:
 	var pool = upgrades.filter(func(upgrade): return not upgrade.repeatable and player.level(upgrade) < upgrade.costs.size())
 	var picked = []
 	draw(picked, pool.filter(func(upgrade): return upgrade.stat in ATTACK), rng)
-	if picked.is_empty() or cost_of(picked[0]) > player.coins:
-		draw(picked, pool.filter(func(upgrade): return cost_of(upgrade) <= player.coins), rng)
+	var affordable = func(upgrade): return cost_of(upgrade) <= player.coins
+	while picked.filter(affordable).size() < affordable_offers and picked.size() < $Cards.get_child_count():
+		var before = picked.size()
+		draw(picked, pool.filter(affordable), rng)
+		if picked.size() == before:
+			break
 	while picked.size() < mini($Cards.get_child_count(), pool.size()):
 		draw(picked, pool, rng)
 	while picked.size() < $Cards.get_child_count():
