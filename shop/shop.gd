@@ -79,7 +79,7 @@ func pick(rng) -> Array:
 	while picked.size() < mini(slots, pool.size()):
 		draw(picked, pool, rng)
 	while picked.size() < slots:
-		var extras = upgrades.filter(func(upgrade): return upgrade.repeatable and not picked.has(upgrade) and not (endless and upgrade.stat == "heal"))
+		var extras = upgrades.filter(func(upgrade): return upgrade.repeatable and not picked.has(upgrade) and not (upgrade.stat == "heal" and (endless or not pool.is_empty())))
 		if extras.is_empty():
 			break
 		draw(picked, extras, rng)

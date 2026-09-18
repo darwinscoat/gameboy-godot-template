@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_upgrade")
 title = "Ghost"
-blurb = "flip shoots projectiles"
+blurb = "flip projectiles"
 description = "Flip shoots a projectile. Each bites once per level."
 icon = ExtResource("2_icon")
 stat = "ghost"
