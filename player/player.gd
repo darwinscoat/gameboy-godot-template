@@ -18,6 +18,12 @@ const STATS = {"hp": "max_hp", "move": "speed", "magnet": "magnet_radius", "dama
 @export var death_time: float = 1.0
 @export var spawn_grace: float = 1.0
 @export var low_hp: int = 2
+@export_group("Dash")
+@export var dash_distance: float = 24.0
+@export var dash_time: float = 0.15
+@export var dash_cooldown: float = 1.5
+@export var dash_iframes: float = 0.1
+@export_group("")
 @export var cats: Array[SpriteFrames]
 
 var hp = 6
@@ -26,6 +32,9 @@ var knockback = Vector2.ZERO
 var shake_left = 0.0
 var coins = 0
 var hits = 0
+var dash_left = 0.0
+var dash_wait = 0.0
+var dash_dir = Vector2.RIGHT
 var dead = false
 var hurt = false
 var levels = {}
@@ -61,6 +70,18 @@ func _process(delta):
 	else:
 		$AnimatedSprite2D.animation = "walk"
 		$AnimatedSprite2D.stop()
+	dash_wait = maxf(dash_wait - delta, 0.0)
+	dash_left = maxf(dash_left - delta, 0.0)
+	if Input.is_action_just_pressed("a"):
+		$Sword.flip()
+	if Input.is_action_just_pressed("b") and dash_wait == 0.0:
+		dash_dir = velocity.normalized() if velocity.length() > 0.0 else Vector2(-1.0 if $AnimatedSprite2D.flip_h else 1.0, 0.0)
+		dash_left = dash_time
+		dash_wait = dash_cooldown
+		invulnerable_left = maxf(invulnerable_left, dash_iframes)
+		Sfx.play("player_dash")
+	if dash_left > 0.0:
+		velocity = dash_dir * dash_distance / dash_time
 	if invulnerable_left > 0.0 and hurt:
 		$AnimatedSprite2D.play("hit")
 
@@ -123,6 +144,8 @@ func start(pos):
 	coins = 0
 	coins_changed.emit(coins)
 	hits = 0
+	dash_left = 0.0
+	dash_wait = 0.0
 	invulnerable_left = spawn_grace
 	hurt = false
 	knockback = Vector2.ZERO

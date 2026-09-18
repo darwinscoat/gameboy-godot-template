@@ -14,6 +14,11 @@ func _process(_delta):
 		$HUD.update_wave($Director.time_left / $Director.wave.duration, $Director.time_left <= 0.0 and $Director.boss_alive())
 	else:
 		$HUD.hide_wave()
+	if $Player.visible and not $Player.dead:
+		var sword = $Player/Sword
+		$HUD.update_abilities(1.0 - sword.flip_left / sword.flip_cooldown, 1.0 - $Player.dash_wait / $Player.dash_cooldown)
+	else:
+		$HUD.hide_abilities()
 
 
 func game_over():

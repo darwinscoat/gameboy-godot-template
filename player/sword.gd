@@ -6,8 +6,13 @@ extends Node2D
 @export var radius: float = 20.0
 @export var size: int = 1
 @export var damage: int = 2
+@export var flip_cooldown: float = 2.0
+@export var ready_flash: float = 0.1
 
 var angle = 0.0
+var direction = 1.0
+var flip_left = 0.0
+var flash_left = 0.0
 
 
 func _ready():
@@ -15,6 +20,9 @@ func _ready():
 
 
 func rebuild():
+	direction = 1.0
+	flip_left = 0.0
+	flash_left = 0.0
 	for fish in get_children():
 		remove_child(fish)
 		fish.queue_free()
@@ -23,10 +31,15 @@ func rebuild():
 
 
 func _process(delta):
-	angle = fmod(angle + deg_to_rad(speed) * delta, TAU)
+	if flip_left > 0.0 and flip_left <= delta:
+		flash_left = ready_flash
+	flip_left = maxf(flip_left - delta, 0.0)
+	flash_left = maxf(flash_left - delta, 0.0)
+	angle = fmod(angle + deg_to_rad(speed) * direction * delta + TAU, TAU)
 	var fishes = get_children()
 	for i in fishes.size():
 		var fish = fishes[i]
+		fish.modulate = Color(4, 4, 4) if flash_left > 0.0 else Color.WHITE
 		var a = angle + TAU * i / fishes.size()
 		var step = roundi(fmod(a, TAU) / (TAU / 16)) % 16
 		fish.position = Vector2.from_angle(a) * radius * size
@@ -47,5 +60,14 @@ func time_until(at) -> float:
 	var fishes = get_children()
 	for i in fishes.size():
 		var a = angle + TAU * i / fishes.size()
-		soonest = minf(soonest, wrapf(at - a, 0.0, TAU) / deg_to_rad(speed))
+		soonest = minf(soonest, wrapf((at - a) * direction, 0.0, TAU) / deg_to_rad(speed))
 	return soonest
+
+
+func flip() -> bool:
+	if flip_left > 0.0:
+		return false
+	direction = -direction
+	flip_left = flip_cooldown
+	Sfx.play("sword_flip")
+	return true

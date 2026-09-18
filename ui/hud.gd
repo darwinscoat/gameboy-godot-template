@@ -161,6 +161,16 @@ func hide_wave():
 	$WaveBar.hide()
 
 
+func update_abilities(flip, dash):
+	$Abilities.show()
+	$Abilities/BarA/Fill.size.x = roundf($Abilities/BarA.size.x * clampf(flip, 0.0, 1.0))
+	$Abilities/BarB/Fill.size.x = roundf($Abilities/BarB.size.x * clampf(dash, 0.0, 1.0))
+
+
+func hide_abilities():
+	$Abilities.hide()
+
+
 func crop(texture: Texture2D) -> AtlasTexture:
 	var atlas = AtlasTexture.new()
 	atlas.atlas = texture

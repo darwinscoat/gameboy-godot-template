@@ -6,6 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://ci1wm3m2ru3ii" path="res://pickups/coin_small.png" id="4_coin"]
 [ext_resource type="Texture2D" uid="uid://dsp6jbrnsb0hg" path="res://ui/heart_half.png" id="5_heart"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_key"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.631, 0.631, 0.631, 1)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_coin"]
 atlas = ExtResource("4_coin")
 region = Rect2(36, 4, 8, 8)
@@ -125,6 +133,63 @@ offset_right = 64.0
 offset_bottom = 9.0
 text = "0"
 horizontal_alignment = 2
+
+[node name="Abilities" type="Control" parent="."]
+visible = false
+offset_left = 2.0
+offset_top = 13.0
+offset_right = 12.0
+offset_bottom = 41.0
+
+[node name="KeyA" type="Panel" parent="Abilities"]
+offset_left = 0.0
+offset_right = 10.0
+offset_bottom = 10.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_key")
+
+[node name="Label" type="Label" parent="Abilities/KeyA"]
+offset_left = 1.0
+offset_right = 9.0
+offset_bottom = 9.0
+theme_override_constants/outline_size = 0
+text = "A"
+horizontal_alignment = 1
+
+[node name="BarA" type="ColorRect" parent="Abilities"]
+offset_top = 11.0
+offset_right = 10.0
+offset_bottom = 13.0
+color = Color(0.341, 0.341, 0.341, 1)
+
+[node name="Fill" type="ColorRect" parent="Abilities/BarA"]
+offset_right = 10.0
+offset_bottom = 2.0
+color = Color(1, 0.969, 0.98, 1)
+
+[node name="KeyB" type="Panel" parent="Abilities"]
+offset_top = 15.0
+offset_right = 10.0
+offset_bottom = 25.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_key")
+
+[node name="Label" type="Label" parent="Abilities/KeyB"]
+offset_left = 1.0
+offset_right = 9.0
+offset_bottom = 9.0
+theme_override_constants/outline_size = 0
+text = "B"
+horizontal_alignment = 1
+
+[node name="BarB" type="ColorRect" parent="Abilities"]
+offset_top = 26.0
+offset_right = 10.0
+offset_bottom = 28.0
+color = Color(0.341, 0.341, 0.341, 1)
+
+[node name="Fill" type="ColorRect" parent="Abilities/BarB"]
+offset_right = 10.0
+offset_bottom = 2.0
+color = Color(1, 0.969, 0.98, 1)
 
 [node name="WaveBar" type="ColorRect" parent="." unique_id=1320821842]
 visible = false

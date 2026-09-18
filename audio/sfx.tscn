@@ -45,6 +45,8 @@
 [ext_resource type="AudioStreamWAV" uid="uid://spxs8lsvwgfw" path="res://audio/sfx/flawless.wav" id="43_flawless"]
 [ext_resource type="AudioStreamWAV" uid="uid://cpabc4i74g8st" path="res://audio/sfx/vacuum_drop.wav" id="44_vacuum_drop"]
 [ext_resource type="AudioStreamWAV" uid="uid://41xn1qw2xrsg" path="res://audio/sfx/vacuum_collect.wav" id="45_vacuum_collect"]
+[ext_resource type="AudioStreamWAV" uid="uid://cclmxa2nah386" path="res://audio/sfx/sword_flip.wav" id="46_sword_flip"]
+[ext_resource type="AudioStreamWAV" uid="uid://b25srdyk18x71" path="res://audio/sfx/player_dash.wav" id="47_player_dash"]
 
 [node name="Sfx" type="Node" unique_id=1195290387]
 process_mode = 3
@@ -224,4 +226,12 @@ bus = &"Sfx"
 
 [node name="VacuumCollect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("45_vacuum_collect")
+bus = &"Sfx"
+
+[node name="SwordFlip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("46_sword_flip")
+bus = &"Sfx"
+
+[node name="PlayerDash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("47_player_dash")
 bus = &"Sfx"
