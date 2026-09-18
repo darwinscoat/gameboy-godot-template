@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="WaveData" format=3 uid="uid://cxoj3ckxeinku"]
+[gd_resource type="Resource" script_class="WaveData" format=3 uid="uid://cr23b8brbnf76"]
 
 [ext_resource type="Script" uid="uid://cym8sxexsxi5" path="res://world/wave_data.gd" id="1_wave"]
 
 [resource]
 script = ExtResource("1_wave")
-duration = 35.0
-max_alive = 5
+duration = 40.0
+max_alive = 7
 pulse_interval = 2.5
-drip = 0.6
-pair = 0.8
-wall = 0.4
+drip = 0.3
+pair = 0.6
+wall = 0.8
+ring = 0.3
+opener = "ring"

@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://bw2wvkxlhx6dr" path="res://shop/ShopBG.png" id="9_bv5vx"]
 [ext_resource type="Resource" uid="uid://b3i4bvqbn3fy6" path="res://shop/upgrades/fang.tres" id="9_fang"]
 [ext_resource type="Resource" uid="uid://bvfk5eespf7r0" path="res://shop/upgrades/fish.tres" id="10_fish"]
+[ext_resource type="Resource" uid="uid://dlehdn5b7ym08" path="res://shop/upgrades/heal.tres" id="11_heal"]
+[ext_resource type="Resource" uid="uid://cifsp6aj8cnqx" path="res://shop/upgrades/points.tres" id="12_points"]
+[ext_resource type="Resource" uid="uid://cdthxxwclb571" path="res://shop/upgrades/rush.tres" id="13_rush"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_normal"]
 bg_color = Color(0, 0, 0, 1)
@@ -35,7 +38,7 @@ region = Rect2(36, 4, 8, 8)
 process_mode = 3
 visible = false
 script = ExtResource("1_script")
-upgrades = Array[ExtResource("4_upgrade")]([ExtResource("5_heart"), ExtResource("6_boots"), ExtResource("7_magnet"), ExtResource("8_spin"), ExtResource("9_fang"), ExtResource("10_fish")])
+upgrades = Array[ExtResource("4_upgrade")]([ExtResource("5_heart"), ExtResource("6_boots"), ExtResource("7_magnet"), ExtResource("8_spin"), ExtResource("9_fang"), ExtResource("10_fish"), ExtResource("11_heal"), ExtResource("12_points"), ExtResource("13_rush")])
 normal_style = SubResource("StyleBoxFlat_normal")
 selected_style = SubResource("StyleBoxFlat_selected")
 

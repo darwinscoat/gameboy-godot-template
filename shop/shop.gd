@@ -7,6 +7,7 @@ const ATTACK = ["damage", "count", "spin"]
 @export var selected_style: StyleBox
 @export var dim: Color = Color(0.341, 0.341, 0.341)
 @export var curtain: NodePath
+@export var director: NodePath
 
 var player: Node
 var offered = []
@@ -62,13 +63,18 @@ func close():
 
 
 func pick(rng) -> Array:
-	var pool = upgrades.filter(func(upgrade): return player.level(upgrade) < upgrade.costs.size())
+	var pool = upgrades.filter(func(upgrade): return not upgrade.repeatable and player.level(upgrade) < upgrade.costs.size())
 	var picked = []
 	draw(picked, pool.filter(func(upgrade): return upgrade.stat in ATTACK), rng)
 	if picked.is_empty() or cost_of(picked[0]) > player.coins:
 		draw(picked, pool.filter(func(upgrade): return cost_of(upgrade) <= player.coins), rng)
 	while picked.size() < mini($Cards.get_child_count(), pool.size()):
 		draw(picked, pool, rng)
+	while picked.size() < $Cards.get_child_count():
+		var extras = upgrades.filter(func(upgrade): return upgrade.repeatable and not picked.has(upgrade))
+		if extras.is_empty():
+			break
+		draw(picked, extras, rng)
 	for i in range(picked.size() - 1, 0, -1):
 		var j = rng.randi() % (i + 1)
 		var swap = picked[i]
@@ -84,7 +90,19 @@ func draw(picked, options, rng):
 
 
 func cost_of(upgrade) -> int:
-	return upgrade.costs[mini(player.level(upgrade), upgrade.costs.size() - 1)]
+	var level = player.level(upgrade)
+	var last = upgrade.costs.size() - 1
+	var cost = upgrade.costs[mini(level, last)] + upgrade.cost_step * maxi(level - last, 0)
+	return mini(cost, upgrade.cost_max) if upgrade.cost_max > 0 else cost
+
+
+func blocked(upgrade) -> bool:
+	match upgrade.stat:
+		"heal":
+			return player.hp >= player.max_hp
+		"rush":
+			return get_node(director).rush
+	return false
 
 
 func select(index):
@@ -95,13 +113,16 @@ func select(index):
 
 func buy():
 	var upgrade = offered[selected]
-	if sold[selected] or player.coins < cost_of(upgrade):
+	if sold[selected] or player.coins < cost_of(upgrade) or blocked(upgrade):
 		Sfx.play("shop_deny")
 		return
 	Sfx.play("shop_buy")
 	player.add_coins(-cost_of(upgrade))
-	player.apply(upgrade)
-	sold[selected] = true
+	if upgrade.stat == "rush":
+		get_node(director).rush = true
+	else:
+		player.apply(upgrade)
+	sold[selected] = not upgrade.repeatable
 	refresh()
 
 
@@ -120,12 +141,12 @@ func refresh():
 		card.get_node("Icon").modulate = dim if sold[i] else Color.WHITE
 		card.get_node("PriceBox/Coin").visible = not sold[i]
 		card.get_node("PriceBox/Price").text = "Sold" if sold[i] else str(cost)
-		card.get_node("PriceBox/Price").modulate = Color.WHITE if sold[i] or player.coins >= cost else dim
+		card.get_node("PriceBox/Price").modulate = Color.WHITE if sold[i] or (player.coins >= cost and not blocked(upgrade)) else dim
 		var pips = card.get_node("Pips")
 		for pip in pips.get_children():
 			pips.remove_child(pip)
 			pip.queue_free()
-		for j in upgrade.costs.size():
+		for j in (0 if upgrade.repeatable else upgrade.costs.size()):
 			var pip = ColorRect.new()
 			pip.custom_minimum_size = Vector2(4, 3)
 			pip.color = Color.WHITE if j < level else dim

@@ -39,9 +39,10 @@
 [ext_resource type="AudioStream" uid="uid://dxcq24dr30adx" path="res://audio/sfx/elite_hit.wav" id="37_elite_hit"]
 [ext_resource type="AudioStream" uid="uid://tkn5i0dygkpj" path="res://audio/sfx/bee_sting.wav" id="38_bee_sting"]
 [ext_resource type="AudioStream" uid="uid://c54gqs2l0lfvm" path="res://audio/sfx/bee_shoot.wav" id="39_bee_shoot"]
+[ext_resource type="AudioStream" uid="uid://mynrym6oys3" path="res://audio/sfx/queen_swoop.wav" id="40_queen_swoop"]
+[ext_resource type="AudioStream" uid="uid://d0dqjjj6548q1" path="res://audio/sfx/queen_summon.wav" id="41_queen_summon"]
+[ext_resource type="AudioStream" uid="uid://dssgry56dro6v" path="res://audio/sfx/score_tick.wav" id="42_score_tick"]
 
-[ext_resource type="AudioStreamWAV" uid="uid://mynrym6oys3" path="res://audio/sfx/queen_swoop.wav" id="40_queen_swoop"]
-[ext_resource type="AudioStreamWAV" uid="uid://d0dqjjj6548q1" path="res://audio/sfx/queen_summon.wav" id="41_queen_summon"]
 [node name="Sfx" type="Node" unique_id=1195290387]
 process_mode = 3
 script = ExtResource("1_script")
@@ -198,10 +199,14 @@ bus = &"Sfx"
 stream = ExtResource("39_bee_shoot")
 bus = &"Sfx"
 
-[node name="QueenSwoop" type="AudioStreamPlayer" parent="."]
+[node name="QueenSwoop" type="AudioStreamPlayer" parent="." unique_id=1990746611]
 stream = ExtResource("40_queen_swoop")
 bus = &"Sfx"
 
-[node name="QueenSummon" type="AudioStreamPlayer" parent="."]
+[node name="QueenSummon" type="AudioStreamPlayer" parent="." unique_id=1234062797]
 stream = ExtResource("41_queen_summon")
+bus = &"Sfx"
+
+[node name="ScoreTick" type="AudioStreamPlayer" parent="." unique_id=1282180519]
+stream = ExtResource("42_score_tick")
 bus = &"Sfx"

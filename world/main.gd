@@ -1,5 +1,9 @@
 extends Node
 
+@export var cash_rate: int = 1
+@export var cash_tick: float = 0.02
+@export var cash_chunks: int = 150
+
 var score = 0
 
 
@@ -16,6 +20,8 @@ func game_over():
 	$Director.stop()
 	$Pause.enabled = false
 	$HUD.show_game_over()
+	Save.record(score, false)
+	$HUD.update_best(Save.best)
 
 
 func new_game():
@@ -28,6 +34,7 @@ func new_game():
 	$Pause.enabled = true
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
+	$Director.endless = $HUD.cat == 1
 	$Director.start_run()
 	Music.play("play")
 	$Transition.reveal()
@@ -36,6 +43,22 @@ func new_game():
 func add_score(points):
 	score += points
 	$HUD.update_score(score)
+
+
+func cash_out():
+	var step = maxi($Player.coins / cash_chunks, 1)
+	while $Player.coins > 0:
+		var amount = mini(step, $Player.coins)
+		$Player.add_coins(-amount)
+		add_score(amount * cash_rate)
+		Sfx.play("score_tick")
+		await get_tree().create_timer(cash_tick).timeout
+	Save.record(score, true)
+	$HUD.update_best(Save.best)
+
+
+func _on_hud_cat_changed(index):
+	$Player.set_cat(index)
 
 
 func _on_director_wave_started(number, banner):
@@ -50,7 +73,7 @@ func _on_director_wave_finished(_number):
 
 
 func _on_director_wave_cleared(number):
-	if number < $Director.waves.size():
+	if $Director.endless or number < $Director.waves.size():
 		$Shop.open($Director.rng)
 
 
@@ -66,8 +89,8 @@ func _on_director_run_won():
 	Music.play("win")
 	$Director.stop()
 	$Pause.enabled = false
-	add_score($Player.coins)
 	$HUD.show_game_over("You win")
+	cash_out()
 
 
 func _on_director_boss_died(_kind):

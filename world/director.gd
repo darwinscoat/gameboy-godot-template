@@ -26,6 +26,23 @@ const AMBUSH_JITTER = 0.4
 @export var tick_seconds: int = 3
 @export var run_seed: int = 0
 @export var start_wave: int = 1
+@export var endless: bool = false
+@export_group("Endless")
+@export var endless_duration: float = 50.0
+@export var endless_cap: int = 12
+@export var endless_cap_step: int = 1
+@export var endless_cap_max: int = 20
+@export var endless_pulse: float = 1.5
+@export var endless_pulse_step: float = 0.05
+@export var endless_pulse_min: float = 1.0
+@export var elite_start: float = 0.05
+@export var elite_step: float = 0.03
+@export var queen_every: int = 10
+@export var queen_at: float = 5.0
+@export var queen_hp_step: float = 0.5
+@export_group("Rush")
+@export var rush_rate: float = 2.0
+@export var rush_cap: float = 1.5
 
 var rng = RandomNumberGenerator.new()
 var player: Node2D
@@ -40,6 +57,7 @@ var held = false
 var last_second = 0
 var running = false
 var run_id = 0
+var rush = false
 
 
 func _process(delta):
@@ -86,18 +104,25 @@ func start_run():
 func stop():
 	run_id += 1
 	running = false
+	rush = false
 
 
 func next_wave():
 	wave_index += 1
-	if wave_index >= waves.size():
+	if wave_index >= waves.size() and not endless:
 		run_won.emit()
 		return
-	wave = waves[wave_index]
 	if run_seed != 0:
 		rng.seed = run_seed * 100 + wave_index
 	else:
 		rng.randomize()
+	wave = waves[wave_index] if wave_index < waves.size() else make_wave(wave_index + 1)
+	if rush:
+		rush = false
+		wave = wave.duplicate()
+		wave.pulse_interval /= rush_rate
+		wave.max_alive = ceili(wave.max_alive * rush_cap)
+		wave.banner = "Wave %d rush" % (wave_index + 1)
 	time_left = wave.duration
 	pulse_left = wave.pulse_interval
 	boss_done = false
@@ -107,6 +132,28 @@ func next_wave():
 	wave_started.emit(wave_index + 1, wave.banner)
 	if wave.opener != "":
 		spawn_group(wave.opener)
+
+
+func make_wave(number: int) -> WaveData:
+	var n = number - waves.size()
+	var made = WaveData.new()
+	made.duration = endless_duration
+	made.max_alive = mini(endless_cap + endless_cap_step * n, endless_cap_max)
+	made.pulse_interval = maxf(endless_pulse - endless_pulse_step * n, endless_pulse_min)
+	var kinds = ["bee", "fish", "snake"]
+	var featured = kinds[rng.randi() % kinds.size()]
+	for kind in kinds:
+		made.set(kind, 1.0 if kind == featured else 0.5)
+	for name in GROUP_SIZE:
+		made.set(name, 0.5)
+	made.set(GROUP_SIZE.keys()[rng.randi() % GROUP_SIZE.size()], 1.5)
+	made.opener = ["", "ring", "wall", "escort"][rng.randi() % 4]
+	made.elite_chance = minf(elite_start + elite_step * (n - 1), 1.0)
+	if number % queen_every == 0:
+		made.banner = "The Queen"
+		made.boss = "queen"
+		made.boss_at = queen_at
+	return made
 
 
 func finish_wave():
@@ -192,10 +239,16 @@ func spawn_one(kind: String, angle: float, boss := false):
 	var scene = {"bee": bee_scene, "fish": fish_scene, "snake": snake_scene, "queen": queen_scene}[kind]
 	var enemy = scene.instantiate()
 	enemy.position = player.position + Vector2.from_angle(angle) * spawn_distance
+	if wave_index >= waves.size():
+		enemy.heart_chance = 0.0
 	if boss:
 		enemy.make_elite()
 		enemy.make_boss()
+		if kind == "queen" and endless:
+			enemy.max_hp = roundi(enemy.max_hp * (1.0 + queen_hp_step * float(wave_index + 1 - waves.size()) / queen_every))
 		boss_spawned.emit(kind)
 		enemy.died.connect(func(_points): boss_died.emit(kind))
+	elif rng.randf() < wave.elite_chance:
+		enemy.make_elite()
 	enemy.died.connect(func(points): scored.emit(points))
 	add_sibling(enemy)

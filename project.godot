@@ -28,6 +28,7 @@ driver/output_latency.web=100
 
 Sfx="*res://audio/sfx.tscn"
 Music="*res://audio/music.tscn"
+Save="*res://world/save.gd"
 
 [display]
 

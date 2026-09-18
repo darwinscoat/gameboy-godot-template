@@ -20,3 +20,4 @@ extends Resource
 @export var opener: String = ""
 @export var boss: String = ""
 @export var boss_at: float = 0.0
+@export var elite_chance: float = 0.0

@@ -1,17 +1,13 @@
-[gd_resource type="Resource" script_class="WaveData" format=3 uid="uid://4igka06b7y4"]
+[gd_resource type="Resource" script_class="WaveData" format=3 uid="uid://dcwqi6knsdfw1"]
 
 [ext_resource type="Script" uid="uid://cym8sxexsxi5" path="res://world/wave_data.gd" id="1_wave"]
 
 [resource]
 script = ExtResource("1_wave")
-duration = 45.0
-max_alive = 9
-pulse_interval = 2.0
-bee = 0.8
-fish = 0.4
-snake = 0.7
-drip = 0.5
-pair = 0.6
-wall = 0.4
-ambush = 0.8
-escort = 0.4
+duration = 40.0
+max_alive = 6
+fish = 0.2
+snake = 0.2
+pair = 0.3
+boss = "fish"
+boss_at = 8.0

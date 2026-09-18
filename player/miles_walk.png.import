@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqlqt0nwjjwrv"
-path="res://.godot/imported/cat_death.png-7825867f39c693cd2f2e2a30a55b5357.ctex"
+uid="uid://y23s4rhjrxd2"
+path="res://.godot/imported/miles_walk.png-2a93ce930b7b6d4491fd7912207e5021.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/cat_death.png"
-dest_files=["res://.godot/imported/cat_death.png-7825867f39c693cd2f2e2a30a55b5357.ctex"]
+source_file="res://player/miles_walk.png"
+dest_files=["res://.godot/imported/miles_walk.png-2a93ce930b7b6d4491fd7912207e5021.ctex"]
 
 [params]
 

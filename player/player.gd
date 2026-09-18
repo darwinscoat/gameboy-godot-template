@@ -3,6 +3,7 @@ extends Area2D
 signal hit
 signal hp_changed(hp, max_hp)
 signal coins_changed(coins)
+signal scored(points)
 
 const STATS = {"hp": "max_hp", "move": "speed", "magnet": "magnet_radius", "damage": "damage", "count": "count", "spin": "speed"}
 
@@ -17,6 +18,7 @@ const STATS = {"hp": "max_hp", "move": "speed", "magnet": "magnet_radius", "dama
 @export var death_time: float = 1.0
 @export var spawn_grace: float = 1.0
 @export var low_hp: int = 2
+@export var cats: Array[SpriteFrames]
 
 var hp = 6
 var invulnerable_left = 0.0
@@ -124,6 +126,10 @@ func start(pos):
 	show()
 
 
+func set_cat(index):
+	$AnimatedSprite2D.sprite_frames = cats[index]
+
+
 func add_coins(amount):
 	coins += amount
 	coins_changed.emit(coins)
@@ -147,6 +153,12 @@ func level(upgrade) -> int:
 
 func apply(upgrade):
 	levels[upgrade] = level(upgrade) + 1
+	if upgrade.stat == "heal":
+		heal(upgrade.amount)
+		return
+	if upgrade.stat == "score":
+		scored.emit(upgrade.amount)
+		return
 	holder(upgrade.stat).set(STATS[upgrade.stat], holder(upgrade.stat).get(STATS[upgrade.stat]) + upgrade.amount)
 	if upgrade.stat == "hp":
 		heal(upgrade.amount)

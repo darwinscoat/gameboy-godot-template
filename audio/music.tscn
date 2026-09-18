@@ -1,38 +1,38 @@
 [gd_scene format=3 uid="uid://jl1sapg7uqx0"]
 
 [ext_resource type="Script" uid="uid://8ugacbuxyler" path="res://audio/music.gd" id="1_script"]
-[ext_resource type="AudioStreamWAV" uid="uid://baauxtvsfc5ty" path="res://audio/music/title.wav" id="2_title"]
-[ext_resource type="AudioStreamWAV" uid="uid://ckkdwpjmtcsap" path="res://audio/music/play.wav" id="3_play"]
-[ext_resource type="AudioStreamWAV" uid="uid://5d062m3tm164" path="res://audio/music/boss.wav" id="4_boss"]
-[ext_resource type="AudioStreamWAV" uid="uid://cxcnuwmdd3316" path="res://audio/music/shop.wav" id="5_shop"]
-[ext_resource type="AudioStreamWAV" uid="uid://cfyyf4pma62pm" path="res://audio/music/game_over.wav" id="6_game_over"]
-[ext_resource type="AudioStreamWAV" uid="uid://cn6ijj4k622g5" path="res://audio/music/win.wav" id="7_win"]
+[ext_resource type="AudioStream" uid="uid://baauxtvsfc5ty" path="res://audio/music/title.wav" id="2_title"]
+[ext_resource type="AudioStream" uid="uid://ckkdwpjmtcsap" path="res://audio/music/play.wav" id="3_play"]
+[ext_resource type="AudioStream" uid="uid://5d062m3tm164" path="res://audio/music/boss.wav" id="4_boss"]
+[ext_resource type="AudioStream" uid="uid://cxcnuwmdd3316" path="res://audio/music/shop.wav" id="5_shop"]
+[ext_resource type="AudioStream" uid="uid://cfyyf4pma62pm" path="res://audio/music/game_over.wav" id="6_game_over"]
+[ext_resource type="AudioStream" uid="uid://cn6ijj4k622g5" path="res://audio/music/win.wav" id="7_win"]
 
-[node name="Music" type="Node"]
+[node name="Music" type="Node" unique_id=2040498099]
 process_mode = 3
 script = ExtResource("1_script")
 
-[node name="Title" type="AudioStreamPlayer" parent="."]
+[node name="Title" type="AudioStreamPlayer" parent="." unique_id=1462170090]
 stream = ExtResource("2_title")
 bus = &"Music"
 
-[node name="Play" type="AudioStreamPlayer" parent="."]
+[node name="Play" type="AudioStreamPlayer" parent="." unique_id=74570111]
 stream = ExtResource("3_play")
 bus = &"Music"
 
-[node name="Boss" type="AudioStreamPlayer" parent="."]
+[node name="Boss" type="AudioStreamPlayer" parent="." unique_id=247722770]
 stream = ExtResource("4_boss")
 bus = &"Music"
 
-[node name="Shop" type="AudioStreamPlayer" parent="."]
+[node name="Shop" type="AudioStreamPlayer" parent="." unique_id=650561493]
 stream = ExtResource("5_shop")
 volume_db = -6.0
 bus = &"Music"
 
-[node name="GameOver" type="AudioStreamPlayer" parent="."]
+[node name="GameOver" type="AudioStreamPlayer" parent="." unique_id=1133334228]
 stream = ExtResource("6_game_over")
 bus = &"Music"
 
-[node name="Win" type="AudioStreamPlayer" parent="."]
+[node name="Win" type="AudioStreamPlayer" parent="." unique_id=513574212]
 stream = ExtResource("7_win")
 bus = &"Music"

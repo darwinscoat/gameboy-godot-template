@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://3bptrgjavx48"]
 
 [ext_resource type="Script" uid="uid://b54kiy7154yws" path="res://player/player.gd" id="1_script"]
-[ext_resource type="SpriteFrames" uid="uid://cxivd8dshmryt" path="res://player/cat.tres" id="2_frames"]
+[ext_resource type="SpriteFrames" uid="uid://cxivd8dshmryt" path="res://player/churro.tres" id="2_frames"]
+[ext_resource type="SpriteFrames" uid="uid://dkd3g10010i3u" path="res://player/miles.tres" id="2_miles"]
 [ext_resource type="Script" uid="uid://bqtk1rx4a64yy" path="res://player/sword.gd" id="3_sword"]
 [ext_resource type="PackedScene" uid="uid://dgo3oytlutq42" path="res://player/fish.tscn" id="4_fish"]
 
@@ -12,6 +13,7 @@ size = Vector2(12, 8)
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_script")
+cats = Array[SpriteFrames]([ExtResource("2_frames"), ExtResource("2_miles")])
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=462967740]

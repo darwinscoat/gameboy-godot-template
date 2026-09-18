@@ -2,6 +2,7 @@ extends CanvasLayer
 
 signal start_game
 signal message_hidden
+signal cat_changed(index)
 
 @export var restart_delay: float = 2.0
 @export var boss_blink: float = 0.125
@@ -19,6 +20,7 @@ signal message_hidden
 @export var heart_full: Texture2D
 @export var heart_half: Texture2D
 @export var heart_empty: Texture2D
+@export var cats: Array[String] = ["Churro", "Miles"]
 
 var coin_hop_left = 0.0
 var last_coins = 0
@@ -27,11 +29,13 @@ var shown = 0.0
 var reveal_rate = 0.0
 var erasing = false
 var flicker_left = 0.0
+var cat = 0
 
 
 func _ready():
 	coins_y = $Coins.position.y
 	show_title()
+	show_start()
 	Music.play("title")
 
 
@@ -56,9 +60,18 @@ func _process(delta):
 	if not $StartLabel.visible:
 		return
 	$StartLabel.modulate.a = 1.0 if int(Time.get_ticks_msec() / (start_blink * 1000)) % 2 == 0 else 0.0
+	if $Picker.visible:
+		var step = int(Input.is_action_just_pressed("move_down")) - int(Input.is_action_just_pressed("move_up"))
+		if step != 0:
+			cat = wrapi(cat + step, 0, cats.size())
+			Sfx.play("shop_move")
+			update_picker()
+			cat_changed.emit(cat)
 	if Input.is_action_just_pressed("start"):
 		Sfx.play("start")
 		$StartLabel.hide()
+		$Picker.hide()
+		$Best.hide()
 		start_game.emit()
 
 
@@ -95,8 +108,27 @@ func show_game_over(text := "Game Over"):
 	await message_hidden
 	show_title()
 	await get_tree().create_timer(restart_delay).timeout
-	$StartLabel.show()
+	show_start()
 	Music.play("title")
+
+
+func show_start():
+	$StartLabel.show()
+	$Picker.visible = Save.completed
+	update_picker()
+	update_best(Save.best)
+
+
+func update_picker():
+	var lines = []
+	for i in cats.size():
+		lines.append(("> " if i == cat else "  ") + cats[i])
+	$Picker.text = "\n".join(lines)
+
+
+func update_best(best):
+	$Best.text = "Best %d" % best
+	$Best.visible = best > 0 and $StartLabel.visible
 
 
 func update_score(score):

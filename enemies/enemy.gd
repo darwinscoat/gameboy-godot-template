@@ -27,6 +27,7 @@ signal died(points)
 @export var rain_stagger: float = 0.04
 @export var rain_shudder: int = 2
 @export var rain_values: Array[int] = [1]
+@export var stun_gap: float = 2.0
 @export_group("Boss")
 @export var boss_offscreen_multiplier: float = 2.0
 
@@ -34,6 +35,7 @@ var target: Node2D
 var hp = 2
 var stun_left = 0.0
 var immune_left = 0.0
+var stun_gap_left = 0.0
 var dying = false
 var fleeing = false
 var elite = false
@@ -76,6 +78,7 @@ func _physics_process(delta):
 		return
 	stun_left = maxf(stun_left - delta, 0.0)
 	immune_left = maxf(immune_left - delta, 0.0)
+	stun_gap_left = maxf(stun_gap_left - delta, 0.0)
 	$AnimatedSprite2D.modulate = Color(4, 4, 4) if immune_left > 0.0 else Color.WHITE
 	if not target.visible:
 		set_anim("walk")
@@ -151,10 +154,13 @@ func take_damage(amount, from):
 	if immune_left > 0.0 or dying:
 		return
 	hp -= amount
-	stun_left = hit_stun
 	immune_left = hit_cooldown
 	Sfx.play("elite_hit" if elite else "enemy_hit")
-	linear_velocity = (global_position - from).normalized() * knockback_speed
+	if stun_gap_left == 0.0:
+		stun_left = hit_stun
+		linear_velocity = (global_position - from).normalized() * knockback_speed
+		if elite:
+			stun_gap_left = stun_gap
 	if hp <= 0:
 		die()
 
