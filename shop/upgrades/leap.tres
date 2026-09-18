@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_upgrade")
 title = "Leap"
-blurb = "dash +8 px"
+blurb = "dash +8"
 icon = ExtResource("2_icon")
 stat = "dash"
 amount = 8.0
