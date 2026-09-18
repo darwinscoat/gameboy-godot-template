@@ -5,7 +5,7 @@ signal hp_changed(hp, max_hp)
 signal coins_changed(coins)
 signal scored(points)
 
-const STATS = {"hp": "max_hp", "move": "speed", "magnet": "magnet_radius", "damage": "damage", "count": "count", "spin": "speed"}
+const STATS = {"hp": "max_hp", "move": "speed", "magnet": "magnet_radius", "damage": "damage", "count": "count", "spin": "speed", "flip": "flip_cooldown", "dash_cooldown": "dash_cooldown", "dash": "dash_distance", "iframes": "dash_iframes"}
 
 @export var speed: float = 35.0
 @export var max_hp: int = 6
@@ -23,6 +23,7 @@ const STATS = {"hp": "max_hp", "move": "speed", "magnet": "magnet_radius", "dama
 @export var dash_time: float = 0.15
 @export var dash_cooldown: float = 1.5
 @export var dash_iframes: float = 0.1
+@export var dash_iframes_bonus: float = 0.05
 @export_group("")
 @export var cats: Array[SpriteFrames]
 
@@ -170,7 +171,7 @@ func heal(amount) -> bool:
 
 
 func holder(stat) -> Node:
-	return $Sword if stat in ["damage", "count", "spin"] else self
+	return $Sword if stat in ["damage", "count", "spin", "flip"] else self
 
 
 func level(upgrade) -> int:
@@ -180,13 +181,17 @@ func level(upgrade) -> int:
 func apply(upgrade):
 	levels[upgrade] = level(upgrade) + 1
 	if upgrade.stat == "heal":
-		heal(upgrade.amount)
+		heal(int(upgrade.amount))
 		return
 	if upgrade.stat == "score":
-		scored.emit(upgrade.amount)
+		scored.emit(int(upgrade.amount))
 		return
-	holder(upgrade.stat).set(STATS[upgrade.stat], holder(upgrade.stat).get(STATS[upgrade.stat]) + upgrade.amount)
+	var node = holder(upgrade.stat)
+	var value = node.get(STATS[upgrade.stat])
+	node.set(STATS[upgrade.stat], value + (int(upgrade.amount) if value is int else upgrade.amount))
 	if upgrade.stat == "hp":
-		heal(upgrade.amount)
+		heal(int(upgrade.amount))
 	elif upgrade.stat == "count":
 		$Sword.rebuild()
+	elif upgrade.stat == "dash":
+		dash_iframes += dash_iframes_bonus
