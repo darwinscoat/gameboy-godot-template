@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cia5ayjn1ddc2"
-path="res://.godot/imported/Churrodash.png-47c940d88e446c714eb2d2530abf8ddf.ctex"
+uid="uid://dcdq1rtokjrai"
+path="res://.godot/imported/miles_dash.png-c82a57b6ee962da3dc93f2e55373f8e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/Churrodash.png"
-dest_files=["res://.godot/imported/Churrodash.png-47c940d88e446c714eb2d2530abf8ddf.ctex"]
+source_file="res://player/miles_dash.png"
+dest_files=["res://.godot/imported/miles_dash.png-c82a57b6ee962da3dc93f2e55373f8e1.ctex"]
 
 [params]
 

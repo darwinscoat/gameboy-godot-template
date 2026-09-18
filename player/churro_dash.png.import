@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcdq1rtokjrai"
-path="res://.godot/imported/Milesdash.png-bbdf8632d147d1680918b40b1280d54e.ctex"
+uid="uid://cia5ayjn1ddc2"
+path="res://.godot/imported/churro_dash.png-8523da0da506d6c4ef6d88629890fb1b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/Milesdash.png"
-dest_files=["res://.godot/imported/Milesdash.png-bbdf8632d147d1680918b40b1280d54e.ctex"]
+source_file="res://player/churro_dash.png"
+dest_files=["res://.godot/imported/churro_dash.png-8523da0da506d6c4ef6d88629890fb1b.ctex"]
 
 [params]
 

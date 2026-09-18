@@ -26,6 +26,8 @@ var pull_speed = 0.0
 
 
 func _ready():
+	z_index = Layers.PICKUP
+	$Shadow.z_index = Layers.SHADOW
 	rise = -hop * randf_range(1.0 - hop_variance, 1.0 + hop_variance)
 	target = get_tree().get_first_node_in_group("player")
 	var away = (position - target.position).angle() if target and position.distance_to(target.position) > 1.0 else randf() * TAU

@@ -12,6 +12,10 @@ var travelled = 0.0
 var step = 0.0
 
 
+func _ready():
+	z_index = Layers.GHOST
+
+
 func _physics_process(delta):
 	var move = direction * speed * delta
 	position += move
@@ -26,7 +30,7 @@ func _physics_process(delta):
 		if bitten.has(enemy):
 			continue
 		bitten[enemy] = true
-		enemy.take_damage(damage, global_position)
+		enemy.take_damage(damage, global_position, true)
 		if bitten.size() >= hits:
 			queue_free()
 			return

@@ -55,6 +55,8 @@ var spawn_hitbox = true
 
 
 func _ready():
+	z_index = Layers.BOSS if boss else Layers.ELITE if elite else Layers.ENEMY
+	$Shadow.z_index = Layers.SHADOW
 	hp = max_hp
 	crown_x = $Crown.position.x
 	set_anim("walk")
@@ -141,7 +143,7 @@ func materialise(delay, flicker):
 
 
 func flee():
-	if boss:
+	if boss or dying:
 		return
 	fleeing = true
 	stun_left = 0.0
@@ -169,17 +171,21 @@ func set_anim(name):
 		$AnimatedSprite2D.play(name)
 
 
-func take_damage(amount, from):
-	if immune_left > 0.0 or dying:
+func take_damage(amount, from, piercing = false):
+	if dying:
 		return
-	hp -= amount
-	immune_left = hit_cooldown
+	var immune = immune_left > 0.0
+	if immune and not piercing:
+		return
+	hp -= ceili(amount / 2.0) if immune else amount
 	Sfx.play("elite_hit" if elite else "enemy_hit")
-	if stun_gap_left == 0.0:
-		stun_left = hit_stun
-		linear_velocity = (global_position - from).normalized() * knockback_speed
-		if elite:
-			stun_gap_left = stun_gap
+	if not immune:
+		immune_left = hit_cooldown
+		if stun_gap_left == 0.0:
+			stun_left = hit_stun
+			linear_velocity = (global_position - from).normalized() * knockback_speed
+			if elite:
+				stun_gap_left = stun_gap
 	if hp <= 0:
 		die()
 

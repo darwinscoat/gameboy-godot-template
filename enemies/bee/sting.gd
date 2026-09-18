@@ -8,6 +8,7 @@ var direction = Vector2.RIGHT
 
 
 func _ready():
+	z_index = Layers.STING
 	var step = roundi(fmod(direction.angle() + TAU, TAU) / (TAU / 16)) % 16
 	rotation = (step / 4) * TAU / 4
 	$Sprite2D.frame = step % 4

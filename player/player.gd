@@ -21,6 +21,7 @@ const STATS = {"hp": "max_hp", "move": "speed", "magnet": "magnet_radius", "dama
 @export_group("Dash")
 @export var dash_distance: float = 24.0
 @export var dash_time: float = 0.15
+@export var dash_anim_time: float = 0.3
 @export var dash_cooldown: float = 1.5
 @export var dash_iframes: float = 0.1
 @export var dash_iframes_bonus: float = 0.05
@@ -34,6 +35,7 @@ var shake_left = 0.0
 var coins = 0
 var hits = 0
 var dash_left = 0.0
+var dash_anim_left = 0.0
 var dash_wait = 0.0
 var dash_dir = Vector2.RIGHT
 var dead = false
@@ -43,6 +45,7 @@ var base = {}
 
 
 func _ready():
+	z_index = Layers.PLAYER
 	hide()
 	for stat in STATS:
 		base[stat] = holder(stat).get(STATS[stat])
@@ -65,14 +68,9 @@ func _process(delta):
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
-		$AnimatedSprite2D.play("walk")
-		if velocity.x != 0.0:
-			$AnimatedSprite2D.flip_h = velocity.x < 0
-	else:
-		$AnimatedSprite2D.animation = "walk"
-		$AnimatedSprite2D.stop()
 	dash_wait = maxf(dash_wait - delta, 0.0)
 	dash_left = maxf(dash_left - delta, 0.0)
+	dash_anim_left = maxf(dash_anim_left - delta, 0.0)
 	if Input.is_action_just_pressed("a"):
 		$Sword.flip()
 	if Input.is_action_just_pressed("b") and dash_wait == 0.0:
@@ -80,9 +78,20 @@ func _process(delta):
 		dash_left = dash_time
 		dash_wait = dash_cooldown
 		invulnerable_left = maxf(invulnerable_left, dash_iframes)
+		dash_anim_left = dash_anim_time
+		var frames = $AnimatedSprite2D.sprite_frames
+		$AnimatedSprite2D.play("dash", frames.get_frame_count("dash") / (frames.get_animation_speed("dash") * dash_anim_time))
 		Sfx.play("player_dash")
 	if dash_left > 0.0:
 		velocity = dash_dir * dash_distance / dash_time
+	if dash_anim_left == 0.0:
+		if velocity.length() > 0.0:
+			$AnimatedSprite2D.play("walk")
+		else:
+			$AnimatedSprite2D.animation = "walk"
+			$AnimatedSprite2D.stop()
+	if velocity.x != 0.0:
+		$AnimatedSprite2D.flip_h = velocity.x < 0
 	if invulnerable_left > 0.0 and hurt:
 		$AnimatedSprite2D.play("hit")
 
@@ -146,6 +155,7 @@ func start(pos):
 	coins_changed.emit(coins)
 	hits = 0
 	dash_left = 0.0
+	dash_anim_left = 0.0
 	dash_wait = 0.0
 	invulnerable_left = spawn_grace
 	hurt = false

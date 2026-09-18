@@ -13,6 +13,7 @@ var shudder = 2
 
 
 func _ready():
+	z_index = Layers.ENEMY
 	$AnimatedSprite2D.play("attack")
 	$AnimatedSprite2D.pause()
 	$AnimatedSprite2D.frame = coil_frame

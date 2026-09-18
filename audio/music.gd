@@ -2,10 +2,14 @@ extends Node
 
 @export var fade_time: float = 0.25
 @export var silence_db: float = -40.0
+@export var duck_db: float = -12.0
 
 var current = ""
-var held = ""
 var fades = {}
+var ducking: Tween
+
+@onready var bus = AudioServer.get_bus_index("Music")
+@onready var bus_db = AudioServer.get_bus_volume_db(bus)
 
 
 func play(name):
@@ -35,15 +39,11 @@ func stop():
 	fade_out()
 
 
-func pause():
-	held = current
-	fade_out()
-
-
-func unpause():
-	if held != "":
-		resume(held)
-	held = ""
+func duck(on):
+	if ducking:
+		ducking.kill()
+	ducking = create_tween()
+	ducking.tween_method(func(db): AudioServer.set_bus_volume_db(bus, db), AudioServer.get_bus_volume_db(bus), bus_db + (duck_db if on else 0.0), fade_time)
 
 
 func fade_in(name, player):

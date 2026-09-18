@@ -1,6 +1,6 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://dkd3g10010i3u"]
 
-[ext_resource type="Texture2D" uid="uid://dcdq1rtokjrai" path="res://player/Milesdash.png" id="1_srw4f"]
+[ext_resource type="Texture2D" uid="uid://dcdq1rtokjrai" path="res://player/miles_dash.png" id="1_srw4f"]
 [ext_resource type="Texture2D" uid="uid://y23s4rhjrxd2" path="res://player/miles_walk.png" id="1_walk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ibg5r"]
@@ -43,21 +43,18 @@ region = Rect2(32, 0, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ibg5r")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_721cp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iouag")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y6f1t")
 }, {
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_iouag")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ibg5r")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"dash",
 "speed": 7.0
 }, {

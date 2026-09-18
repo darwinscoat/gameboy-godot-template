@@ -4,5 +4,6 @@
 
 [node name="Shadow" type="Sprite2D" unique_id=902909846]
 z_index = -1
+z_as_relative = false
 texture = ExtResource("1_shadow")
 hframes = 4
