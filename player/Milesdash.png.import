@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu64fmbqfdowt"
-path="res://.godot/imported/fish_attack.png-6bf502aaea3b544e75134b9cc95dfcb1.ctex"
+uid="uid://dcdq1rtokjrai"
+path="res://.godot/imported/Milesdash.png-bbdf8632d147d1680918b40b1280d54e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/fish/fish_attack.png"
-dest_files=["res://.godot/imported/fish_attack.png-6bf502aaea3b544e75134b9cc95dfcb1.ctex"]
+source_file="res://player/Milesdash.png"
+dest_files=["res://.godot/imported/Milesdash.png-bbdf8632d147d1680918b40b1280d54e.ctex"]
 
 [params]
 

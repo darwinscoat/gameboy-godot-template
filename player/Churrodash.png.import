@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu64fmbqfdowt"
-path="res://.godot/imported/fish_attack.png-6bf502aaea3b544e75134b9cc95dfcb1.ctex"
+uid="uid://cia5ayjn1ddc2"
+path="res://.godot/imported/Churrodash.png-47c940d88e446c714eb2d2530abf8ddf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/fish/fish_attack.png"
-dest_files=["res://.godot/imported/fish_attack.png-6bf502aaea3b544e75134b9cc95dfcb1.ctex"]
+source_file="res://player/Churrodash.png"
+dest_files=["res://.godot/imported/Churrodash.png-47c940d88e446c714eb2d2530abf8ddf.ctex"]
 
 [params]
 

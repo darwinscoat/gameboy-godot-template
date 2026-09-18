@@ -1,6 +1,23 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://cxivd8dshmryt"]
 
+[ext_resource type="Texture2D" uid="uid://cia5ayjn1ddc2" path="res://player/Churrodash.png" id="1_rgg0a"]
 [ext_resource type="Texture2D" uid="uid://dxx75dih33qim" path="res://player/churro_walk.png" id="1_walk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vxt3"]
+atlas = ExtResource("1_rgg0a")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xaawi"]
+atlas = ExtResource("1_rgg0a")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrps8"]
+atlas = ExtResource("1_rgg0a")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_baar0"]
+atlas = ExtResource("1_rgg0a")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8dtee"]
 atlas = ExtResource("1_walk")
@@ -24,6 +41,26 @@ region = Rect2(32, 0, 16, 16)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vxt3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xaawi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrps8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_baar0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vxt3")
+}],
+"loop": 1,
+"name": &"dash",
+"speed": 7.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8dtee")

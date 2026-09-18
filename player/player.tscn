@@ -19,7 +19,8 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=462967740]
 sprite_frames = ExtResource("2_frames")
-animation = &"walk"
+animation = &"dash"
+frame_progress = 0.24922122
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=54510400]
 position = Vector2(0, 2)
