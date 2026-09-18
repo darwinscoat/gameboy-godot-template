@@ -2,12 +2,13 @@ extends Pickup
 
 @export var value: int = 1
 @export var large_value: int = 3
+@export var xlarge_value: int = 5
 @export var air_spin: float = 2.0
 
 
 func _ready():
 	super()
-	$Sprite.play("large" if value >= large_value else "spin")
+	$Sprite.play("xlarge" if value >= xlarge_value else "large" if value >= large_value else "spin")
 
 
 func _process(delta):

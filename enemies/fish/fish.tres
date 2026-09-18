@@ -1,8 +1,8 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://dsue52egomgua"]
 
-[ext_resource type="Texture2D" uid="uid://dbxp4slpu2mle" path="res://enemies/fish/Fish_attack.png" id="1_eggr7"]
-[ext_resource type="Texture2D" uid="uid://omgebt47lsan" path="res://enemies/fish/Fishdeath.png" id="2_eggr7"]
-[ext_resource type="Texture2D" uid="uid://du0xacfayerb1" path="res://enemies/fish/Fish_walk.png" id="3_s6r76"]
+[ext_resource type="Texture2D" uid="uid://dbxp4slpu2mle" path="res://enemies/fish/fish_attack.png" id="1_eggr7"]
+[ext_resource type="Texture2D" uid="uid://omgebt47lsan" path="res://enemies/fish/fish_death.png" id="2_eggr7"]
+[ext_resource type="Texture2D" uid="uid://du0xacfayerb1" path="res://enemies/fish/fish_walk.png" id="3_s6r76"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_14mhu"]
 atlas = ExtResource("1_eggr7")

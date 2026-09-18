@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://omgebt47lsan"
-path="res://.godot/imported/Fishdeath.png-3ae71a8851778b28aac06cbe6cbee969.ctex"
+uid="uid://ck8d25fpb6w1x"
+path="res://.godot/imported/coin_xlarge.png-7d0cc498c306753e3283fcd59a5a82ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/fish/Fishdeath.png"
-dest_files=["res://.godot/imported/Fishdeath.png-3ae71a8851778b28aac06cbe6cbee969.ctex"]
+source_file="res://pickups/coin_xlarge.png"
+dest_files=["res://.godot/imported/coin_xlarge.png-7d0cc498c306753e3283fcd59a5a82ff.ctex"]
 
 [params]
 

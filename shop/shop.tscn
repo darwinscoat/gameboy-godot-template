@@ -7,7 +7,7 @@
 [ext_resource type="Resource" uid="uid://cqmvyvrelm3g8" path="res://shop/upgrades/boots.tres" id="6_boots"]
 [ext_resource type="Resource" uid="uid://hofvgq64e1hd" path="res://shop/upgrades/magnet.tres" id="7_magnet"]
 [ext_resource type="Resource" uid="uid://c5ob7gs80j5lc" path="res://shop/upgrades/spin.tres" id="8_spin"]
-[ext_resource type="Texture2D" uid="uid://bw2wvkxlhx6dr" path="res://shop/ShopBG.png" id="9_bv5vx"]
+[ext_resource type="Texture2D" uid="uid://bw2wvkxlhx6dr" path="res://shop/shop_bg.png" id="9_bv5vx"]
 [ext_resource type="Resource" uid="uid://b3i4bvqbn3fy6" path="res://shop/upgrades/fang.tres" id="9_fang"]
 [ext_resource type="Resource" uid="uid://bvfk5eespf7r0" path="res://shop/upgrades/fish.tres" id="10_fish"]
 [ext_resource type="Resource" uid="uid://dlehdn5b7ym08" path="res://shop/upgrades/heal.tres" id="11_heal"]

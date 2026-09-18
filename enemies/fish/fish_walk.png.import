@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://du0xacfayerb1"
-path="res://.godot/imported/Fish_walk.png-1ca6bcf1878a4db4a49a6c38196da44b.ctex"
+path="res://.godot/imported/fish_walk.png-25382214cd7a5b413674babecc1cbd07.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://enemies/fish/Fish_walk.png"
-dest_files=["res://.godot/imported/Fish_walk.png-1ca6bcf1878a4db4a49a6c38196da44b.ctex"]
+source_file="res://enemies/fish/fish_walk.png"
+dest_files=["res://.godot/imported/fish_walk.png-25382214cd7a5b413674babecc1cbd07.ctex"]
 
 [params]
 
