@@ -4,6 +4,7 @@ extends Node
 @export var silence_db: float = -40.0
 
 var current = ""
+var held = ""
 var fades = {}
 
 
@@ -32,6 +33,17 @@ func resume(name):
 
 func stop():
 	fade_out()
+
+
+func pause():
+	held = current
+	fade_out()
+
+
+func unpause():
+	if held != "":
+		resume(held)
+	held = ""
 
 
 func fade_in(name, player):
