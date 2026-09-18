@@ -14,7 +14,10 @@ extends Enemy
 @export var volley_gap: float = 0.5
 @export var volley_count: int = 2
 @export var volley_shots: int = 3
-@export var volley_spread: float = 0.35
+@export var volley_spread: float = 0.5
+@export var volley_range: float = 56.0
+@export var retreat_speed: float = 80.0
+@export var retreat_time: float = 0.6
 @export_group("Swarm")
 @export var summon_time: float = 1.5
 @export var summon_height: float = 14.0
@@ -71,6 +74,12 @@ func steer(to_player, delta):
 	var sprite = $AnimatedSprite2D
 	var lift = hover_height
 	match state:
+		"retreat":
+			linear_velocity = -to_player.normalized() * retreat_speed
+			face(to_player.x < 0)
+			set_anim("walk")
+			if to_player.length() >= volley_range or state_left == 0.0:
+				enter("volley", volley_tell)
 		"volley":
 			hold(delta)
 			face(to_player.x < 0)
@@ -172,7 +181,7 @@ func next_move():
 	match move:
 		0:
 			volleys = volley_count
-			enter("volley", volley_tell)
+			enter("retreat", retreat_time)
 		1:
 			Sfx.play("queen_summon")
 			summon()

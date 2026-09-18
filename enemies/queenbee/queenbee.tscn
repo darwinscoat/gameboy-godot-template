@@ -14,6 +14,7 @@ size = Vector2(24, 10)
 size = Vector2(28, 14)
 
 [node name="Queenbee" unique_id=36382095 instance=ExtResource("1_base")]
+z_index = 1
 script = ExtResource("2_script")
 hover_height = 6.0
 hover_range = 40.0
@@ -28,7 +29,7 @@ volley_tell = 0.4
 volley_gap = 0.5
 volley_count = 2
 volley_shots = 3
-volley_spread = 0.35
+volley_spread = 0.5
 summon_time = 1.5
 summon_height = 14.0
 summon_radius = 8.0
@@ -76,5 +77,6 @@ shape = SubResource("RectangleShape2D_hit")
 shape = SubResource("RectangleShape2D_hurt")
 
 [node name="Shadow" parent="." index="5" unique_id=962565747]
+z_index = -2
 position = Vector2(0, 8)
 texture = ExtResource("6_shadow")
