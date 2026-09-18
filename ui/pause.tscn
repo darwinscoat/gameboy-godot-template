@@ -2,6 +2,13 @@
 
 [ext_resource type="Script" uid="uid://ba8170rbpshhc" path="res://ui/pause.gd" id="1_script"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+content_margin_left = 6.0
+content_margin_top = 3.0
+content_margin_right = 6.0
+content_margin_bottom = 3.0
+bg_color = Color(0, 0, 0, 1)
+
 [node name="Pause" type="CanvasLayer" unique_id=1050240776]
 process_mode = 3
 visible = false
@@ -21,3 +28,18 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Paused"
 horizontal_alignment = 1
+
+[node name="Panel" type="PanelContainer" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 56.0
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="Owned" type="GridContainer" parent="Panel"]
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 4
+columns = 5

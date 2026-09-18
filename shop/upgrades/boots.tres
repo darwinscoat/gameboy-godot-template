@@ -9,5 +9,4 @@ title = "Boots"
 blurb = "+5 speed"
 icon = ExtResource("2_icon")
 stat = "move"
-amount = 5
-costs = Array[int]([6, 14, 22])
+costs = Array[int]([5, 15, 25])

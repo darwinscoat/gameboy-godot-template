@@ -15,15 +15,14 @@ signal died(points)
 @export var offscreen_distance: float = 110.0
 @export var coin_scene: PackedScene
 @export var heart_scene: PackedScene
-@export var heart_chance: float = 0.05
-@export var heart_cooldown: float = 10.0
+@export var hearts: bool = true
 @export var vacuum_scene: PackedScene
 @export var vacuum_chance: float = 0.05
 @export var vacuum_cooldown: float = 60.0
 @export var flee_multiplier: float = 2.0
 @export_group("Elite")
 @export var elite_hp_multiplier: int = 4
-@export var elite_coin_multiplier: int = 10
+@export var elite_coin_multiplier: int = 7
 @export var elite_score_multiplier: int = 4
 @export var elite_speed_multiplier: float = 0.8
 @export var rain_slide_speed: float = 80.0
@@ -35,7 +34,6 @@ signal died(points)
 @export_group("Boss")
 @export var boss_offscreen_multiplier: float = 2.0
 
-static var heart_ready = 0
 static var vacuum_ready = 0
 
 var target: Node2D
@@ -70,9 +68,8 @@ func _physics_process(delta):
 		queue_free()
 		return
 	if fleeing:
-		linear_velocity = -to_player.normalized() * chase_speed * flee_multiplier
-		face(linear_velocity.x < 0)
-		set_anim("walk")
+		state_left = maxf(state_left - delta, 0.0)
+		run(to_player, delta)
 		return
 	if spawn_left > 0.0:
 		spawn_left = maxf(spawn_left - delta, 0.0)
@@ -98,6 +95,12 @@ func _physics_process(delta):
 
 func steer(to_player, delta):
 	chase(to_player, delta)
+
+
+func run(to_player, _delta):
+	linear_velocity = -to_player.normalized() * chase_speed * flee_multiplier
+	face(linear_velocity.x < 0)
+	set_anim("walk")
 
 
 func chase(to_player, delta):
@@ -142,9 +145,17 @@ func flee():
 	fleeing = true
 	stun_left = 0.0
 	immune_left = 0.0
+	enter("", 0.0)
 	$AnimatedSprite2D.modulate = Color.WHITE
+	$AnimatedSprite2D.offset = Vector2.ZERO
 	$Hitbox/CollisionShape2D.set_deferred("disabled", true)
 	$Hurtbox/CollisionShape2D.set_deferred("disabled", true)
+	if coin_scene and spawn_left == 0.0:
+		var coin = coin_scene.instantiate()
+		coin.position = position
+		coin.value = 1
+		coin.slide_spread = PI
+		get_parent().add_child(coin)
 
 
 func enter(next, time):
@@ -202,8 +213,7 @@ func die():
 			await get_tree().create_timer(randf() * rain_stagger, false).timeout
 	$AnimatedSprite2D.offset = Vector2.ZERO
 	var hearts_needed = (target.max_hp - target.hp + 1) / 2 - get_tree().get_nodes_in_group("hearts").size() if target else 0
-	if heart_scene and hearts_needed > 0 and Time.get_ticks_msec() >= heart_ready and randf() < heart_chance:
-		heart_ready = Time.get_ticks_msec() + int(heart_cooldown * 1000)
+	if heart_scene and hearts and boss and hearts_needed > 0:
 		var heart = heart_scene.instantiate()
 		heart.position = position
 		get_parent().add_child(heart)

@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bbmctyoewko7w" path="res://enemies/fish/fish.tscn" id="3_fish"]
 [ext_resource type="PackedScene" uid="uid://dk23ttcu15gbv" path="res://enemies/queenbee/queenbee.tscn" id="3_queen"]
 [ext_resource type="PackedScene" uid="uid://428vits5tr6c" path="res://enemies/snake/snake.tscn" id="3_snake"]
+[ext_resource type="PackedScene" uid="uid://vij5s85cypje" path="res://pickups/coin.tscn" id="3_coin"]
+[ext_resource type="PackedScene" uid="uid://bgit0g83ybc7a" path="res://pickups/heart.tscn" id="3_heart"]
 [ext_resource type="PackedScene" uid="uid://biqgogtp3r7jx" path="res://ui/hud.tscn" id="4_hud"]
 [ext_resource type="Script" uid="uid://d03uokpkq22y0" path="res://world/ground.gd" id="5_ground"]
 [ext_resource type="Texture2D" uid="uid://5d1bt7q1ktix" path="res://world/ground.png" id="6_ground"]
@@ -36,6 +38,8 @@ bee_scene = ExtResource("3_bee")
 fish_scene = ExtResource("3_fish")
 snake_scene = ExtResource("3_snake")
 queen_scene = ExtResource("3_queen")
+coin_scene = ExtResource("3_coin")
+heart_scene = ExtResource("3_heart")
 
 [node name="Ground" type="Sprite2D" parent="." unique_id=1863119164]
 z_index = -2
@@ -53,6 +57,7 @@ curtain = NodePath("../Transition")
 director = NodePath("../Director")
 
 [node name="Pause" parent="." unique_id=1598799102 instance=ExtResource("11_pause")]
+shop = NodePath("../Shop")
 
 [node name="Transition" parent="." unique_id=1862669739 instance=ExtResource("12_transition")]
 
@@ -71,6 +76,7 @@ offset_top = 0.0
 
 [connection signal="boss_died" from="Director" to="." method="_on_director_boss_died"]
 [connection signal="boss_spawned" from="Director" to="." method="_on_director_boss_spawned"]
+[connection signal="milestone" from="Director" to="." method="_on_director_milestone"]
 [connection signal="run_won" from="Director" to="." method="_on_director_run_won"]
 [connection signal="scored" from="Director" to="." method="add_score"]
 [connection signal="wave_cleared" from="Director" to="." method="_on_director_wave_cleared"]

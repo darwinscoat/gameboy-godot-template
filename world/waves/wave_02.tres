@@ -5,10 +5,9 @@
 [resource]
 script = ExtResource("1_wave")
 duration = 40.0
-max_alive = 7
+max_alive = 6
 pulse_interval = 2.5
 drip = 0.3
 pair = 0.6
 wall = 0.8
 ring = 0.3
-opener = "ring"

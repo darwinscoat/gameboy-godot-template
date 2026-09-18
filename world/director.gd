@@ -7,6 +7,7 @@ signal run_won
 signal scored(points)
 signal boss_spawned(kind)
 signal boss_died(kind)
+signal milestone(kind, count)
 
 const GROUP_SIZE = {"drip": 1, "pair": 2, "wall": 4, "ring": 6, "ambush": 1, "escort": 3}
 const WALL_SPACING = 0.35
@@ -18,6 +19,7 @@ const AMBUSH_JITTER = 0.4
 @export var fish_scene: PackedScene
 @export var snake_scene: PackedScene
 @export var queen_scene: PackedScene
+@export var coin_scene: PackedScene
 @export var spawn_distance: float = 120.0
 @export var start_delay: float = 2.0
 @export var collect_time: float = 4.0
@@ -42,6 +44,18 @@ const AMBUSH_JITTER = 0.4
 @export var queen_hp_step: float = 0.5
 @export_group("Flawless")
 @export var flawless_bonus: int = 100
+@export_group("Snakes")
+@export var snake_cap_step: int = 3
+@export_group("Milestones")
+@export var milestones: Array[int] = [10, 50]
+@export var milestone_coins: Array[int] = [15, 30]
+@export var rain_spread: Vector2 = Vector2(70, 60)
+@export var rain_height: float = 60.0
+@export var rain_stagger: float = 0.03
+@export_group("Hearts")
+@export var heart_scene: PackedScene
+@export var heart_kills: int = 15
+@export var heart_cooldown: float = 30.0
 
 var rng = RandomNumberGenerator.new()
 var player: Node2D
@@ -57,6 +71,9 @@ var last_second = 0
 var running = false
 var run_id = 0
 var flawless = false
+var kills = {}
+var heart_meter = 0
+var heart_wait = 0.0
 
 
 func _process(delta):
@@ -67,6 +84,7 @@ func _process(delta):
 		player_dir = moved.normalized()
 	last_player_pos = player.position
 	time_left -= delta
+	heart_wait = maxf(heart_wait - delta, 0.0)
 	var boss = boss_alive()
 	if time_left <= 0.0 and not boss:
 		finish_wave()
@@ -94,6 +112,9 @@ func start_run():
 	running = false
 	player = get_tree().get_first_node_in_group("player")
 	wave_index = start_wave - 2
+	kills = {}
+	heart_meter = 0
+	heart_wait = 0.0
 	var id = run_id
 	await get_tree().create_timer(start_delay, false).timeout
 	if id == run_id:
@@ -190,7 +211,60 @@ func pick_grouping() -> String:
 
 
 func pick_kind() -> String:
-	return weighted_pick({"bee": wave.bee, "fish": wave.fish, "snake": wave.snake})
+	var options = {"bee": wave.bee, "fish": wave.fish, "snake": wave.snake}
+	if snakes_capped():
+		options["snake"] = 0.0
+	return weighted_pick(options)
+
+
+func snakes_capped() -> bool:
+	var number = wave_index + 1
+	if number > waves.size():
+		return false
+	var cap = number / snake_cap_step
+	var alive_snakes = 0
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		if enemy.scene_file_path == snake_scene.resource_path and not enemy.boss and not enemy.dying and not enemy.fleeing:
+			alive_snakes += 1
+	return alive_snakes >= cap
+
+
+func tally(kind: String, at: Vector2):
+	fill_heart(at)
+	kills[kind] = kills.get(kind, 0) + 1
+	var step = milestones.find(kills[kind])
+	if step >= 0:
+		milestone.emit(kind, kills[kind])
+		rain(milestone_coins[step])
+
+
+func fill_heart(at: Vector2):
+	if wave_index >= waves.size() or player.hp >= player.max_hp:
+		return
+	heart_meter += 1
+	var needed = (player.max_hp - player.hp + 1) / 2 - get_tree().get_nodes_in_group("hearts").size()
+	if heart_meter < heart_kills or heart_wait > 0.0 or needed <= 0:
+		return
+	heart_meter = 0
+	heart_wait = heart_cooldown
+	var heart = heart_scene.instantiate()
+	heart.position = at
+	add_sibling(heart)
+
+
+func rain(count: int):
+	var id = run_id
+	for i in count:
+		if id != run_id or player == null:
+			return
+		var coin = coin_scene.instantiate()
+		coin.position = player.position + Vector2(randf_range(-rain_spread.x, rain_spread.x), randf_range(-rain_spread.y, rain_spread.y))
+		coin.slide_speed = 0.0
+		add_sibling(coin)
+		coin.height = -rain_height * randf_range(0.6, 1.0)
+		coin.rise = 0.0
+		coin.slide = Vector2.ZERO
+		await get_tree().create_timer(rain_stagger, false).timeout
 
 
 func weighted_pick(options: Dictionary) -> String:
@@ -229,11 +303,13 @@ func spawn_group(name: String):
 
 
 func spawn_one(kind: String, angle: float, boss := false):
+	if kind == "snake" and not boss and snakes_capped():
+		kind = pick_kind()
 	var scene = {"bee": bee_scene, "fish": fish_scene, "snake": snake_scene, "queen": queen_scene}[kind]
 	var enemy = scene.instantiate()
 	enemy.position = player.position + Vector2.from_angle(angle) * spawn_distance
 	if wave_index >= waves.size():
-		enemy.heart_chance = 0.0
+		enemy.hearts = false
 	if boss:
 		enemy.make_elite()
 		enemy.make_boss()
@@ -244,4 +320,5 @@ func spawn_one(kind: String, angle: float, boss := false):
 	elif rng.randf() < wave.elite_chance:
 		enemy.make_elite()
 	enemy.died.connect(func(points): scored.emit(points))
+	enemy.died.connect(func(_points): tally(kind, enemy.position))
 	add_sibling(enemy)

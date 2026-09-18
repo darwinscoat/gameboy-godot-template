@@ -9,5 +9,4 @@ title = "Magnet"
 blurb = "coin pull +16"
 icon = ExtResource("2_icon")
 stat = "magnet"
-amount = 16
-costs = Array[int]([8, 20])
+costs = Array[int]([5, 20])

@@ -8,5 +8,4 @@ script = ExtResource("1_upgrade")
 title = "Heart"
 blurb = "+1 heart"
 icon = ExtResource("2_icon")
-amount = 2
-costs = Array[int]([10, 22, 40])
+costs = Array[int]([10, 25, 45])

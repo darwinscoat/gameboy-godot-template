@@ -213,7 +213,7 @@ func summon():
 		return
 	for i in swarm_size:
 		var bee = bee_scene.instantiate()
-		bee.heart_chance = heart_chance
+		bee.hearts = hearts
 		bee.position = position + Vector2.from_angle(angle + swarm_turn * i) * (swarm_radius + swarm_step * i)
 		if raging() and i == 0:
 			bee.make_elite()

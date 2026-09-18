@@ -35,7 +35,6 @@ func new_game():
 	await $Transition.cover()
 	score = 0
 	bet_hits = -1
-	Enemy.heart_ready = 0
 	Enemy.vacuum_ready = 0
 	get_tree().call_group("enemies", "queue_free")
 	get_tree().call_group("pickups", "queue_free")
@@ -102,6 +101,7 @@ func _on_director_wave_finished(number):
 
 func _on_director_wave_cleared(number):
 	if $Director.endless or number < $Director.waves.size():
+		$HUD.hide_abilities()
 		$Shop.open($Director.rng)
 
 
@@ -119,6 +119,11 @@ func _on_director_run_won():
 	$Pause.enabled = false
 	$HUD.show_game_over("You win")
 	cash_out()
+
+
+func _on_director_milestone(kind, count):
+	Sfx.play("milestone")
+	$HUD.show_message("%d %s!" % [count, {"bee": "bees", "fish": "fish", "snake": "snakes"}[kind]])
 
 
 func _on_director_boss_died(_kind):

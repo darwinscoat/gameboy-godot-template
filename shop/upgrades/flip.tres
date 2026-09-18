@@ -10,4 +10,4 @@ blurb = "flip cooldown -0.5s"
 icon = ExtResource("2_icon")
 stat = "flip"
 amount = -0.5
-costs = Array[int]([20, 45])
+costs = Array[int]([35, 50])

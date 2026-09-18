@@ -9,7 +9,6 @@ title = "Heal"
 blurb = "one heart back"
 icon = ExtResource("2_icon")
 stat = "heal"
-amount = 2
 costs = Array[int]([40])
 repeatable = true
 cost_step = 20

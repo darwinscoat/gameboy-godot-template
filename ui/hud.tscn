@@ -7,12 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dsp6jbrnsb0hg" path="res://ui/heart_half.png" id="5_heart"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_key"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.631, 0.631, 0.631, 1)
+bg_color = Color(0.341, 0.341, 0.341, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_coin"]
 atlas = ExtResource("4_coin")
@@ -138,8 +133,8 @@ horizontal_alignment = 2
 visible = false
 offset_left = 2.0
 offset_top = 13.0
-offset_right = 26.0
-offset_bottom = 26.0
+offset_right = 23.0
+offset_bottom = 23.0
 
 [node name="KeyA" type="Panel" parent="Abilities"]
 offset_left = 0.0
@@ -147,50 +142,39 @@ offset_right = 10.0
 offset_bottom = 10.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_key")
 
+[node name="Fill" type="ColorRect" parent="Abilities/KeyA"]
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(0, 0, 0, 1)
+
 [node name="Label" type="Label" parent="Abilities/KeyA"]
 offset_left = 1.0
 offset_right = 9.0
 offset_bottom = 9.0
+theme_override_colors/font_color = Color(1, 0.969, 0.98, 1)
 theme_override_constants/outline_size = 0
 text = "A"
 horizontal_alignment = 1
 
-[node name="BarA" type="ColorRect" parent="Abilities"]
-offset_top = 11.0
-offset_right = 10.0
-offset_bottom = 13.0
-color = Color(0.341, 0.341, 0.341, 1)
-
-[node name="Fill" type="ColorRect" parent="Abilities/BarA"]
-offset_right = 10.0
-offset_bottom = 2.0
-color = Color(1, 0.969, 0.98, 1)
-
 [node name="KeyB" type="Panel" parent="Abilities"]
-offset_left = 14.0
-offset_right = 24.0
+offset_left = 11.0
+offset_right = 21.0
 offset_bottom = 10.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_key")
+
+[node name="Fill" type="ColorRect" parent="Abilities/KeyB"]
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="Abilities/KeyB"]
 offset_left = 1.0
 offset_right = 9.0
 offset_bottom = 9.0
+theme_override_colors/font_color = Color(1, 0.969, 0.98, 1)
 theme_override_constants/outline_size = 0
 text = "B"
 horizontal_alignment = 1
-
-[node name="BarB" type="ColorRect" parent="Abilities"]
-offset_left = 14.0
-offset_top = 11.0
-offset_right = 24.0
-offset_bottom = 13.0
-color = Color(0.341, 0.341, 0.341, 1)
-
-[node name="Fill" type="ColorRect" parent="Abilities/BarB"]
-offset_right = 10.0
-offset_bottom = 2.0
-color = Color(1, 0.969, 0.98, 1)
 
 [node name="WaveBar" type="ColorRect" parent="." unique_id=1320821842]
 visible = false

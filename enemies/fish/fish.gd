@@ -55,6 +55,27 @@ func steer(to_player, delta):
 				enter("charge", elite_charge_time if elite else charge_time)
 
 
+func run(to_player, _delta):
+	match state:
+		"charge":
+			linear_velocity = Vector2.ZERO
+			face(dash_direction.x < 0)
+			set_anim("walk")
+			$AnimatedSprite2D.offset.x = 1 if int(state_left * 20) % 2 == 0 else -1
+			if state_left == 0.0:
+				$AnimatedSprite2D.offset.x = 0
+				Sfx.play("fish_dash")
+				set_anim("attack")
+				$AnimatedSprite2D.frame = dash_frame
+				enter("dash", INF)
+		"dash":
+			linear_velocity = dash_direction * dash_speed
+		_:
+			dash_direction = -to_player.normalized()
+			Sfx.play("fish_charge")
+			enter("charge", charge_time)
+
+
 func set_anim(name):
 	$AnimatedSprite2D.speed_scale = charge_anim_speed if state == "charge" and name == "walk" else 1.0
 	super(name)

@@ -163,8 +163,15 @@ func hide_wave():
 
 func update_abilities(flip, dash):
 	$Abilities.show()
-	$Abilities/BarA/Fill.size.x = roundf($Abilities/BarA.size.x * clampf(flip, 0.0, 1.0))
-	$Abilities/BarB/Fill.size.x = roundf($Abilities/BarB.size.x * clampf(dash, 0.0, 1.0))
+	fill_key($Abilities/KeyA, flip)
+	fill_key($Abilities/KeyB, dash)
+
+
+func fill_key(key, fraction):
+	var fill = key.get_node("Fill")
+	var shown = roundf(key.size.y * clampf(fraction, 0.0, 1.0))
+	fill.position.y = key.size.y - shown
+	fill.size.y = shown
 
 
 func hide_abilities():
