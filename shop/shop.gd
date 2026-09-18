@@ -66,7 +66,8 @@ func close():
 func pick(rng) -> Array:
 	var pool = upgrades.filter(func(upgrade): return not upgrade.repeatable and player.level(upgrade) < upgrade.costs.size())
 	var heal = upgrades.filter(func(upgrade): return upgrade.stat == "heal")
-	var endless = get_node(director).endless and not heal.is_empty()
+	var run = get_node(director)
+	var endless = run.endless and run.wave_index + 1 >= run.waves.size() and not heal.is_empty()
 	var slots = $Cards.get_child_count() - (1 if endless else 0)
 	var picked = []
 	draw(picked, pool.filter(func(upgrade): return upgrade.stat in ATTACK), rng)
