@@ -42,6 +42,7 @@ func open():
 	switching = true
 	get_tree().paused = true
 	Sfx.play("pause")
+	Music.pause()
 	await get_node(curtain).cover()
 	build()
 	show()
@@ -54,6 +55,7 @@ func close():
 	Sfx.play("unpause")
 	await get_node(curtain).cover()
 	hide()
+	Music.unpause()
 	await get_node(curtain).reveal()
 	get_tree().paused = false
 	switching = false
