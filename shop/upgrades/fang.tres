@@ -7,6 +7,7 @@
 script = ExtResource("1_upgrade")
 title = "Fang"
 blurb = "+1 damage"
+description = "Every fish hit deals 1 more damage per level."
 icon = ExtResource("2_icon")
 stat = "damage"
 costs = Array[int]([40, 80])

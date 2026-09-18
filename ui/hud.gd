@@ -21,6 +21,10 @@ signal cat_changed(index)
 @export var heart_half: Texture2D
 @export var heart_empty: Texture2D
 @export var cats: Array[String] = ["Churro", "Miles"]
+@export var marker: Texture2D
+@export var marker_margin: float = 6.0
+@export var marker_blink: float = 0.25
+@export var marker_bottom: float = 5.0
 
 var coin_hop_left = 0.0
 var last_coins = 0
@@ -159,6 +163,36 @@ func update_wave(fraction, boss):
 
 func hide_wave():
 	$WaveBar.hide()
+
+
+func update_markers(offsets: Array):
+	var half = get_viewport().get_visible_rect().size / 2.0
+	var inset = half - Vector2(marker_margin, marker_margin)
+	var shown = 0
+	for d in offsets:
+		if absf(d.x) <= inset.x and absf(d.y) <= inset.y:
+			continue
+		if $Markers.get_child_count() <= shown:
+			var sprite = Sprite2D.new()
+			sprite.texture = marker
+			sprite.hframes = 2
+			$Markers.add_child(sprite)
+		var arrow = $Markers.get_child(shown)
+		var limit = Vector2(inset.x, inset.y - (marker_bottom if d.y > 0.0 else 0.0))
+		var k = minf(limit.x / maxf(absf(d.x), 0.001), limit.y / maxf(absf(d.y), 0.001))
+		arrow.position = (half + d * k).round()
+		var step = roundi(fmod(d.angle() + TAU, TAU) / (TAU / 8)) % 8
+		arrow.rotation = (step / 2) * TAU / 4
+		arrow.frame = step % 2
+		arrow.visible = int(Time.get_ticks_msec() / (marker_blink * 1000)) % 2 == 0
+		shown += 1
+	for i in range(shown, $Markers.get_child_count()):
+		$Markers.get_child(i).hide()
+
+
+func hide_markers():
+	for arrow in $Markers.get_children():
+		arrow.hide()
 
 
 func update_abilities(flip, dash):

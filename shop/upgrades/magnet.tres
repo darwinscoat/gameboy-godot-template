@@ -7,6 +7,7 @@
 script = ExtResource("1_upgrade")
 title = "Magnet"
 blurb = "coin pull +16"
+description = "Coins and hearts pull in from further out."
 icon = ExtResource("2_icon")
 stat = "magnet"
 costs = Array[int]([5, 20])

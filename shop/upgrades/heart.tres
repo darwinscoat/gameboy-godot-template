@@ -7,5 +7,6 @@
 script = ExtResource("1_upgrade")
 title = "Heart"
 blurb = "+1 heart"
+description = "One more heart per level. Buying it heals one too."
 icon = ExtResource("2_icon")
 costs = Array[int]([10, 25, 45])

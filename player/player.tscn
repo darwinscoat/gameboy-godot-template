@@ -5,6 +5,7 @@
 [ext_resource type="SpriteFrames" uid="uid://dkd3g10010i3u" path="res://player/miles.tres" id="2_miles"]
 [ext_resource type="Script" uid="uid://bqtk1rx4a64yy" path="res://player/sword.gd" id="3_sword"]
 [ext_resource type="PackedScene" uid="uid://dgo3oytlutq42" path="res://player/fish.tscn" id="4_fish"]
+[ext_resource type="PackedScene" uid="uid://cbumt5yqd51wc" path="res://player/ghost.tscn" id="5_ghost"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hurt"]
 size = Vector2(12, 8)
@@ -29,3 +30,4 @@ shape = SubResource("RectangleShape2D_hurt")
 [node name="Sword" type="Node2D" parent="." unique_id=1815046502]
 script = ExtResource("3_sword")
 fish_scene = ExtResource("4_fish")
+ghost_scene = ExtResource("5_ghost")

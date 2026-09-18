@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cyyje4wxxf1ic" path="res://ui/heart_empty.png" id="3_heart"]
 [ext_resource type="Texture2D" uid="uid://ci1wm3m2ru3ii" path="res://pickups/coin_small.png" id="4_coin"]
 [ext_resource type="Texture2D" uid="uid://dsp6jbrnsb0hg" path="res://ui/heart_half.png" id="5_heart"]
+[ext_resource type="Texture2D" uid="uid://bpakmhftkk43a" path="res://ui/marker.png" id="7_marker"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_key"]
 bg_color = Color(0.341, 0.341, 0.341, 1)
@@ -18,6 +19,7 @@ script = ExtResource("1_64ctp")
 heart_full = ExtResource("2_heart")
 heart_half = ExtResource("5_heart")
 heart_empty = ExtResource("3_heart")
+marker = ExtResource("7_marker")
 
 [node name="ScoreLabel" type="Label" parent="." unique_id=1502372607]
 anchors_preset = 1
@@ -175,6 +177,8 @@ theme_override_colors/font_color = Color(1, 0.969, 0.98, 1)
 theme_override_constants/outline_size = 0
 text = "B"
 horizontal_alignment = 1
+
+[node name="Markers" type="Node2D" parent="."]
 
 [node name="WaveBar" type="ColorRect" parent="." unique_id=1320821842]
 visible = false

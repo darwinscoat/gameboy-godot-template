@@ -14,6 +14,11 @@ func _process(_delta):
 		$HUD.update_wave($Director.time_left / $Director.wave.duration, $Director.time_left <= 0.0 and $Director.boss_alive())
 	else:
 		$HUD.hide_wave()
+	var offsets = []
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		if enemy.boss and not enemy.dying:
+			offsets.append(enemy.position - $Player.position)
+	$HUD.update_markers(offsets)
 	if $Player.visible and not $Player.dead:
 		var sword = $Player/Sword
 		$HUD.update_abilities(1.0 - sword.flip_left / sword.flip_cooldown, 1.0 - $Player.dash_wait / $Player.dash_cooldown)
@@ -39,6 +44,7 @@ func new_game():
 	get_tree().call_group("enemies", "queue_free")
 	get_tree().call_group("pickups", "queue_free")
 	get_tree().call_group("shots", "queue_free")
+	get_tree().call_group("ghosts", "queue_free")
 	$Player.start(Vector2.ZERO)
 	$Pause.enabled = true
 	$HUD.update_score(score)
@@ -102,6 +108,7 @@ func _on_director_wave_finished(number):
 func _on_director_wave_cleared(number):
 	if $Director.endless or number < $Director.waves.size():
 		$HUD.hide_abilities()
+		$HUD.hide_markers()
 		$Shop.open($Director.rng)
 
 

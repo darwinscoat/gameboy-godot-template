@@ -7,6 +7,7 @@
 script = ExtResource("1_upgrade")
 title = "Fish"
 blurb = "+1 fish"
+description = "One more fish rotates around you per level."
 icon = ExtResource("1_a6frf")
 stat = "count"
 costs = Array[int]([80, 150])

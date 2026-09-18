@@ -5,10 +5,10 @@ signal hp_changed(hp, max_hp)
 signal coins_changed(coins)
 signal scored(points)
 
-const STATS = {"hp": "max_hp", "move": "speed", "magnet": "magnet_radius", "damage": "damage", "count": "count", "spin": "speed", "flip": "flip_cooldown", "dash_cooldown": "dash_cooldown", "dash": "dash_distance", "iframes": "dash_iframes"}
+const STATS = {"hp": "max_hp", "move": "speed", "magnet": "magnet_radius", "damage": "damage", "count": "count", "spin": "speed", "flip": "flip_cooldown", "dash_cooldown": "dash_cooldown", "dash": "dash_distance", "iframes": "dash_iframes", "ghost": "ghosts"}
 
 @export var speed: float = 35.0
-@export var max_hp: int = 6
+@export var max_hp: int = 10
 @export var magnet_radius: float = 24.0
 @export var invulnerable_time: float = 0.8
 @export var knockback_speed: float = 80.0
@@ -27,7 +27,7 @@ const STATS = {"hp": "max_hp", "move": "speed", "magnet": "magnet_radius", "dama
 @export_group("")
 @export var cats: Array[SpriteFrames]
 
-var hp = 6
+var hp = 10
 var invulnerable_left = 0.0
 var knockback = Vector2.ZERO
 var shake_left = 0.0
@@ -171,7 +171,7 @@ func heal(amount) -> bool:
 
 
 func holder(stat) -> Node:
-	return $Sword if stat in ["damage", "count", "spin", "flip"] else self
+	return $Sword if stat in ["damage", "count", "spin", "flip", "ghost"] else self
 
 
 func level(upgrade) -> int:

@@ -25,6 +25,7 @@ signal died(points)
 @export var elite_coin_multiplier: int = 7
 @export var elite_score_multiplier: int = 4
 @export var elite_speed_multiplier: float = 0.8
+@export var elite_damage: int = 1
 @export var rain_slide_speed: float = 80.0
 @export var rain_spread: float = 0.5
 @export var rain_stagger: float = 0.04
@@ -121,7 +122,7 @@ func make_elite():
 	coin_value *= elite_coin_multiplier
 	score_value *= elite_score_multiplier
 	chase_speed *= elite_speed_multiplier
-	$Hitbox.damage += 1
+	$Hitbox.damage += elite_damage
 	$Crown.show()
 
 

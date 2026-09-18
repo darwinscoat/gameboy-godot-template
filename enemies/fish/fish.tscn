@@ -13,6 +13,7 @@ dash_time = 0.35
 rest_time = 0.6
 charge_anim_speed = 4.0
 dash_frame = 2
+elite_damage = 0
 elite_dashes = 3
 elite_charge_time = 0.4
 elite_recharge_time = 0.25

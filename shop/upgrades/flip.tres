@@ -7,6 +7,7 @@
 script = ExtResource("1_upgrade")
 title = "Flip"
 blurb = "flip cooldown -0.5s"
+description = "Sword flip is ready 0.5s sooner per level."
 icon = ExtResource("2_icon")
 stat = "flip"
 amount = -0.5

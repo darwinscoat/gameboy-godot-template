@@ -48,6 +48,7 @@
 [ext_resource type="AudioStreamWAV" uid="uid://cclmxa2nah386" path="res://audio/sfx/sword_flip.wav" id="46_sword_flip"]
 [ext_resource type="AudioStreamWAV" uid="uid://b25srdyk18x71" path="res://audio/sfx/player_dash.wav" id="47_player_dash"]
 [ext_resource type="AudioStreamWAV" uid="uid://1vxwlea17rhy" path="res://audio/sfx/milestone.wav" id="48_milestone"]
+[ext_resource type="AudioStreamWAV" uid="uid://dg486liacaxl2" path="res://audio/sfx/ghost_fish.wav" id="49_ghost_fish"]
 
 [node name="Sfx" type="Node" unique_id=1195290387]
 process_mode = 3
@@ -239,4 +240,8 @@ bus = &"Sfx"
 
 [node name="Milestone" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("48_milestone")
+bus = &"Sfx"
+
+[node name="GhostFish" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("49_ghost_fish")
 bus = &"Sfx"

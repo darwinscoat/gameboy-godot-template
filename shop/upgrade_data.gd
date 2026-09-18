@@ -3,8 +3,9 @@ extends Resource
 
 @export var title: String = ""
 @export var blurb: String = ""
+@export_multiline var description: String = ""
 @export var icon: Texture2D
-@export_enum("hp", "move", "magnet", "damage", "count", "spin", "heal", "score", "flawless", "flip", "dash_cooldown", "dash") var stat: String = "hp"
+@export_enum("hp", "move", "magnet", "damage", "count", "spin", "heal", "score", "flawless", "flip", "dash_cooldown", "dash", "ghost") var stat: String = "hp"
 @export var amount: float = 1.0
 @export var costs: Array[int] = [10]
 @export var repeatable: bool = false

@@ -8,6 +8,8 @@ extends Node2D
 @export var damage: int = 2
 @export var flip_cooldown: float = 2.0
 @export var ready_flash: float = 0.1
+@export var ghosts: int = 0
+@export var ghost_scene: PackedScene
 
 var angle = 0.0
 var direction = 1.0
@@ -70,4 +72,17 @@ func flip() -> bool:
 	direction = -direction
 	flip_left = flip_cooldown
 	Sfx.play("sword_flip")
+	if ghosts > 0:
+		haunt()
 	return true
+
+
+func haunt():
+	for fish in get_children():
+		var ghost = ghost_scene.instantiate()
+		ghost.position = fish.global_position
+		ghost.direction = fish.position.normalized()
+		ghost.damage = damage
+		ghost.hits = ghosts
+		get_parent().get_parent().add_child(ghost)
+	Sfx.play("ghost_fish")

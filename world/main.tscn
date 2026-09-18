@@ -58,6 +58,7 @@ director = NodePath("../Director")
 
 [node name="Pause" parent="." unique_id=1598799102 instance=ExtResource("11_pause")]
 shop = NodePath("../Shop")
+curtain = NodePath("../Transition")
 
 [node name="Transition" parent="." unique_id=1862669739 instance=ExtResource("12_transition")]
 

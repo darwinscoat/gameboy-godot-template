@@ -7,6 +7,7 @@
 script = ExtResource("1_upgrade")
 title = "Boots"
 blurb = "+5 speed"
+description = "Walk faster per level."
 icon = ExtResource("2_icon")
 stat = "move"
 costs = Array[int]([5, 15, 25])

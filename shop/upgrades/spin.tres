@@ -7,7 +7,7 @@
 script = ExtResource("1_upgrade")
 title = "Spin"
 blurb = "+60 spin"
+description = "The fish orbit faster per level."
 icon = ExtResource("2_icon")
 stat = "spin"
-amount = 60
 costs = Array[int]([25, 50, 75])

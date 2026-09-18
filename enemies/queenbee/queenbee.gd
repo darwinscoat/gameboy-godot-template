@@ -34,6 +34,7 @@ extends Enemy
 @export var swoop_tell: float = 0.6
 @export var swoop_height: float = 24.0
 @export var swoop_speed: float = 140.0
+@export var nova_shots: int = 8
 @export var vanish_time: float = 0.4
 @export var vanish_shudder: float = 2.0
 @export var blink_time: float = 0.6
@@ -118,6 +119,7 @@ func steer(to_player, delta):
 			height = swoop_height * state_left / dive_time
 			lift = height
 			if state_left == 0.0:
+				nova()
 				enter("vanish", vanish_time)
 		"vanish":
 			linear_velocity = Vector2.ZERO
@@ -204,6 +206,15 @@ func fan(to_player):
 		var shot = shot_scene.instantiate()
 		shot.position = position + Vector2(0, -height)
 		shot.direction = to_player.normalized().rotated(volley_spread * (i - (shots - 1) / 2.0))
+		get_parent().add_child(shot)
+	Sfx.play("bee_shoot")
+
+
+func nova():
+	for i in nova_shots:
+		var shot = shot_scene.instantiate()
+		shot.position = position
+		shot.direction = Vector2.from_angle(TAU * i / nova_shots)
 		get_parent().add_child(shot)
 	Sfx.play("bee_shoot")
 

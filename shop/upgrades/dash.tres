@@ -7,6 +7,7 @@
 script = ExtResource("1_upgrade")
 title = "Dash"
 blurb = "dash cooldown -0.5s"
+description = "Dash is ready 0.5s sooner per level."
 icon = ExtResource("2_icon")
 stat = "dash_cooldown"
 amount = -0.5

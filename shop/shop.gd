@@ -65,18 +65,21 @@ func close():
 
 func pick(rng) -> Array:
 	var pool = upgrades.filter(func(upgrade): return not upgrade.repeatable and player.level(upgrade) < upgrade.costs.size())
+	var heal = upgrades.filter(func(upgrade): return upgrade.stat == "heal")
+	var endless = get_node(director).endless and not heal.is_empty()
+	var slots = $Cards.get_child_count() - (1 if endless else 0)
 	var picked = []
 	draw(picked, pool.filter(func(upgrade): return upgrade.stat in ATTACK), rng)
 	var affordable = func(upgrade): return cost_of(upgrade) <= player.coins
-	while picked.filter(affordable).size() < affordable_offers and picked.size() < $Cards.get_child_count():
+	while picked.filter(affordable).size() < affordable_offers and picked.size() < slots:
 		var before = picked.size()
 		draw(picked, pool.filter(affordable), rng)
 		if picked.size() == before:
 			break
-	while picked.size() < mini($Cards.get_child_count(), pool.size()):
+	while picked.size() < mini(slots, pool.size()):
 		draw(picked, pool, rng)
-	while picked.size() < $Cards.get_child_count():
-		var extras = upgrades.filter(func(upgrade): return upgrade.repeatable and not picked.has(upgrade))
+	while picked.size() < slots:
+		var extras = upgrades.filter(func(upgrade): return upgrade.repeatable and not picked.has(upgrade) and not (endless and upgrade.stat == "heal"))
 		if extras.is_empty():
 			break
 		draw(picked, extras, rng)
@@ -85,6 +88,8 @@ func pick(rng) -> Array:
 		var swap = picked[i]
 		picked[i] = picked[j]
 		picked[j] = swap
+	if endless:
+		picked.append(heal[0])
 	return picked
 
 
