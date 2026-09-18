@@ -40,9 +40,8 @@ const AMBUSH_JITTER = 0.4
 @export var queen_every: int = 10
 @export var queen_at: float = 5.0
 @export var queen_hp_step: float = 0.5
-@export_group("Rush")
-@export var rush_rate: float = 2.0
-@export var rush_cap: float = 1.5
+@export_group("Flawless")
+@export var flawless_bonus: int = 100
 
 var rng = RandomNumberGenerator.new()
 var player: Node2D
@@ -57,7 +56,7 @@ var held = false
 var last_second = 0
 var running = false
 var run_id = 0
-var rush = false
+var flawless = false
 
 
 func _process(delta):
@@ -104,7 +103,7 @@ func start_run():
 func stop():
 	run_id += 1
 	running = false
-	rush = false
+	flawless = false
 
 
 func next_wave():
@@ -117,12 +116,6 @@ func next_wave():
 	else:
 		rng.randomize()
 	wave = waves[wave_index] if wave_index < waves.size() else make_wave(wave_index + 1)
-	if rush:
-		rush = false
-		wave = wave.duplicate()
-		wave.pulse_interval /= rush_rate
-		wave.max_alive = ceili(wave.max_alive * rush_cap)
-		wave.banner = "Wave %d rush" % (wave_index + 1)
 	time_left = wave.duration
 	pulse_left = wave.pulse_interval
 	boss_done = false

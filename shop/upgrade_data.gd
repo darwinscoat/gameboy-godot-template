@@ -4,7 +4,7 @@ extends Resource
 @export var title: String = ""
 @export var blurb: String = ""
 @export var icon: Texture2D
-@export_enum("hp", "move", "magnet", "damage", "count", "spin", "heal", "score", "rush") var stat: String = "hp"
+@export_enum("hp", "move", "magnet", "damage", "count", "spin", "heal", "score", "flawless") var stat: String = "hp"
 @export var amount: int = 1
 @export var costs: Array[int] = [10]
 @export var repeatable: bool = false

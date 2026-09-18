@@ -16,6 +16,10 @@ signal died(points)
 @export var coin_scene: PackedScene
 @export var heart_scene: PackedScene
 @export var heart_chance: float = 0.05
+@export var heart_cooldown: float = 10.0
+@export var vacuum_scene: PackedScene
+@export var vacuum_chance: float = 0.05
+@export var vacuum_cooldown: float = 60.0
 @export var flee_multiplier: float = 2.0
 @export_group("Elite")
 @export var elite_hp_multiplier: int = 4
@@ -30,6 +34,9 @@ signal died(points)
 @export var stun_gap: float = 2.0
 @export_group("Boss")
 @export var boss_offscreen_multiplier: float = 2.0
+
+static var heart_ready = 0
+static var vacuum_ready = 0
 
 var target: Node2D
 var hp = 2
@@ -195,10 +202,16 @@ func die():
 			await get_tree().create_timer(randf() * rain_stagger, false).timeout
 	$AnimatedSprite2D.offset = Vector2.ZERO
 	var hearts_needed = (target.max_hp - target.hp + 1) / 2 - get_tree().get_nodes_in_group("hearts").size() if target else 0
-	if heart_scene and hearts_needed > 0 and randf() < heart_chance:
+	if heart_scene and hearts_needed > 0 and Time.get_ticks_msec() >= heart_ready and randf() < heart_chance:
+		heart_ready = Time.get_ticks_msec() + int(heart_cooldown * 1000)
 		var heart = heart_scene.instantiate()
 		heart.position = position
 		get_parent().add_child(heart)
+	if vacuum_scene and Time.get_ticks_msec() >= vacuum_ready and randf() < vacuum_chance:
+		vacuum_ready = Time.get_ticks_msec() + int(vacuum_cooldown * 1000)
+		var vacuum = vacuum_scene.instantiate()
+		vacuum.position = position
+		get_parent().add_child(vacuum)
 	if elite:
 		set_anim("death")
 	if $AnimatedSprite2D.is_playing():

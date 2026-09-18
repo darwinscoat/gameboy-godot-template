@@ -22,6 +22,7 @@ var height = 0.0
 var rise = 0.0
 var slide = Vector2.ZERO
 var target: Node2D
+var pull_speed = 0.0
 
 
 func _ready():
@@ -45,12 +46,17 @@ func _process(delta):
 	$Shadow.frame = roundi(lerpf($Shadow.hframes - 1, 0.0, clampf(-height / shadow_full_height, 0.0, 1.0)))
 	position += slide * delta
 	slide = slide.move_toward(Vector2.ZERO, slide_speed / slide_time * delta)
-	if slide == Vector2.ZERO and target and target.visible and position.distance_to(target.position) < target.magnet_radius:
-		position = position.move_toward(target.position, magnet_speed * delta)
+	if target and target.visible and (pull_speed > 0.0 or slide == Vector2.ZERO and position.distance_to(target.position) < target.magnet_radius):
+		position = position.move_toward(target.position, maxf(magnet_speed, pull_speed) * delta)
 	for area in get_overlapping_areas():
 		if collect(area):
 			queue_free()
 			return
+
+
+func vacuum(speed):
+	pull_speed = speed
+	slide = Vector2.ZERO
 
 
 func collect(_player) -> bool:

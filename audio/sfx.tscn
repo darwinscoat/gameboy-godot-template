@@ -42,6 +42,9 @@
 [ext_resource type="AudioStream" uid="uid://mynrym6oys3" path="res://audio/sfx/queen_swoop.wav" id="40_queen_swoop"]
 [ext_resource type="AudioStream" uid="uid://d0dqjjj6548q1" path="res://audio/sfx/queen_summon.wav" id="41_queen_summon"]
 [ext_resource type="AudioStream" uid="uid://dssgry56dro6v" path="res://audio/sfx/score_tick.wav" id="42_score_tick"]
+[ext_resource type="AudioStreamWAV" uid="uid://spxs8lsvwgfw" path="res://audio/sfx/flawless.wav" id="43_flawless"]
+[ext_resource type="AudioStreamWAV" uid="uid://cpabc4i74g8st" path="res://audio/sfx/vacuum_drop.wav" id="44_vacuum_drop"]
+[ext_resource type="AudioStreamWAV" uid="uid://41xn1qw2xrsg" path="res://audio/sfx/vacuum_collect.wav" id="45_vacuum_collect"]
 
 [node name="Sfx" type="Node" unique_id=1195290387]
 process_mode = 3
@@ -209,4 +212,16 @@ bus = &"Sfx"
 
 [node name="ScoreTick" type="AudioStreamPlayer" parent="." unique_id=1282180519]
 stream = ExtResource("42_score_tick")
+bus = &"Sfx"
+
+[node name="Flawless" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("43_flawless")
+bus = &"Sfx"
+
+[node name="VacuumDrop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("44_vacuum_drop")
+bus = &"Sfx"
+
+[node name="VacuumCollect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("45_vacuum_collect")
 bus = &"Sfx"

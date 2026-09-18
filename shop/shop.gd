@@ -100,8 +100,8 @@ func blocked(upgrade) -> bool:
 	match upgrade.stat:
 		"heal":
 			return player.hp >= player.max_hp
-		"rush":
-			return get_node(director).rush
+		"flawless":
+			return get_node(director).flawless
 	return false
 
 
@@ -118,8 +118,8 @@ func buy():
 		return
 	Sfx.play("shop_buy")
 	player.add_coins(-cost_of(upgrade))
-	if upgrade.stat == "rush":
-		get_node(director).rush = true
+	if upgrade.stat == "flawless":
+		get_node(director).flawless = true
 	else:
 		player.apply(upgrade)
 	sold[selected] = not upgrade.repeatable

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvc6gi5ukdtyf"
-path="res://.godot/imported/rush.png-b93880b0ae257f0497b05d1e96c5e9ae.ctex"
+uid="uid://csg4i3wvkknot"
+path="res://.godot/imported/flawless.png-c7d1455e5180ff5e6d219e6e4b675045.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://shop/icons/rush.png"
-dest_files=["res://.godot/imported/rush.png-b93880b0ae257f0497b05d1e96c5e9ae.ctex"]
+source_file="res://shop/icons/flawless.png"
+dest_files=["res://.godot/imported/flawless.png-c7d1455e5180ff5e6d219e6e4b675045.ctex"]
 
 [params]
 

@@ -7,6 +7,7 @@ extends Enemy
 @export var sting_frame: int = 5
 @export var attack_speed: float = 3.0
 @export var sting_rest: float = 0.3
+@export var sting_cooldown: float = 2.0
 @export_group("Elite")
 @export var shot_scene: PackedScene
 @export var shot_range: float = 64.0
@@ -14,11 +15,13 @@ extends Enemy
 
 var stung = false
 var shot_left = 0.0
+var sting_left = 0.0
 
 
 func steer(to_player, delta):
 	var sprite = $AnimatedSprite2D
 	shot_left = maxf(shot_left - delta, 0.0)
+	sting_left = maxf(sting_left - delta, 0.0)
 	match state:
 		"sting":
 			if stung:
@@ -47,7 +50,8 @@ func steer(to_player, delta):
 				enter("", 0.0)
 		_:
 			chase(to_player, delta)
-			if to_player.length() < sting_range:
+			if sting_left == 0.0 and to_player.length() < sting_range:
+				sting_left = sting_cooldown
 				stung = false
 				set_anim("attack")
 				sprite.frame = sting_start

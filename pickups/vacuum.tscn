@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://djc4wao0af6mt"]
+
+[ext_resource type="Script" uid="uid://bwa7spel8eow5" path="res://pickups/vacuum.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://ee2fm484swtp" path="res://pickups/vacuum.png" id="2_icon"]
+[ext_resource type="PackedScene" uid="uid://dawuaidq2gps0" path="res://world/shadow.tscn" id="3_shadow"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vacuum"]
+radius = 4.0
+
+[node name="Vacuum" type="Area2D" groups=["pickups"]]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_script")
+bounce_sound = "heart_bounce"
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_icon")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vacuum")
+
+[node name="Shadow" parent="." instance=ExtResource("3_shadow")]
+position = Vector2(0, 5)

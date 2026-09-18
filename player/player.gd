@@ -25,6 +25,7 @@ var invulnerable_left = 0.0
 var knockback = Vector2.ZERO
 var shake_left = 0.0
 var coins = 0
+var hits = 0
 var dead = false
 var hurt = false
 var levels = {}
@@ -86,6 +87,7 @@ func shake(time):
 
 func take_damage(amount, from):
 	hp -= amount
+	hits += 1
 	hp_changed.emit(hp, max_hp)
 	hurt = true
 	Sfx.play("player_hit")
@@ -120,6 +122,7 @@ func start(pos):
 	hp_changed.emit(hp, max_hp)
 	coins = 0
 	coins_changed.emit(coins)
+	hits = 0
 	invulnerable_left = spawn_grace
 	hurt = false
 	knockback = Vector2.ZERO
