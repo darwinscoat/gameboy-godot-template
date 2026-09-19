@@ -3,21 +3,21 @@
 [ext_resource type="Texture2D" uid="uid://dcdq1rtokjrai" path="res://player/miles_dash.png" id="1_srw4f"]
 [ext_resource type="Texture2D" uid="uid://y23s4rhjrxd2" path="res://player/miles_walk.png" id="1_walk"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ibg5r"]
-atlas = ExtResource("1_srw4f")
-region = Rect2(0, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_721cp"]
 atlas = ExtResource("1_srw4f")
 region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6f1t"]
+atlas = ExtResource("1_srw4f")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iouag"]
 atlas = ExtResource("1_srw4f")
 region = Rect2(48, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y6f1t"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibg5r"]
 atlas = ExtResource("1_srw4f")
-region = Rect2(32, 0, 16, 16)
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8dtee"]
 atlas = ExtResource("1_walk")
