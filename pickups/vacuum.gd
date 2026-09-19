@@ -5,6 +5,7 @@ extends Pickup
 
 func _ready():
 	super()
+	z_index = Layers.RARE_PICKUP
 	Sfx.play("vacuum_drop")
 
 

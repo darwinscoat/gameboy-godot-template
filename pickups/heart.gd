@@ -10,6 +10,7 @@ var warned = false
 
 func _ready():
 	super()
+	z_index = Layers.RARE_PICKUP
 	Sfx.play("heart_drop")
 
 
