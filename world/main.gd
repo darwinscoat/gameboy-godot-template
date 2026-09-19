@@ -10,14 +10,18 @@ var bet_hits = -1
 
 
 func _process(_delta):
-	if $Director.running:
-		$HUD.update_wave($Director.time_left / $Director.wave.duration, $Director.time_left <= 0.0 and $Director.boss_alive())
-	else:
-		$HUD.hide_wave()
 	var offsets = []
+	var hp = 0.0
+	var max_hp = 0.0
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		if enemy.boss and not enemy.dying:
 			offsets.append(enemy.position - $Player.position)
+			hp += enemy.hp
+			max_hp += enemy.max_hp
+	if $Director.running:
+		$HUD.update_wave($Director.time_left / $Director.wave.duration, hp / max_hp if max_hp > 0.0 else -1.0)
+	else:
+		$HUD.hide_wave()
 	$HUD.update_markers(offsets)
 	if $Player.visible and not $Player.dead:
 		var sword = $Player/Sword

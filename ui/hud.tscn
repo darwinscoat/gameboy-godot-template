@@ -6,13 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://ci1wm3m2ru3ii" path="res://pickups/coin_small.png" id="4_coin"]
 [ext_resource type="Texture2D" uid="uid://dsp6jbrnsb0hg" path="res://ui/heart_half.png" id="5_heart"]
 [ext_resource type="Texture2D" uid="uid://bpakmhftkk43a" path="res://ui/marker.png" id="7_marker"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_key"]
-bg_color = Color(0.341, 0.341, 0.341, 1)
+[ext_resource type="Texture2D" uid="uid://bxc1hwkutroey" path="res://ui/endless.png" id="8_endless"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_coin"]
 atlas = ExtResource("4_coin")
 region = Rect2(36, 4, 8, 8)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_key"]
+bg_color = Color(0.341, 0.341, 0.341, 1)
 
 [node name="HUD" type="CanvasLayer" unique_id=2016491038]
 script = ExtResource("1_64ctp")
@@ -55,16 +56,15 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -44.0
-offset_top = -37.0
+offset_top = -30.0
 offset_right = 44.0
-offset_bottom = -28.0
+offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Press Start"
 horizontal_alignment = 1
 
 [node name="Picker" type="Label" parent="." unique_id=908036883]
-visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -79,17 +79,24 @@ grow_vertical = 0
 text = "> Churro
   Miles"
 
+[node name="Endless" type="TextureRect" parent="Picker" unique_id=757909784]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 14.0
+offset_right = 69.0
+offset_bottom = 20.0
+texture = ExtResource("8_endless")
+
 [node name="Best" type="Label" parent="." unique_id=1272503934]
-visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -44.0
-offset_top = -23.0
+offset_top = -12.0
 offset_right = 44.0
-offset_bottom = -14.0
+offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Best 0"
@@ -131,25 +138,29 @@ offset_bottom = 9.0
 text = "0"
 horizontal_alignment = 2
 
-[node name="Abilities" type="Control" parent="."]
+[node name="Abilities" type="Control" parent="." unique_id=981582692]
 visible = false
+layout_mode = 3
+anchors_preset = 0
 offset_left = 2.0
 offset_top = 13.0
 offset_right = 23.0
 offset_bottom = 23.0
 
-[node name="KeyA" type="Panel" parent="Abilities"]
-offset_left = 0.0
+[node name="KeyA" type="Panel" parent="Abilities" unique_id=768923042]
+layout_mode = 0
 offset_right = 10.0
 offset_bottom = 10.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_key")
 
-[node name="Fill" type="ColorRect" parent="Abilities/KeyA"]
+[node name="Fill" type="ColorRect" parent="Abilities/KeyA" unique_id=14537089]
+layout_mode = 0
 offset_right = 10.0
 offset_bottom = 10.0
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="Abilities/KeyA"]
+[node name="Label" type="Label" parent="Abilities/KeyA" unique_id=1011263523]
+layout_mode = 0
 offset_left = 1.0
 offset_right = 9.0
 offset_bottom = 9.0
@@ -158,18 +169,21 @@ theme_override_constants/outline_size = 0
 text = "A"
 horizontal_alignment = 1
 
-[node name="KeyB" type="Panel" parent="Abilities"]
+[node name="KeyB" type="Panel" parent="Abilities" unique_id=172824036]
+layout_mode = 0
 offset_left = 11.0
 offset_right = 21.0
 offset_bottom = 10.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_key")
 
-[node name="Fill" type="ColorRect" parent="Abilities/KeyB"]
+[node name="Fill" type="ColorRect" parent="Abilities/KeyB" unique_id=491215245]
+layout_mode = 0
 offset_right = 10.0
 offset_bottom = 10.0
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="Abilities/KeyB"]
+[node name="Label" type="Label" parent="Abilities/KeyB" unique_id=1479257827]
+layout_mode = 0
 offset_left = 1.0
 offset_right = 9.0
 offset_bottom = 9.0
@@ -178,7 +192,7 @@ theme_override_constants/outline_size = 0
 text = "B"
 horizontal_alignment = 1
 
-[node name="Markers" type="Node2D" parent="."]
+[node name="Markers" type="Node2D" parent="." unique_id=609960320]
 
 [node name="WaveBar" type="ColorRect" parent="." unique_id=1320821842]
 visible = false
@@ -198,5 +212,23 @@ color = Color(0.341, 0.341, 0.341, 1)
 layout_mode = 0
 offset_right = 156.0
 offset_bottom = 2.0
+
+[node name="BossBar" type="ColorRect" parent="." unique_id=2058895626]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -4.0
+offset_right = 158.0
+offset_bottom = -2.0
+grow_vertical = 0
+color = Color(0.341, 0.341, 0.341, 1)
+
+[node name="Fill" type="ColorRect" parent="BossBar" unique_id=1671534444]
+layout_mode = 0
+offset_right = 156.0
+offset_bottom = 2.0
+color = Color(0, 0, 0, 1)
 
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]

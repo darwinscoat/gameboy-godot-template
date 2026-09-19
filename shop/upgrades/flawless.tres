@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_upgrade")
 title = "Flawless bet"
-blurb = "no hits = wave x 100"
+blurb = "don't get hit"
 icon = ExtResource("2_icon")
 stat = "flawless"
 costs = Array[int]([250])

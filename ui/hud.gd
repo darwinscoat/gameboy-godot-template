@@ -5,7 +5,9 @@ signal message_hidden
 signal cat_changed(index)
 
 @export var restart_delay: float = 2.0
-@export var boss_blink: float = 0.125
+@export var bar_margin: float = 2.0
+@export var bar_height: float = 2.0
+@export var timer_row: float = 1.0
 @export var start_blink: float = 0.5
 @export var wave_height: float = 2.0
 @export var wave_speed: float = 1.0
@@ -21,6 +23,7 @@ signal cat_changed(index)
 @export var heart_half: Texture2D
 @export var heart_empty: Texture2D
 @export var cats: Array[String] = ["Churro", "Miles"]
+@export var endless_gap: float = 3.0
 @export var marker: Texture2D
 @export var marker_margin: float = 6.0
 @export var marker_blink: float = 0.25
@@ -128,6 +131,8 @@ func update_picker():
 	for i in cats.size():
 		lines.append(("> " if i == cat else "  ") + cats[i])
 	$Picker.text = "\n".join(lines)
+	var last = $Picker.get_character_bounds($Picker.text.length() - 1)
+	$Picker/Endless.position = Vector2(last.end.x + endless_gap, last.position.y + ceilf((last.size.y - $Picker/Endless.size.y) / 2.0))
 
 
 func update_best(best):
@@ -155,14 +160,31 @@ func update_hp(hp, max_hp):
 		$Hearts.add_child(heart)
 
 
-func update_wave(fraction, boss):
-	$WaveBar.show()
-	$WaveBar/Fill.size.x = roundf($WaveBar.size.x * (1.0 if boss else clampf(fraction, 0.0, 1.0)))
-	$WaveBar/Fill.visible = not boss or int(Time.get_ticks_msec() / (boss_blink * 1000)) % 2 == 0
+func update_wave(fraction, health):
+	var boss = health >= 0.0
+	var timed = fraction > 0.0 or not boss
+	var area = $WaveBar.get_parent_area_size()
+	var width = area.x - bar_margin * 2.0
+	var top = area.y - bar_margin - bar_height
+	var both = boss and timed
+	$WaveBar.visible = timed
+	$BossBar.visible = boss
+	if timed:
+		place($WaveBar, Rect2(bar_margin, top + bar_height if both else top, width, timer_row if both else bar_height), fraction)
+	if boss:
+		place($BossBar, Rect2(bar_margin, top, width, bar_height), health)
+
+
+func place(bar, rect, fraction):
+	bar.position = rect.position
+	bar.size = rect.size
+	var fill = bar.get_node("Fill")
+	fill.size = Vector2(ceilf(rect.size.x * clampf(fraction, 0.0, 1.0)), rect.size.y)
 
 
 func hide_wave():
 	$WaveBar.hide()
+	$BossBar.hide()
 
 
 func update_markers(offsets: Array):
