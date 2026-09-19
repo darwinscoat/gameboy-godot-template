@@ -4,6 +4,4 @@
 
 [resource]
 script = ExtResource("1_wave")
-bee = 0.0
-fish = 1.0
 pair = 0.3
