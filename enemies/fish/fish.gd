@@ -12,9 +12,24 @@ extends Enemy
 @export var elite_charge_time: float = 0.4
 @export var elite_recharge_time: float = 0.25
 @export var elite_rest_time: float = 1.2
+@export_group("Ghost")
+@export var ghost_near: float = 8.0
+@export var ghost_far: float = 24.0
+@export var ghost_pulse: float = 0.2
 
 var dash_direction = Vector2.ZERO
 var dashes_left = 0
+
+
+func _physics_process(delta):
+	super(delta)
+	var charging = state == "charge" and not dying and target != null and target.visible
+	$Ghost.visible = charging and Engine.get_physics_frames() % 2 == 0
+	if charging:
+		var pulse = 1.0 - fmod(state_left, ghost_pulse) / ghost_pulse
+		$Ghost.position = dash_direction * lerpf(ghost_near, ghost_far, pulse)
+		$Ghost.flip_h = dash_direction.x < 0
+		$Ghost.frame = dash_frame
 
 
 func steer(to_player, delta):

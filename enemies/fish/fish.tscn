@@ -33,3 +33,9 @@ damage = 2
 
 [node name="Crown" parent="." index="4" unique_id=1547633159]
 position = Vector2(2, -9)
+
+[node name="Ghost" type="AnimatedSprite2D" parent="." index="6"]
+visible = false
+sprite_frames = ExtResource("3_frames")
+animation = &"attack"
+frame = 2
