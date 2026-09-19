@@ -6,10 +6,16 @@ extends Node
 
 var current = ""
 var fades = {}
+var levels = {}
 var ducking: Tween
 
 @onready var bus = AudioServer.get_bus_index("Music")
 @onready var bus_db = AudioServer.get_bus_volume_db(bus)
+
+
+func _ready():
+	for player in get_children():
+		levels[player] = player.volume_db
 
 
 func play(name):
@@ -50,7 +56,7 @@ func fade_in(name, player):
 	if fades.has(name):
 		fades[name].kill()
 	player.volume_db = silence_db
-	create_tween().tween_property(player, "volume_db", 0.0, fade_time)
+	create_tween().tween_property(player, "volume_db", levels[player], fade_time)
 	current = name
 
 
