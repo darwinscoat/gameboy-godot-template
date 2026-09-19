@@ -7,6 +7,7 @@ extends Node
 var current = ""
 var fades = {}
 var levels = {}
+var played = {}
 var ducking: Tween
 
 @onready var bus = AudioServer.get_bus_index("Music")
@@ -24,9 +25,12 @@ func play(name):
 	fade_out()
 	var player = get_node_or_null(name.to_pascal_case())
 	if player:
+		var stream = player.stream
+		var repeat = played.has(name) and stream is AudioStreamWAV
 		player.stream_paused = false
-		player.play()
-		fade_in(name, player)
+		player.play(stream.loop_begin / float(stream.mix_rate) if repeat else 0.0)
+		fade_in(name, player, 0.0 if played.is_empty() else fade_time)
+		played[name] = true
 
 
 func resume(name):
@@ -52,11 +56,11 @@ func duck(on):
 	ducking.tween_method(func(db): AudioServer.set_bus_volume_db(bus, db), AudioServer.get_bus_volume_db(bus), bus_db + (duck_db if on else 0.0), fade_time)
 
 
-func fade_in(name, player):
+func fade_in(name, player, time = fade_time):
 	if fades.has(name):
 		fades[name].kill()
 	player.volume_db = silence_db
-	create_tween().tween_property(player, "volume_db", levels[player], fade_time)
+	create_tween().tween_property(player, "volume_db", levels[player], time)
 	current = name
 
 
